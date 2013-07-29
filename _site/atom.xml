@@ -4,13 +4,350 @@
   <title>Dale Manning</title>
   <link href="http://localhost:4000/"/>
   <link type="application/atom+xml" rel="self" href="http://localhost:4000/atom.xml"/>
-  <updated>2013-07-29T14:10:04+01:00</updated>
+  <updated>2013-07-29T16:57:49+01:00</updated>
   <id>http://localhost:4000/</id>
   <author>
     <name>Dale Manning</name>
     <email>dalemmanning@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://locahost:4000/general/2013/04/21/things-you-may-have-missed</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2013/04/21/things-you-may-have-missed"/>
+    <title>Things you may have missed - 21-04-2013</title>
+    <updated>2013-04-21T00:00:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.trankynam.com/atext/&quot;&gt;aText&lt;/a&gt; :: &lt;em&gt;Tran Ky Nam Software&lt;/em&gt;&lt;br/&gt;
+I've been toying with the idea of getting some text expansion software for a while, but I could never convince myself to spend £25 on Text Expander. Well a couple of weeks ago I found aText and after trying the demo, I've purchased it. While I can't be sure that it does everything Text Expander does, it certainly meets all of my needs and the best part of all it only costs $5!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;A friendly tip for you, while it is available from the Mac App Store if you buy it direct from the developer you will get access to the dropbox syncing!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://macheist.com/&quot;&gt;Macheist nanoBundle 3&lt;/a&gt; :: &lt;em&gt;Macheist&lt;/em&gt;&lt;br/&gt;
+I love software bundles and I'm always on the lookout for a good deal. Well the guys over at MacHeist have done it again, with their latest nanobundle. It contains some apps I've been looking at for a while - Fantastical, Clarify, Clean My Mac and Pathfinder (unlocked at 30K bundles sold). On top of that it also includes the fantastic AirServer (which allows you to mirror your iOS device to your mac) and the animation software iStopMotion. The total cost is only $9.99 and at the time of writing this its only available for 2 more days.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/gb/app/id542875991?mt=8&amp;amp;affId=1860684&quot;&gt;Solar for iPhone&lt;/a&gt; :: &lt;em&gt;iTunes&lt;/em&gt;&lt;br/&gt;
+I stumbled across this app during my daily check for any changes on the app store. Its a very simple weather app however what makes it stand out for me, is just how beautiful it looks. I've been so impressed with it in fact, its found a place on my home screen (never an easy thing to do!). At the time of writing this, it is currently free and I highly recommend you give it a look.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=rlZUsPcChgI&quot;&gt;Hemlock Grove&lt;/a&gt; :: &lt;em&gt;Netflix&lt;/em&gt;&lt;br/&gt;
+On Friday, Netflix premiered there new series 'Hemlock Grove' directed by Eli Roth. So far I've only watched the first two episodes, so its a little early to tell exactly where its going but so far I've been impressed. It looks like Netflix are on a roll with their exclusives, first of all with the outstanding House of Cards and now this. If you have a Netflix subscription its worth giving a try and seeing what you think.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/gb/tv-season/defiance-season-1/id633651584&quot;&gt;Premiere Episode of Defiance&lt;/a&gt; :: &lt;em&gt;iTunes&lt;/em&gt;&lt;br/&gt;
+So Defiance premiered this week, I'll be honest I've been genuinely excited by this for a while now and I've been playing the game more or less from launch day. However, I don't have access to the SyFy channel and as a result missed the Television broadcast. So I was very very happy to see iTunes offering the pilot double episode as a free download. I loved every minute of it and can't wait to see the rest of the series, it gets my highest possible recommendation!&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/guides/2013/04/09/building-a-home-theatre-system-part-3</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/guides/2013/04/09/building-a-home-theatre-system-part-3"/>
+    <title>Building a home theatre system - Part 3</title>
+    <updated>2013-04-09T15:11:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Welcome to my third post looking at building a home theatre system. If you missed part 1 you can find it &lt;a href=&quot;http://dalemmanning.wordpress.com/2013/03/23/building-a-home-theatre-system-part-1/&quot;&gt;here&lt;/a&gt; and part 2 can be found &lt;a href=&quot;http://dalemmanning.wordpress.com/2013/03/23/building-a-home-theatre-system-part-1/&quot;&gt;here&lt;/a&gt;. This post will focus on the software actually needed to convert your media.&lt;/p&gt;
+
+&lt;p&gt;OK, so far I have discussed the various pieces of hardware which I use in order to playback my media and how to go about actually jailbreaking your ATV 2 and installing XBMC. This final part will take a look at the process I go through in order to actually convert my DVD's to individual media files.&lt;/p&gt;
+
+&lt;p&gt;My core software setup:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DVD Ripping software :: &lt;a href=&quot;http://www.macdvdripperpro.com&quot;&gt;Mac DVD Ripper Pro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Conversion software :: &lt;a href=&quot;http://handbrake.fr&quot;&gt;Handbrake&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Utility :: &lt;a href=&quot;http://www.serialangels.co.uk/wimoweh/wimoweh.html&quot;&gt;Wimoweh&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;My workflow in a nutshell:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Rip the contents of each DVD to the Hard Drive (e.g. each DVD of a TV series).&lt;/li&gt;
+&lt;li&gt;Load DVD Player and open the first DVD image.&lt;/li&gt;
+&lt;li&gt;Use DVD player to identify the title numbers for each episode.&lt;/li&gt;
+&lt;li&gt;Load Handbrake and add each title to the conversion queue, with each episode/film saving to my NAS drive and following a XBMC friendly naming convention.&lt;/li&gt;
+&lt;li&gt;Hit Start and let it get on with it!&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h5&gt;Step 1 :: Rip the contents of each DVD to the Hard Drive&lt;/h5&gt;
+
+&lt;p&gt;So why rip the DVD's first when Handbrake is perfectly capable of converting straight from the DVD? The first answer is that I've found it provides better results and a faster conversion time overall. The second answer is because it allows me to create a batch conversion list within Handbrake which can be left to do its own thing without the need for intervention on my part. I tend to feed in the DVD's while working on other things, so its not like I'm sitting around waiting for each DVD to rip. I save the DVD image to my 'Shared' folder, although you can obviously save it anywhere you like. I've selected this folder because its the one folder which is excluded from my Time Machine backup!&lt;/p&gt;
+
+&lt;p&gt;For a while I ran &lt;a href=&quot;http://thelittleappfactory.com/ripit/&quot;&gt;RipIt&lt;/a&gt;, but over the past 18 months I've switched over to &lt;a href=&quot;http://www.macdvdripperpro.com&quot;&gt;Mac DVD Ripper Pro&lt;/a&gt; which has given me consistently reliable results. Really you can use the software of your choice here and both companies will allow you to try them out before you buy.&lt;/p&gt;
+
+&lt;p&gt;The latest versions of the both pieces of the software mentioned above will allow you to instantly convert the DVD if you wish, I've never tried using this function as I've always been happy with Handbrake but it certainly provides an easier option if you don't want to play around with different pieces of software.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Just as a small side note, Blu Ray discs are a very different kettle of fish and I'll probably write about those in a later post.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h5&gt;Step 2 &amp;amp; 3 :: Use DVD Player to identify the title numbers for each episode&lt;/h5&gt;
+
+&lt;p&gt;OK so this is possible the most tedious part of the whole process but a necessary one. Each DVD from a TV series will typically have 3-4 episodes on it and each of this episodes will live in a particular title. It is these title numbers which allow you to name your episodes correctly when you are setting up your queue in Handbrake during step 4.&lt;/p&gt;
+
+&lt;p&gt;This is what you need to do in order to identify the title numbers:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Load DVD Player (If it runs in full screen, press escape).&lt;/li&gt;
+&lt;li&gt;Click on File &gt; Open DVD Media and click on the first image file/folder you want to open.&lt;/li&gt;
+&lt;li&gt;Once you reach the menu, load the first episode and let it start playing.&lt;/li&gt;
+&lt;li&gt;You will see that the Controller has the playback time currently displayed, click on the time twice. This will display the title number for you e.g. 14/51.&lt;/li&gt;
+&lt;li&gt;Make a note of the title number and return to the main menu.&lt;/li&gt;
+&lt;li&gt;Repeat the process until you have identified all of the episodes.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Now as a general rule, the title numbers will actually be fairly logical e.g. Titles 1 to 4 and once you have identified the pattern on the first couple of DVD's you can easily apply it to the rest of the series.&lt;/p&gt;
+
+&lt;h5&gt;Step 4 :: Load Handbrake and add each title to the conversion queue.&lt;/h5&gt;
+
+&lt;p&gt;My conversion software of choice is &lt;a href=&quot;http://handbrake.fr&quot;&gt;Handbrake&lt;/a&gt;, an excellent piece of open-source software which provides you with a range of built-in presets for almost all of the common apple devices such as the ATV 1-3, iPod, iPhone and iPad. Alternatively you can create your own presets which is what I've done.&lt;/p&gt;
+
+&lt;p&gt;You will need to play around with the presets until you have settings that you are happy with, you will probably find that the ATV options will do the job for you or at the very least provide a good starting point.&lt;/p&gt;
+
+&lt;p&gt;This is what you need to do in order to create your queue:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Load Handbrake.&lt;/li&gt;
+&lt;li&gt;When prompted to select a source, open the first image file/folder you wish to convert.&lt;/li&gt;
+&lt;li&gt;Handbrake will then scan through the available titles, this can take a minute or so.&lt;/li&gt;
+&lt;li&gt;Select the preset you wish to use (if you select and preset click on the cog button you can make it the default).&lt;/li&gt;
+&lt;li&gt;Select the destination you wish to use to store your converted files.&lt;/li&gt;
+&lt;li&gt;Select the title you want to convert (see step 2 &amp;amp; 3).&lt;/li&gt;
+&lt;li&gt;Enter the name for the file (See the next section for a discussion of naming conventions).&lt;/li&gt;
+&lt;li&gt;Click on the &lt;em&gt;'Add to Queue'&lt;/em&gt; button.&lt;/li&gt;
+&lt;li&gt;Repeat steps 6 &amp;amp; 7 for each title on the DVD.&lt;/li&gt;
+&lt;li&gt;Click on the &lt;em&gt;'Source'&lt;/em&gt; button to select the next image file/folder you wish to convert.&lt;/li&gt;
+&lt;li&gt;Repeat the process for each DVD.&lt;/li&gt;
+&lt;li&gt;Click start.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Trust me I say that after going through it a few times this will become second nature to you!&lt;/p&gt;
+
+&lt;p&gt;There are a couple of things to consider before you start using Handbrake:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The last stable release (0.9.8) has some bugs regarding Mountain Lion particularly if your machine is set to sleep after a period of inactivity. Handbrake isn't recognised by the system as being busy and as a result will put the whole system to sleep (a rather annoying problem when you are trying to convert a bunch of video!). This is where the excellent &lt;a href=&quot;http://www.serialangels.co.uk/wimoweh/wimoweh.html&quot;&gt;Wimoweh&lt;/a&gt; app comes in, it allows you prevent system sleep if certain apps are running.&lt;/li&gt;
+&lt;li&gt;You can also set the behaviour of Handbrake once it has finished the queue, simply go to &lt;em&gt;Handbrake &gt; Preferences&lt;/em&gt; and in the &lt;em&gt;'When Done'&lt;/em&gt; combo box select an action. I've setup mine to shut down my machine once it has finished the current queue, but you can just tell it to display an alert window or even do nothing at all.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h5&gt;XBMC Friendly naming conventions&lt;/h5&gt;
+
+&lt;p&gt;If you want XBMC to be able to scrap your files for you and download all of the required metadata so that you can get TV/Film information, you need to make sure that you name your files correctly. This will require a little bit of research on your part but its worth it. The two best resources you have at your disposal are &lt;a href=&quot;http://www.themoviedb.org&quot;&gt;The Movie Database&lt;/a&gt; and &lt;a href=&quot;http://thetvdb.com&quot;&gt;The TV Database&lt;/a&gt;, you can find all of the required information on these two sites.&lt;/p&gt;
+
+&lt;p&gt;To give you an example of why some research might be required, lets take Doctor Who. Now I have a couple of seasons of the new Doctor Who starring Matt Smith that I wanted to add to my library, but it turns out that if I had just named the root folder &lt;em&gt;'Doctor Who'&lt;/em&gt; my episodes would have the information for the episodes starring Patrick Troughton! Instead I needed to name my root folder &lt;em&gt;'Doctor Who (2005)'&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;So once you have the correct name for you root folder you can start to build up everything else, in the end my Doctor Who folder looked like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Doctor Who (2005)
+
+&lt;ul&gt;
+&lt;li&gt;Season 5
+
+&lt;ul&gt;
+&lt;li&gt;Doctor Who (2005) - S05E01&lt;/li&gt;
+&lt;li&gt;Doctor Who (2005) - S05E02&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Season 6
+
+&lt;ul&gt;
+&lt;li&gt;Doctor Who (2005) - S06E01&lt;/li&gt;
+&lt;li&gt;Doctor Who (2005) - S06E02&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;So within each TV series root folder you have a folder for each season labelled &lt;em&gt;'Season ...'&lt;/em&gt; and inside each season folder you have your episodes labelled &lt;em&gt;'TV Series name - S..E..'&lt;/em&gt;. By using this convention you will ensure that XBMC is able to scrap you TV files without any problems. For files which span multiple episodes you can use &lt;em&gt;'TV Series name - S..E..-E..'&lt;/em&gt;  e.g. Doctor Who (2005) - S05E01-E02.&lt;/p&gt;
+
+&lt;p&gt;Films are slightly easier and most of the time simply putting the full name of the film will provide results however I always place the year of release in brackets after the film name. e.g. 28 Days Later (2002). If you have a film that is spanned over a number of files you can make use of the following naming convention:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Avatar (2009)
+
+&lt;ul&gt;
+&lt;li&gt;Avatar (2009) - Part 1&lt;/li&gt;
+&lt;li&gt;Avatar (2009) - Part 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;This will allow XBMC to automatically switch to the necessary file during playback.&lt;/p&gt;
+
+&lt;p&gt;This system has always worked extremely well for me and generally if I have problems its because I've made an error. However XBMC does support a number of different naming conventions and you can find out more by &lt;a href=&quot;http://wiki.xbmc.org/index.php?title=Video_library/Naming_files&quot;&gt;clicking here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That is part 3 finished and for now a completion to this series of posts. I hope you have found it useful and at the very least a good starting point for building your own home theatre system. I'm sure that over time I will return and revise the information here as I continue to build and play around with what I have. If you like what I've written, please let me know via twitter or the comments below.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/general/2013/04/08/items-you-may-have-missed</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2013/04/08/items-you-may-have-missed"/>
+    <title>Things you may have missed - 08-04-2013</title>
+    <updated>2013-04-08T00:00:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.jamierubin.net/2013/04/01/going-back-to-paper-my-digital-disintegration/&quot;&gt;Going (Back To) Paper: My Digital Disintegration&lt;/a&gt; :: &lt;em&gt;Jamie Todd Rubin&lt;/em&gt;&lt;br/&gt;
+I've been reading Jamie's Going Paperless posts for over a year now, when I saw this post on April 1st it really did make me laugh.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.tuaw.com/2013/04/03/amazon-introduces-cloud-drive-file-sync-for-os-x/&quot;&gt;Amazon introduces Cloud Drive File Sync for OS X&lt;/a&gt; :: &lt;em&gt;TUAW&lt;/em&gt;&lt;br/&gt;
+Amazon cloud storage has been around for a while, but I've avoided it because of the lack of any kind of sync option on the mac. Now that Amazon has released their new File Sync app, I've added it to the list of things to try at some point. I doubt its going to replace Dropbox for me, but having access to another 5GB of cloud storage can't be a bad thing!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://lifehacker.com/5993596/how-to-set-up-your-own-private-cloud-storage-service-in-five-minutes-with-owncloud&quot;&gt;How to Set Up Your Own Private Cloud Storage Service in Five Minutes with OwnCloud&lt;/a&gt; :: &lt;em&gt;LifeHacker&lt;/em&gt;&lt;br/&gt;
+Speaking of cloud storage, LifeHacker have a great article which looks at the open-source OwnCloud which allows you to setup your own Cloud system. I've had a brief play with OwnCloud and I can see the advantages of setting up a system with remains completely under my control.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://512pixels.net/2013/04/old-mac-imac-g5/&quot;&gt;Old Mac Of The Month: The iMac G5&lt;/a&gt; :: &lt;em&gt;512 Pixels&lt;/em&gt;&lt;br/&gt;
+A fantastic article which takes a look at the old G5 iMac, the thing which stood out to me was just how simple it was to add or replace its components. As someone who was responsible for running a mac network for 5 years, I just wish the intel iMacs had been just as easy to maintain. Considering the current state of apple hardware, constantly getting smaller and smaller, I really doubt we will ever see an iMac with this kind of maintainability again.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ipad.appstorm.net/reviews/productivity/ithoughtshd-grow-ideas/&quot;&gt;iThoughtsHD: Grow Ideas&lt;/a&gt; :: &lt;em&gt;App Storm&lt;/em&gt;&lt;br/&gt;
+I keep toying with the idea of picking up iThoughtsHD, but I've struggle to see exactly how it can fit into my workflow. Chris Cooper over on App Storm has written an outstanding review of the software, which takes you through the key features.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/therapy/2013/04/02/depression-is-sneaky</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/therapy/2013/04/02/depression-is-sneaky"/>
+    <title>Depression Is Sneaky</title>
+    <updated>2013-04-02T00:00:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;When I started this blog it was to provide me with an outlet, both in terms of my interests and in terms of my continuing efforts against my depression and anxiety. Back in December I began the process of being publicly open about my mental health issues by writing &lt;a href=&quot;http://dalemmanning.wordpress.com/2012/12/15/its-time-to-talk/&quot;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Its been a while since I've posted about how I'm feeling and for the most part things have been going well. Just like anyone I still have the occasional bad day, but a few weeks ago I had a pretty nasty episode of depression. An episode which reminded me that depression is &lt;strong&gt;SNEAKY!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In theory I should have been on top of the world, I had just finished my final OU assignment and was slowly getting used to having my weekends back to myself. Yet I felt awful and I couldn't really figure out why, I had completely missed the &lt;em&gt;'triggers'&lt;/em&gt; I had trained myself to watch for. Now that I've had time to reflect on it, I had been lulled into a false sense of security. I had been feeling pretty 'normal' (maybe not the best word but hopefully you understand what I mean) and I hadn't had an episode in a long time. This particular episode really did creep up on me, I didn't see it coming - I just woke up one morning and realised something wasn't right.&lt;/p&gt;
+
+&lt;p&gt;When I'm feeling low, my paranoia starts to increase and a fog starts to cloud things. By things I mean every aspect of my life, my ability to make decisions becomes incredibly impaired and all of those small things which happen to everyone and I shouldn't let get to me - start affecting me in a big way. Its not a great way to spend your day and truth be told, I don't really like who I become when I've having an episode like this. I start thinking everyone is out to get me (that would be the paranoia) and as a result I become short-tempered and defensive. The problem is that once I start disliking myself, the whole cycle starts again and continues to repeat. My therapist told me during my CBT that I have to work on my process of forgiving myself and acknowledge the fact that I am allowed to have a bad day (something I've always been terrible at).&lt;/p&gt;
+
+&lt;p&gt;In the end it was my parents and friends who helped to pull me out of the episode, they got me back to a place where I could start to rebuild the defences inside my head.&lt;/p&gt;
+
+&lt;p&gt;So how am I feeling now? Actually pretty good, I've realised that even when I'm feeling good I need to continue applying everything I learnt during therapy, something which I had allowed myself to forget. I'm posting this as a public record of the fact that regardless of what you feel is happening to you, there is very little you can't get past with the aid of the people who love and care about you.&lt;/p&gt;
+
+&lt;p&gt;Most importantly - remember to be kind and forgiving of yourself, after all you're only human!&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/guides/2013/04/01/building-a-home-theatre-system-part-2</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/guides/2013/04/01/building-a-home-theatre-system-part-2"/>
+    <title>Building a home theatre system - Part 2</title>
+    <updated>2013-04-01T00:00:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Welcome to my second post looking at building a home theatre system. Sorry that this is being a little later than promised, I wanted to make sure everything was correct before I posted this. If you missed part 1 you can find it &lt;a href=&quot;http://dalemmanning.wordpress.com/2013/03/23/building-a-home-theatre-system-part-1/&quot;&gt;here&lt;/a&gt;. This post will focus on the software required to jailbreak the ATV2.&lt;/p&gt;
+
+&lt;p&gt;As I mentioned during my first post, jailbreaking the ATV2 was an important move in building the home theatre setup I currently have. It turned my little hockey puck into a powerful media playback device and allow me to use XBMC, which is the centre of the entire setup.&lt;/p&gt;
+
+&lt;h5&gt;Jailbreaking - Installing&lt;/h5&gt;
+
+&lt;p&gt;I use Seas0nPass from Firecore to jailbreak my ATV, I've never had any problems with it and its always been a very straightforward process. I would go into a complete step-by-step explanation of the process but the truth is the guys at Firecore are smart people and they can do a much better job than I can. You can find their instructions, as well the latest download links for Mac and Windows by  &lt;a href=&quot;http://support.firecore.com/entries/387605-jailbreaking-101-seas0npass&quot;&gt;clicking here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However there are a couple of things which could be useful to you, so here goes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You will need a Micro USB cable in order to complete the process, most people do have at least one lying around the house but if you can easily pick one up from amazon.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;There are two types of jailbreak:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Tethered:&lt;/em&gt; A tethered jailbreak means that should you ever need to boot your ATV2 backup you will need to use Seas0nPass to bring it back to life (as a general rule any major iOS upgrade will result in a tethered jailbreak being available first).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Untethered:&lt;/em&gt; My preferred type of jailbreak, once you have this installed you can shutdown/power up your ATV to your hearts content without the need to run Seas0nPass again.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Apple stop signing all previous versions of their ATV updates as soon as a new one is released, which means you need to be careful when beginning the jailbreak process. You can find the current jailbreak status of the iOS upgrades by &lt;a href=&quot;http://forum.firecore.com/topic/3418&quot;&gt;clicking here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h5&gt;Jailbreaking - Upgrading&lt;/h5&gt;
+
+&lt;p&gt;So what about upgrading your jailbreak when a nice new iOS upgrade comes along ... Well this is where things get a little tricky, the first thing you need to consider is that it will generally take a little while for a jailbreak to be released for the newest upgrades. Apple aren't exactly keen on people changing the default settings of any of their devices and as a result they have a habit of throwing a few curveballs into the mix (See the ATV3 for an example).&lt;/p&gt;
+
+&lt;p&gt;Once a new jailbreak is available you will need to backup your important settings, especially if you do plan to use XBMC, as a new jailbreak will wipe your ATV. Luckily this isn't so difficult and you can SFTP into your device and copy your settings folder. I make use of &lt;a href=&quot;http://www.binarynights.com&quot;&gt;Forklift&lt;/a&gt; in order to backup my settings but you can use just about any FTP software.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Example of backup procedure:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Look up your ATV IP address :: Settings &gt; General &gt; Network&lt;/li&gt;
+&lt;li&gt;Load Forklift or FTP software of choice.&lt;/li&gt;
+&lt;li&gt;Create a new SFTP connection to the IP address of your ATV.&lt;/li&gt;
+&lt;li&gt;Enter username: &lt;em&gt;root&lt;/em&gt; and password: &lt;em&gt;alpine&lt;/em&gt; (which is the default).&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;From here you will have access to the root folder of the ATV and you can find the settings you want to &gt; backup. For example the settings for XBMC can be found at:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;/private/var/mobile/Library/Preferences/XBMC/&lt;/em&gt; :: which contains all of your add-ons, skins and user data.&lt;br/&gt;
+&lt;em&gt;/private/var/mobile/Library/Preferences/XBMC/userdata/&lt;/em&gt; :: which is just your user data and is the most important folder of all.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;I tend to create a backup of my user data folder every couple of weeks, so all I have to do after an iOS upgrade is copy the user data folder back and I'm good to go!&lt;/p&gt;
+
+&lt;h5&gt;XBMC - Installing&lt;/h5&gt;
+
+&lt;p&gt;There are a couple of different ways to install the latest version of XBMC &lt;em&gt;'Frodo'&lt;/em&gt;, I tend to stick with the recommended install method which is to use the command line instructions. However if playing around on the command line isn't for you, you can purchase Firecore's &lt;a href=&quot;http://firecore.com/atvflash-black&quot;&gt;ATV Flash Black&lt;/a&gt; which will do everything for you.&lt;/p&gt;
+
+&lt;p&gt;XBMC themselves recommend the command line method and to be honest it isn't to difficult, just like Firecore they have a very comprehensive set of instructions &lt;a href=&quot;http://wiki.xbmc.org/index.php?title=HOW-TO:Install_XBMC_on_Apple_TV_2#ATV_5.x&quot;&gt;available here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5&gt;XBMC - Updating&lt;/h5&gt;
+
+&lt;p&gt;The nice thing about XBMC is that you can update it all you want and your user data remains completely intact! Its always advisable to update to the latest version when possible as they are constantly ironing out bugs (if you are really brave you can switchover to using their nightly builds...).&lt;/p&gt;
+
+&lt;p&gt;Just as with installing XBMC, updating is very straightforward and the instructions are &lt;a href=&quot;http://wiki.xbmc.org/index.php?title=HOW-TO:Install_XBMC_on_Apple_TV_2#Updating&quot;&gt;available here&lt;/a&gt;. While I've never had anything go wrong during the update, just remember to backup your settings every now and then.&lt;/p&gt;
+
+&lt;h5&gt;XMBC - Add-ons&lt;/h5&gt;
+
+&lt;p&gt;The greatest advantage that XBMC has is the number of add-ons which are available to you both official and unofficial. This includes additional skins (I've tried a fair few but I always comeback to the default which is extremely responsive on the ATV2), video plugins for services such as iPlayer or 4od and audio plugins for services such as Rdio or Spotify.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;So that's part 2 finished, thanks again for taking the time to read this. Next time I will discuss the software I use for the actual conversion of my media. Check back next week for part 3 and if you like what I've written, please let me know via twitter or the comments below.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/general/2013/03/31/items-you-may-have-missed</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2013/03/31/items-you-may-have-missed"/>
+    <title>Things you may have missed - 31-03-2013</title>
+    <updated>2013-03-31T00:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;A slight name change to this feature, as it occurred to me that not everything I want to share could necessarily be considered an article!  So here are the &lt;em&gt;'things'&lt;/em&gt; which you may have missed:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.denofgeek.com/movies/25005/james-woods-the-tragedy-of-current-film-preservation-efforts&quot;&gt;James Woods: the tragedy of current film preservation efforts&lt;/a&gt; :: &lt;em&gt;Den Of Geek&lt;/em&gt;&lt;br/&gt;
+So at the beginning of the week Den Of Geek ran an article discussing the &lt;a href=&quot;http://www.denofgeek.com/movies/24960/the-many-underappreciated-film-roles-of-james-woods&quot;&gt;under appreciated films&lt;/a&gt; of James Woods, which in itself is a good read containing some great films. The link above takes you to the response they received from Mr Woods himself, in which he talks about his appreciation for his fans and the little that is being done to preserve the films for the 80's and 90's (something which I agree with!). Its great to see someone like James Woods taking time out to respond to his fans in such a public and polite way.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://shawnblanc.net/2013/03/patrick-welker-sweet-mac-setup/&quot;&gt;Patrick Welker’s Sweet Mac Setup&lt;/a&gt; :: &lt;em&gt;Shawn Blanc&lt;/em&gt;&lt;br/&gt;
+I love reading about other people's Mac setups and Shawn Blanc's series of &lt;em&gt;&lt;a href=&quot;http://shawnblanc.net/sweet-mac-setups/&quot;&gt;'Sweet Mac Setups'&lt;/a&gt;&lt;/em&gt; is always worth a read, but I was blown away this week by this article featuring Patrick Welker. Be warned you are going to need a little while to read this one, but I promise it is worth it. It is a fascinating look into his workflow and setup.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.trankynam.com/xtrafinder/&quot;&gt;XtraFinder add Tabs and features to Mac Finder&lt;/a&gt; :: &lt;em&gt;Tran Ky Nam Software&lt;/em&gt;&lt;br/&gt;
+While reading though the 'Marked' iBook over the past week, I noticed that David Sparks had tabs in his finder. While I can't be sure that this is the software he uses but it certainly does the job as well as adding some great features into the Finder and it's FREE! Considering how many Finder windows I will generally end up opening during a session, this is going to make things so much easier for me.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://bettermess.com/plain-text-primer-nvalt-101/&quot;&gt;Plain Text Primer: nvALT 101&lt;/a&gt; :: &lt;em&gt;Michael Schechter - A Better Mess&lt;/em&gt;&lt;br/&gt;
+So I've been reworking my writing workflow again and during the week I made the decision to return to dropbox for all of my text based files. Over the past few months I've been using iA Writer via iCloud and having my files locked away in the little iCloud box was starting to get pretty annoying. So I made the decision to drop iCloud from that part of my workflow and this article by Michael Schechter offered me the final structure I needed to make it work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://brettterpstra.com/projects/markdown-service-tools/&quot;&gt;Markdown Service Tools&lt;/a&gt; :: &lt;em&gt;Brett Terpstra&lt;/em&gt; &lt;br/&gt;
+No doubt about it Brett Terpstra is possibly one of the smartest men alive! I've been working pretty hard to move to a completely Markdown based writing workflow over the past few weeks and his range of Markdown service tools have made things so much easier. If you are interested in Markdown, do yourself a favour and check them out.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://locahost:4000/comics/2013/03/26/dark-victory</id>
@@ -50,6 +387,564 @@
 &lt;strong&gt;Batman:&lt;/strong&gt; &lt;em&gt;Batman and Robin&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;In short I did really enjoy rereading Dark Victory. Leob and Sale should be praised for what they attempted to do here, it can't have been a easy to try and recreate their earlier success. Yes it does have its weaknesses, however it does also manage to develop the background of the Dark Knight and successfully delivers further insight into the Batman which we get to read about today. My only piece of advice - if you are going to read this, do yourself a favour and make sure you read The Long Halloween first.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/general/2013/03/24/articles-you-may-have-missed</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2013/03/24/articles-you-may-have-missed"/>
+    <title>Articles you may have missed - 24-03-2013</title>
+    <updated>2013-03-24T00:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Articles you may have missed: 24-03-2013&lt;/p&gt;
+
+&lt;p&gt;Here are some of the articles I've found interesting over the past week.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://io9.com/inside-secrets-of-the-making-of-star-trek-ii-wrath-of-457250013&quot;&gt;Inside Secrets of the Making of Star Trek II: Wrath of Khan and &quot;Space Seed&quot;!&lt;/a&gt; :: io9&lt;/em&gt; - An excellent article which looks into the evolution of one of the greatest Star Trek villains of all time, really worth a read if you are a fan.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://collider.com/game-of-thrones-season-3-4-george-r-r-martin-interview/&quot;&gt;Producers David Benioff, Dan Weiss &amp;amp; George R.R. Martin Talk GAME OF THRONES Season 3 and 4, Martin’s Cameo, the End of the Series, and More&lt;/a&gt; :: Collider&lt;/em&gt; - An interesting interview with the producers of Game Of Thrones and author George R.R. Martin in which they discuss the task of translating the books to screen. With Season 3 starting in just a few short days, it provides some great background.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://io9.com/the-fading-grandeur-of-abandoned-soviet-space-facilitie-456896333&quot;&gt;The Fading Grandeur of Abandoned Soviet Space Facilities&lt;/a&gt; :: io9&lt;/em&gt; - It always fascinates me when facilities are just abandoned. io9 have put together a great collection of images which shows whats left of various Soviet Space facilities, which are abandoned after the fall of the Soviet Union. It's worth following the source links as well in order to get some great background information (although I will admit my inability to read russian did make this a little difficult!).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.macstories.net/news/how-to-enable-two-step-verification-for-your-apple-id/&quot;&gt;How to Enable Two-Step Verification for Your Apple ID&lt;/a&gt; :: MacStories&lt;/em&gt; - Apple have finally rolled out Two-Step verification for customers living in the United States, the United Kingdom, Australia, Ireland, and New Zealand. MacStories as usual have put together an in-depth guide to the getting it all setup.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;[New Field Guide: Markdown]http://macsparky.com/blog/2013/3/new-field-guide-markdown) :: MacSparky&lt;/em&gt; - David Sparks of Mac Power Users, has released his third MacSparky field guide co-written with Eddie Smith. This time he focuses on using Markdown, I've been a markdown convert for around the past 6 months but I also know I've only just scratched the surface of what can be achieved. All of his previous field guides have been fantastic and I didn't hesitate in purchasing this.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Thats it for this week there will be more next Sunday.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/guides/2013/03/23/building-a-home-theatre-system-part-1</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/guides/2013/03/23/building-a-home-theatre-system-part-1"/>
+    <title>Building a home theatre system - Part 1</title>
+    <updated>2013-03-23T15:11:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I've had a few people ask me over the past few months about my home theatre setup, so I decided to spend some time detailing how I go about it all and exactly why I began this project.&lt;/p&gt;
+
+&lt;p&gt;Please be aware this isn't going to be a quick and easy guide to converting all of your media. I plan to write a pretty in depth piece here, so that I can make sure I explain everything properly. As a result I will probably split this up into two or three posts.&lt;/p&gt;
+
+&lt;h3&gt;The Background&lt;/h3&gt;
+
+&lt;p&gt;Generally one of the questions I get asked is why bother? The first answer is because it just makes everything so much easier, if I want to watch an episode of a particular TV show I can just load it up, navigate to the show I want and hit play. I don't have to turn on the blu-ray player, put in the DVD with the correct episode on and then wait for the inevitable trailers, studio information and menus to all load up.&lt;/p&gt;
+
+&lt;p&gt;The other answer is to save space. To give you a clue here how much space I'm talking about I own just over 50 different TV series (and each of those is generally the full run of currently available episodes) and just over 600 movies. They used to live on four bookcases filled top to bottom before I moved last year, now I just don't have the space for that.&lt;/p&gt;
+
+&lt;p&gt;I've been converting all of my media for around the past year, I've almost finished converting my TV boxsets (it would be fair to say that this has been a rather large project!). Most of my TV boxsets are now in my parents attic in plastic containers, that have plenty of packets of silicon to keep any potential moisture away from them. The movies have been moved to three 240 disk folders and I plan to eventually convert all of those as well.&lt;/p&gt;
+
+&lt;h3&gt;The Hardware&lt;/h3&gt;
+
+&lt;p&gt;My media system is based around the following hardware:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Storage :: 2 x 3TB Western Digital My Book Live Drives&lt;/li&gt;
+&lt;li&gt;Playback device :: Apple TV 2 (Jailbroken)&lt;/li&gt;
+&lt;li&gt;The Computer :: 2.5GHz i5 21.5&quot; iMac with 12GB RAM&lt;/li&gt;
+&lt;li&gt;Networking :: Wired networking plus a set of powerline ethernet adapters.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;You can find a full explanation for everything below:&lt;/p&gt;
+
+&lt;h5&gt;Storage&lt;/h5&gt;
+
+&lt;p&gt;The biggest factor you have when faced with a project like this is the amount of storage you are going to require. The average size of a TV episode is around 600MB, yes I could compress this even further but I've found this is the size which gives me the picture quality I'm happiest with. The average size of a film is between 1.5GB to 2GB based on its length.&lt;/p&gt;
+
+&lt;p&gt;In other words I was going to need large amount of hard drive space in order to do things properly and it was this factor which slowed down the whole project for around 6 months. Around 6 months ago I purchased two 3TB Western Digital My Book Live drives (which I was able to get when they were seriously reduced during a sale). The drives are great and almost ideal for what I wanted to use them for. I say almost because they don't have any real redundancy built into them. As I don't really fancy having to convert everything all over again, I do plan to invest in a drive which can be RAIDED at some point in the near future. They do however have networking built into them, which was essential for what I had planned.&lt;/p&gt;
+
+&lt;h5&gt;Playback device&lt;/h5&gt;
+
+&lt;p&gt;The ideal playback device changes depending on who you speak to, some will recommend a dedicated PC/Mac or just using your games console (The xbox 360 and PS3 have some pretty decent media software built straight into them).&lt;/p&gt;
+
+&lt;p&gt;I went with an ATV2 and for a while I did try using it as Apple intended, with everything running through iTunes. However as my library started to grow, iTunes slowly became more unusable taking greater lengths of time to load. So I decided to try jailbreaking the ATV, it was something I was resistant to a first but the truth is that is has dramatically increased the usability of the little black box. I can now run XBMC, which has the ability to connect straight to the network shares on my hard drives and removes the need to use iTunes completely.&lt;/p&gt;
+
+&lt;p&gt;Another huge advantage of the ATV2 is that its instantly on whenever I need it and uses very little in the way of power consumption.&lt;/p&gt;
+
+&lt;p&gt;OK so this is where I take a slight sidestep, last year Apple released a new version of the ATV with improved specs. Great you may think, sounds perfect! Well not exactly ... at the time of writing this post there is no working jailbreak for it. While you can still get the ATV2 be warned it isn't going to come cheap, the price has increased dramatically over the past 6-8 months.&lt;/p&gt;
+
+&lt;h5&gt;The Computer&lt;/h5&gt;
+
+&lt;p&gt;The only thing I use my computer for in regards to my home theatre setup is the actual conversion of my media, otherwise everything else is handled by the ATV and the hard drives. The software I use for converting my media will be covered in part 2.&lt;/p&gt;
+
+&lt;p&gt;You can obviously use just about any machine for converting your media, I use an iMac because well … I'm a mac guy. The only thing I would say is that regardless of what type of machine you plan to use, chuck as much RAM into it as you possibly can. Trust me when I say it makes a huge difference and in my case I found the conversion time for an entire 24 episode series almost halved.&lt;/p&gt;
+
+&lt;h5&gt;Networking&lt;/h5&gt;
+
+&lt;p&gt;If you are going to go with a similar setup to what I'm describing here, then at some point your media is going to be transmitted via a network. If you can get away with running physical cables between your devices, I highly recommend that you do so. I tried running via wifi for a while and while my TV episodes were ok, I found once I started streaming my movies I suffered from having to regularly buffer the stream. Switching back to cables made a huge difference in performance, I can stream full HD files without any problems.&lt;/p&gt;
+
+&lt;p&gt;I realise this is not always practical for everyone, I live in a single floor flat where just about every major piece of kit is located in one room so its relatively straightforward for me. The only exception to this is my router which needs to be located elsewhere, so I've also thrown some powerline ethernet adapters into the equation in order to provide internet access to my ATV.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That's it for now, thanks for sticking with me so far. Hopefully you've found it useful. Next time I'll go through the software I use for both the conversion process and playback. Check back next week for part 2 and if you like what I've written, please let me know via twitter or the comments below.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/comics/2013/03/19/the-long-halloween</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/comics/2013/03/19/the-long-halloween"/>
+    <title>Batman Reread 01 - The Long Halloween</title>
+    <updated>2013-03-19T15:11:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Inspired by a recent episode of the Comic Shack podcast on the 5by5 network, in which the excellent Moises Chiullan is joined by John Gholson to discuss the stories you should read if you want to get into Batman (&lt;a href=&quot;http://5by5.tv/comicshack/27&quot; title=&quot;Comic Shack: Episode 27&quot;&gt;Direct Link&lt;/a&gt;). I decided to begin rereading the Batman graphic novels which currently occupy my bookshelf - starting with 'The Long Halloween'.&lt;/p&gt;
+
+&lt;p&gt;The Long Halloween is made up of 13 issues written by Jeph Leob, with the art work being provided by Tim Sale. Originally published in 1996 to 1997, the storyline takes place over the course of a year and in terms of continuity, continues the storyline of Batman: Year One. So we get to see Batman pretty early in his career, continuing to build his relationship with Lieutenant James Gordon and working alongside District Attorney Harvey Dent for one of the first times.&lt;/p&gt;
+
+&lt;p&gt;The central plot is based on Batman trying to stop the killer know as 'Holiday', who only kills on holidays. Each of the thirteen issues deal with a particular holiday, with the first and last being rather appropriately Halloween.&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;Do you know what my people call this past year? The Long Halloween&lt;/em&gt; - Carmine &quot;The Roman&quot; Falcone&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Batman, Gordon and Dent make a pact to work together to stop 'Holiday' and over the course of the story we get to see just how fragile this relationship actually is with rather large amounts of suspicion being shown by all of the parties involved. We also run into the various antagonists of Batman including Poison Ivy, The Riddler, The Scarecrow and The Mad Hatter, yet at no point do you feel they have just been included for the sake of it; each serves a real purpose. Although the highlight for me has to be the inevitable confrontation with the Joker, which in a rather unusual twist takes place on a crop-duster!&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;Batman:&lt;/strong&gt; You're insane. &lt;strong&gt;Joker:&lt;/strong&gt; Has it really taken you this long to notice?&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;At it's heart The Long Halloween is a murder mystery, one which is filled with many different twists and turns. We actually get to see Batman being a detective, something which is forgotten in many of the later stories and just as with any detective he isn't always successful. In fact one of the major strengths of the story is that 'Holiday' constantly outwits him and as it moves on we get to see a Batman who is clearly becoming desperate to stop the killing. I get the impression that while he has learnt a great deal since Year One, he still realises he has a long way to go and this is possibly what pains him the most.&lt;/p&gt;
+
+&lt;p&gt;While reading this you can see the influences the storyline had on Nolan's 'Batman Begins' and 'The Dark Knight', with many scenes appearing in the films. For example, Batman meeting with Dent and Gordon on the roof of the GCPD in the Dark Knight, could have been lifted straight from the pages of the Long Halloween.&lt;/p&gt;
+
+&lt;p&gt;In short, I really enjoyed rereading it and still consider it to be one of the essential stories which needs to be read by anyone who wants to learn more about the early career of Batman.  Loeb creates an extraordinary story which weaves through the 13 issues and constantly leaves you guessing right until the very end (I think it fair to say you won't see it coming!).&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/general/2013/03/17/articles-you-may-have-missed</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2013/03/17/articles-you-may-have-missed"/>
+    <title>Articles you may have missed - 17-03-2013</title>
+    <updated>2013-03-17T00:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;A new feature for the site, in which i'll share some of the articles I've found interesting over the past week.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.denofgeek.com/movies/24822/the-potential-downside-to-veronica-mars-kickstarter-success&quot;&gt;The potential downside to Veronica Mars' Kickstarter success&lt;/a&gt; :: Den Of Geek&lt;/em&gt; - An interesting point of view which looks at why the overwhelming success of the Veronica Mars' kickstarter could actually be bad news when you consider the original purpose of kickstarter.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.suntimes.com/technology/ihnatko/18854273-452/google-reader-is-useful-reliable-service-that-suffered-from-shameful-neglect.html&quot;&gt;Google Reader is useful, reliable service that suffered from shameful neglect&lt;/a&gt; :: Chicago Sun-Times&lt;/em&gt; - As always Andy Ihnatko presents a balanced view on the shutdown of Google Reader.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://www.macstories.net/reviews/alfred-2-rewritten-from-the-ground-up-workflows-themes-and-more/&quot;&gt;Alfred 2: Rewritten From The Ground Up, Workflows, Themes, and More&lt;/a&gt; :: Macstories&lt;/em&gt; - An excellent review of the latest review of Alfred, after reading this I decided it was time to give it another go.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;a href=&quot;http://therandomviewer.wordpress.com/2013/03/12/tv-tuesday-battlestar-galactica-1978-e01-e03-saga-of-a-star-world/&quot;&gt;TV Tuesday: Battlestar Galactica (1978) E01 – E03: Saga of a Star World&lt;/a&gt; :: The Random Viewer&lt;/em&gt; - my good friend the random viewer has started TV Tuesdays and what better way to start it off other than the original Battlestar Galactica! Seriously you are going to want to check this out each week, he is approaching it from the point of view of never having watched it before. The fact that he has and knows what he is in for, makes it essential reading.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;This it for this week there will be more next Sunday.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/general/2013/02/24/a-quick-update</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2013/02/24/a-quick-update"/>
+    <title>A Quick Update</title>
+    <updated>2013-02-24T00:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Hi everyone!&lt;/p&gt;
+
+&lt;p&gt;This is just a very quick update, I'm sorry there hasn't been a lot going on the blog recently. A combination of work and study has meant I haven't really had a chance to sit down and write anything meaningful.&lt;/p&gt;
+
+&lt;p&gt;This week in particular I've been focused on finishing my final assignment for my OU degree, the good news the first draft is now complete and I'm hoping by the end of next weekend I'll be finished. It's taken me almost 7 years to complete my degree and I still can't completely believe that within a few short weeks, it will finally be over!&lt;/p&gt;
+
+&lt;p&gt;I've got a load of things I want to write about and I promise I'll start updating again as soon as possible.&lt;/p&gt;
+
+&lt;p&gt;However I do have one thing which I want to share, I got a chance to see Wreck-it Ralph during the week and the animated short which was shown before it 'Paperman' was amazing. If you haven't seen it yet, do yourself a favour and take 7 minutes to watch it. I promise you won't regret it.&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/1QAI4B_2Mfc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;
+
+
+
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/ios/2013/01/28/instacast-review</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/ios/2013/01/28/instacast-review"/>
+    <title>Instacast 3 Review</title>
+    <updated>2013-01-28T19:02:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;For anyone who doesn't know what Instacast is, it allows you to subscribe to podcasts and download them straight to your iDevice without needing to connect to iTunes. In short it makes things a very easy if you subscribe to a lot of podcasts.&lt;/p&gt;
+
+&lt;p&gt;I was a big user of Instacast 2 using both the iPad and iPhone versions and while in theory the two versions were meant to sync via iCloud it never exactly worked as it should. So when they announced the release of version 3, along with a brand new syncing system I happily paid the upgrade cost. I would have been happy if all they had upgraded was the syncing but they also added a range of new features which make the upgrade worth it.&lt;/p&gt;
+
+&lt;p&gt;The first new feature is that it has now been upgraded to a Universal app, so while this is a paid upgrade at least you only have to purchase it once. Along with this they have gotten rid of the in-app purchases, which used to be necessary if you wanted to create playlists, configure your subscriptions and get push notifications when new episodes were available. All of these features are now available straight out of the box.&lt;/p&gt;
+
+&lt;p&gt;I'll come to these features in a bit, but first I want to talk about the syncing. During my walk to and from work I listen to a range of different podcasts (which I'll cover later on), however I also suffer from rarely being able to get more than a few hours sleep each night. As a result I also to tend to continue to listening at night, the advantage of the new sync system is that I can stop playing a podcast on my phone, pick up my iPad which is always next to my bed and continue straight from where I left off.&lt;/p&gt;
+
+&lt;p&gt;Vemedio have ditched iCloud syncing, which was nothing but a complete pain to get working properly and from what I understand is something that causes many developers problems. Instead they have created their own cloud sync option based on WebDav and it works brilliantly. It's quick and other than having to create an account when you first launch the app, you don't know it's there. As well as the playback positions, all of your subscriptions, bookmarks and played episodes are synced as well.&lt;/p&gt;
+
+&lt;p&gt;Speaking of subscriptions Instacast contains a constantly updating directory of podcasts (which according to Vemedio's website contains over 30,000). You can browse through different genre listings or charts and perform a search a search if you know what you are looking for. You simply hit the subscribe button and its loaded into you list. It is also worth noting that Instacast supports the ability to enter podcast URL's manually.&lt;/p&gt;
+
+&lt;p&gt;You have complete control over each subscription, such as whether new episodes download automatically and get added to a playlist straight away. You can also choose when episodes are deleted from your devices with the options to delete upon playback completion or when you mark them as played. You can also configure the push notifications for each and even park your active subscriptions, a useful feature when you only want to listen to odd episodes.&lt;/p&gt;
+
+&lt;p&gt;Instacast now has a similar look on both the iPhone and iPad and while it is clean and easy to use, it does seem a strange choice. An awful lot of the screen real estate on the iPad now seems wasted and if I'm honest I did prefer the old versions interface. It also seems strange to me that even with all of that real estate, they chose to hide the additional playback options until you press a wrench icon. I can understand it on the iPhone, where you simply swipe left to show them but on the iPad it just doesn't seem to make much sense. However it is a minor point and one that I have gotten quickly used to.&lt;/p&gt;
+
+&lt;p&gt;Finally Instacast has all of the playback controls which you would expect such as a sleep timer with a range of increments, the ability to change the playback speed and continuous play which can be set to move back or forth through your current playlist.&lt;/p&gt;
+
+&lt;p&gt;There are a number of different podcatchers available on the App Store, however the main ones which seem to be continuously compared are Instacast, Downcast and Apple's own podcasts app. I've never used Downcast so I can't really comment on it compared to Instacast, but I did try Podcasts for a while, which isn't a patch on Instacast. Yes, it's free but the truth it's one of the least Apple like apps I've ever used, it feels clunky and painfully slow to use.&lt;/p&gt;
+
+&lt;p&gt;In short I love Instacast, its a great app which fulfils  its intended purpose of allowing me to manage my podcasts with ease and simplicity. Apple should seriously consider taking a page out of Vedemio's book during their next redesign of their Podcasts app.&lt;/p&gt;
+
+&lt;p&gt;It is available for the price of £2.99 and you can find it on the App Store by clicking here.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/films/2013/01/20/top-5-films-of-2012</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/films/2013/01/20/top-5-films-of-2012"/>
+    <title>My top 5 films of 2012</title>
+    <updated>2013-01-20T00:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;So I've been thinking carefully about my five favourite films of 2012, turns out this isn't necessarily an easy list to make, there were a lot of truly awesome films released last year. Before I get onto the top five I've got a couple of quick honourable mentions, which came close but just missed out. &lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;The Avengers:&lt;/strong&gt; it was fantastic and I had a lot of fun watching it but for me it just didn't stand out enough against the other films I watched.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;Prometheus:&lt;/strong&gt; right I can hear people screaming at me for putting this here and I will fully acknowledge it has some rather large plot holes! However I did really enjoy it and I do look forward to any potential sequels.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;Brave:&lt;/strong&gt; I'm a huge fan of the Pixar films and I found Brave to be a nice change from their usual films, with an outstanding voice cast.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;So those were my three honourable mentions, now its time to move onto my top five films of 2012.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;5. The Hobbit: An unexpected journey&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;So if I'm honest I wasn't exactly sure about the Hobbit,  I thought making it two films was a bit of a stretch so when they announced it was going to be three films I was concerned. I was worried that this was purely being done to make money (which I fully acknowledge is the point of any film). It turns out I needn't have worried, it was an amazing film to watch. I know some people have expressed concern over the length but the thing is at no point did I feel it was dragging, in fact I was disappointed when it was over. &lt;/p&gt;
+
+
+
+
+&lt;p&gt;The cast was fantastic, which was always a concern of mine especially considering the large ensemble they would require in order to bring the dwarves to life. However every member of the cast complements one another brilliantly and particular acknowledgement should be given to Freeman as Bilbo and Armitage as Thorin both of whom in my opinion stole the show. It was great to see old faces from The Lord of the Rings appear (even the ones that don't actually appear in the book) and it was obvious to me that Jackson had treated the source material with a great deal of respect.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;I look forward to the blu ray release however I will be waiting for the already announced extended version, which I'm hoping will be out in time for the next instalments in the cinema at Christmas.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;4. Skyfall&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;If you read my review of Skyfall you will know how much I enjoyed it and as a result won't spend ages going back over everything you can check out my thoughts [here] (http://dalemmanning.wordpress.com/2012/10/29/skyfall/ &quot;Skyfall Review&quot;).&lt;/p&gt;
+
+
+
+
+&lt;p&gt;I will say however why it reached my top five, this was a Bond film that in my opinion reflected really the world as we know it. A world where we are starting to question just how far will we go to protect ourselves and asking just how much do we need people like Bond in order to do it.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;3. Looper&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Looper was a pleasant surprise for me, a film I went and saw last minute with some friends and a film which blew me away. This was an intelligent sci-fi film, one which I'm pretty sure I'm going to have to watch multiple times to truly appreciate.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;The story line had me hooked from the start and revolves around how in the year 2074 when the mob wants to get rid of someone they send them back 30 years into the past to be disposed of by 'Loopers'. Unfortunately to say any more would spoil it for anyone who hasn't seen it and trust me this is a film best experienced with no previous knowledge.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Joseph Gordon-Levitt is exceptional and plays off against the older Bruce Willis extremely well. He also proves one is quickly becoming so popular in Hollywood. It's also nice to Willis playing a role he is clearly enjoying, as opposed to some of his more recent roles (yes I'm looking at you Cop-Out!).&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Looper is out on DVD/Blu-ray in the next few weeks in the UK and I thoroughly recommend giving it a go.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;2. Dredd 3D&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Possibly a surprising choice but this really was one of the highlights of 2012 for me and in fact came pretty close to taking the top spot.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;I'm a fan of the comic and I've been working my way through the complete case files, to me this film is an accurate portrayal of the character and does a far better job than the Stallone film ever did (don't get me wrong it was still a fun film). I loved the fact that at no point does Dredd remove his helmet and that he is just as ruthless as he is in the comics.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Full credit should be given to Karl Urban for managing to portray a character who doesn't remove his helmet so convincingly. His interaction with Olivia Thirlby who plays rookie judge Anderson is extremely strong and helps make the movie such a success.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;I'll be writing up a full review of the blu-ray soon, but for now let me just say that Dredd is highly recommended.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;1. The Dark Knight Rises&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;So my number one film of the year is the stunning end to the Dark Knight trilogy - The Dark Knight Rises.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;As far as I'm concerned Nolan has treated the character of Batman with a great deal of respect which was sorely needed after the mess that was Batman and Robin. The Dark Knight Rises is a fitting end to the journey which we started back in 2005. Drawing elements from the Knightfall and No Mans Land story lines, it is a thoroughly entertaining film which sees Batman facing one of his greatest enemies.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;It contains some brilliant nods to fans of the comic (I dare you not to shout out loud when Gordon-Levitt reveals who he is at the end of the movie) and I loved every minute of it.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;As with Dredd I'll be writing up a review of the blu-ray soon but if you haven't seen it yet, I have just one question - what exactly are you waiting for?&lt;/p&gt;
+
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/therapy/2012/12/15/its-time-to-talk</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/therapy/2012/12/15/its-time-to-talk"/>
+    <title>It's time to talk</title>
+    <updated>2012-12-15T13:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I've been working on this post for a while now, I needed to make sure I got it right. This post has come about for a number of different reasons, the first is that I was inspired by a post by Wil Wheaton (you can read it &lt;a href=&quot;http://wilwheaton.net/2012/09/depression-lies/&quot; title=&quot;Wil Wheaton Depression Lies&quot;&gt;here&lt;/a&gt;), the second is that if what I'm about to say can help even one person then its worth it and the most important reason ... I want to pay tribute to both my family and my friends for helping me through a really tough time and I want that tribute to be out there for anyone to read.&lt;/p&gt;
+
+&lt;p&gt;I guess I should start at the beginning, my name is Dale and I have depression and anxiety (Wow, that feels strange, just like Mr Wheaton I've never said this publicly before). I've been dealing with depression on and off for a long time, I remember my first really bad period being when I was 20 (I'm 30 now). At various points over the past 10 years, I've been on and off medication. It was something which I was &lt;strong&gt;very&lt;/strong&gt; resistant to at first, I guess I always saw it as admitting defeat. These days I don't see as being any different from a diabetic taking insulin, if that one little tablet helps to keep me on an even level and allows to me get on with my life then that's what I need.&lt;/p&gt;
+
+&lt;p&gt;However around 6 months ago things got really bad and I genuinely felt like I'd hit rock bottom. For anyone who has never dealt with depression, it can leave you feeling extremely confused, lonely and incredibly miserable. In my case it also started affecting my ability to deal with the small things. My work and my home life were drastically becoming affected and I realised that I needed help.&lt;/p&gt;
+
+&lt;p&gt;So I began undergoing cognitive behaviour therapy and I can honestly say its one of the best things I've ever done. It's allowed me to start understanding my ’triggers’ and I'm starting to build up my abilities to deal with them. Most importantly its allowed me to accept who I am and feel comfortable with myself for the first time in years.&lt;/p&gt;
+
+&lt;p&gt;If I'm honest I'm not sure if I had tried the therapy a few years ago it would have been so successful. Realistically I think I needed to get to where I was before I was ready to fully embrace the therapy and while it has been extremely draining and hard, I seriously believe I'm stronger for it.&lt;/p&gt;
+
+&lt;p&gt;A couple of weeks ago I completed my therapy. Am I cured? No, I think in someways I will always be dealing with this, but I also think I'm starting to win the battle. Yes I will still have bad days (&lt;em&gt;after all who doesn't?&lt;/em&gt;) However I can now see that while I may always have depression and anxiety, depression and anxiety won't always &lt;strong&gt;have&lt;/strong&gt; me! I can control it!&lt;/p&gt;
+
+&lt;p&gt;The most important factor in all of this, in this entire journey I've gone through is that without my friends and family none of it would have happened, without them I would still be in an extremely bad place, without them I wouldn't have the strength to write this post.&lt;/p&gt;
+
+&lt;p&gt;So this is dedicated to all of them; to my parents who have been through every single up and down with me over the past 10 years.  I know it hasn't been easy but I couldn't have asked for a more supportive Mum and Dad; to my brother, my sister and my niece who have welcomed me with open arms every time I have needed it constantly reminding me that everything will be ok; finally to my closest friends who have stood by my side every step of the way, constantly looking out for me and never once turning their backs on me.&lt;/p&gt;
+
+&lt;p&gt;I love each and everyone of you, seriously without your support I honestly don't know where I'd be today.&lt;/p&gt;
+
+&lt;p&gt;Thank you ...&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/ios/2012/12/10/using-my-ipad-in-the-classroom</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/ios/2012/12/10/using-my-ipad-in-the-classroom"/>
+    <title>Using my iPad in the classroom</title>
+    <updated>2012-12-10T17:28:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;So I've been playing around with a few methods of using my iPad in the classroom (I teach Media Studies and Music at a secondary school) and I thought I would share them. In particular these methods focus on controlling your mac or displaying your iPad through your Mac.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Method 01: iPad + Rowmote = Wireless keyboard and mouse for your mac&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;So the first method is one that I've been using for a while and even mentioned briefly in a earlier blog post in which I shared &lt;a href=&quot;http://scriptogr.am/dalemmanning/post/my-ipad-home-screen/&quot; title=&quot;My iPad Home Screen&quot;&gt;my iPad home screen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Rowmote is an really great little app which allows you to use your iPad as a wireless controller for your mac. It is available in two different flavours:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rowmote: Which essentially takes the place of the white/aluminium remote you used to get with macs. It provides you with the basic play/stop/forward/back controls you need to control a large majority of the media apps you will find on your mac.&lt;/li&gt;
+&lt;li&gt;Rowmote Pro: This version gives you everything the standard version does as well as a remote keyboard and mouse.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I used to write up on the classroom whiteboard, however the truth is my writing was never that great. At the beginning of the school year I realised I needed to find a method which would make it easier for my students to follow what was being written on the board. Rowmote is that method, now whenever I need to write notes and discussions up on the board I will simply bring up a blank Pages document and start typing.&lt;/p&gt;
+
+&lt;p&gt;This provides me with two big advantages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I am now able to stand anywhere in the classroom and continue to write on the board, I'm no longer confined to the front of the room.&lt;/li&gt;
+&lt;li&gt;The class notes can be easily saved and recalled in future lessons or uploaded onto our VLE for reference by the students.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I've been using Rowmote virtually everyday since the start of term and it's a brilliant app, yes occasionally it takes a little while to connect to the mac I want to control but 98% of the time its been very reliable.&lt;/p&gt;
+
+&lt;p&gt;The standard version will set you back £0.69 and can be upgraded to the pro version for a £2.49 in-app purchase. The pro version costs £2.99. Both versions require the free rowmote helper software in order to control your mac.&lt;/p&gt;
+
+&lt;p&gt;Links to software:&lt;a href=&quot;These&quot;&gt;^1&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/gb/app/rowmote-remote-control-for/id300265786?mt=8&quot; title=&quot;Rowmote on iTunes&quot;&gt;Rowmote&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/gb/app/rowmote-pro-remote-control/id315316036?mt=8&quot; title=&quot;Rowmote Pro on iTunes&quot;&gt;Rowmote Pro&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Method 02: Mac + AirServer = AppleTV&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This method is a fairly new one for me and I've only really been making use of it over the past few weeks. The biggest advantage of the iPad and AppleTV combo is you can display your iPad screen on your TV/Projector. Unfortunately we don't have any AppleTV units connected to our projectors at work and this is where AirServer comes in.&lt;/p&gt;
+
+&lt;p&gt;Once you install AirServer it will allow you to display your iPad in a window on your macs screen. If that mac is connected to a projector you've got yourself an AppleTV! It's worked pretty well over the last few weeks and I've really enjoyed being able to use it in lessons without having to be connected via a VGA adapter.&lt;/p&gt;
+
+&lt;p&gt;AirServer is available as a 7 day free trial if you want try it out and I really recommend that you do. They also provide a range of different purchase options from a standard licence to education/multi-volume. It is also available for Windows so even if you don't use macs in your school your can still give it a go.&lt;/p&gt;
+
+&lt;p&gt;Links to software:&lt;a href=&quot;See&quot;&gt;^2&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.airserverapp.com&quot; title=&quot;AirServer website&quot;&gt;AirServer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Method 03: &lt;em&gt;Actions for iPad&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok so this method is so new I've only had it installed on my iPad for a few days, but it looks like its going to have a lot of potential and I'm looking forward to really giving it a proper test.&lt;/p&gt;
+
+&lt;p&gt;Actions essentially allows you to create a completely customisable remote control, if an action can be carried out with a keyboard shortcut then it can be programmed into Actions. I haven't really had time to play around with this properly yet, so I'm not completely sure where it will fit into my workflow. Once I have I will write an update and post it for anyone who is interested.&lt;/p&gt;
+
+&lt;p&gt;Links to software:&lt;a href=&quot;See&quot;&gt;^3&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/gb/app/actions-for-ipad/id564645608?mt=8&quot; title=&quot;Actions for iPad on iTunes&quot;&gt;Actions for iPad&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;hr /&gt;
+
+&lt;p&gt;So thats it, three different methods for using the iPad in a classroom environment. I'm not saying they are perfect and I'm pretty sure that I'll be tweaking these or replacing them completely over the next few weeks as I spot new apps to play around with but hey, I'm a geek! Thats what I supposed to do!&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/ios/2012/11/04/my-ipad-home-screen</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/ios/2012/11/04/my-ipad-home-screen"/>
+    <title>My iPad Home Screen</title>
+    <updated>2012-11-04T15:33:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;So over the past few months more and more of my friends and colleagues have been purchasing iPads, as a result I'm frequently asked what apps they should consider purchasing. I will usually then respond with a rather detailed e-mail explaining different options which may be beneficial to them.&lt;/p&gt;
+
+&lt;p&gt;So I've decided maybe I should actually write down what apps I use, along with an explanation for why they get used on a daily basis.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropbox.com/u/12515864/Blog%20Images/MyiPadHomescreen.jpg&quot; alt=&quot;My iPad Home Screen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The wallpaper is created by &lt;a href=&quot;http://simoncpage.co.uk/blog/2012/03/ipad-hd-retina-wallpaper/&quot; title=&quot;Simon C Page&quot;&gt;Simon C Page&lt;/a&gt; and I found out about it through a post on the &lt;a href=&quot;http://www.macdrifter.com/2012/11/some-retina-quality-ipad-wallpapers-link.html&quot; title=&quot;MacDrifter&quot;&gt;MacDrifter&lt;/a&gt; website.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;On The Dock: Safari, Calendar, Mail, Reminders, Camera+ and Settings&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Camera+ has completely taken the place of the default camera app on both my iPad and iPhone. It has some really nice features such as timer and burst mode (features that really should be in the default camera surely?).&lt;/p&gt;
+
+&lt;p&gt;Safari, Calendar, Mail and Reminders are used daily both at work and at home, the integration between iOS 6 and Mountain Lion has made them even more useful.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Facebook and Twitter:&lt;/strong&gt;
+If I'm honest while I don't really post anything to Facebook it is a good way to keep in touch with friends and family, so it does get checked a couple of times a day. As for Twitter until a few days ago it was only used to follow people I was interested in, I seem to remember creating the account a couple of years ago just to see what all of the fuss was about!&lt;/p&gt;
+
+&lt;p&gt;However since the launch of the blog, I do plan on trying to make better use of it so if you are interested in following me click on the @Twitter link in the site header.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Flipboard:&lt;/strong&gt;
+Flipboard is my newsreader of choice for keeping up with general news feeds. The biggest advantage to me is that they provide you with a number of news feeds which amalgamate the feeds from a number of different sites. So for example the 'Apple News' section includes the articles from TUAW, MacStories and iMore (three sites I read every single day). Its also available for the iPhone so my feeds are available on the go, which is very handy when you have bit of time to kill!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pocket:&lt;/strong&gt;
+Pocket is a great free service which allows me to file articles to be read later, it integrates perfectly with Flipboard and Safari. The Safari bookmarklet is particularly handy when I'm conducting research for work or my OU course, I'll just send it to pocket and read through it later on. Once I've read an article, if I think it will be particularly useful to keep hold of I can archive it straight over to Evernote.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Day One:&lt;/strong&gt;
+I've been making a real effort to keep a daily journal over the past few months and this provides me with the best chance of making sure I do actually write something everyday. It has a universal iOS app and Mac app which are all linked together through iCloud, which means it doesn't matter what device I write my entry on they all sync together. I particularly love the recent addition of adding photos to your entries, now I'll just fire up the app on my iPad/iPhone and snap a quick picture straight into my diary entry for the day. Its also worth noting that Day One integrates very nicely with Camera+ if you have it installed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;iA Writer:&lt;/strong&gt;
+Quickly becoming one of my most used apps, all of my blog posts are being composed within iA Writer due to its markdown support and everything is saved as plain text. Its another universal iOS app and Mac app which are also linked together via iCloud. The thing I love the most about it is that its a clean, simple app which allows me to just focus on what I'm writing.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;iWork:&lt;/strong&gt;
+Being a mac user iWork has been my office suite of choice for years and the iOS apps were some of the very first I brought for my iPad. However I always found the method loading files onto the iPad a pain and while I did some work on my iPad I generally found myself firing up my mac to work on a document or presentation. That all changed with the release of Mountain Lion and the full iCloud integration, I will now find myself grabbing my iPad while sitting on the sofa and continuing work on a file.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Evernote:&lt;/strong&gt;
+As you might of guessed from the amount of iCloud integrated apps I work with, I'm a big fan of cloud based workflows. I'm still fairly new to Evernote but I'm finding myself using it more and more, its quickly becoming my digital filing cabinet for work and home.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Goodreader:&lt;/strong&gt;
+Again this is one of my very first iPad apps and it is still used daily, Goodreader is great all round document viewer and in particular handles huge PDF files with no problems at all. However its biggest advantage is its integration with Dropbox, Skydrive and Box.net as well as its ability to access network shares. Its one of the best file handling apps I've come across and even when I try a new one out I always end up returning to Goodreader.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Accounts:&lt;/strong&gt;
+Now I'm sure I'm not using half of the features this app has, but it allows me to easily track all of my bank accounts. I used to use a spreadsheet, but I find this a lot quicker to keep up-to-date.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1Password:&lt;/strong&gt;
+1Password is a very secure digital filing cabinet for any of your sensitive digital information. Behind one extremely strong master password live all of my usernames and passwords, software serial codes and various other bits of information. In an age when we all have multiple online accounts we need try and keep track of, 1Password definitely makes the job a lot easier.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rowmote:&lt;/strong&gt;
+An excellent app which turns my iPad into a remote control and a wireless keyboard and mouse for my mac. At work it allows me to have my laptop plugged into the projector and control it or enter information wherever I am in the room. Another one of my apps which is used multiple times throughout my work day.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IMDB:&lt;/strong&gt;
+Isn't really a lot I can say about IMDB other than its a great reference tool.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;My Movies for iPad Pro:&lt;/strong&gt;
+All of my DVDs currently live in folders in an effort to save on shelf space. My Movies is what allows me to have still have access to the sleeve information for each DVD, as well as provided full lists of the cast and other technical information. Whenever I get a new DVD, I just scan the barcode using the camera on the iPad and it gets instantly added to my database.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Kindle and iBooks:&lt;/strong&gt;
+While iBooks is still my e-reader of choice for large number of ebooks I've accumulated over the years, I now buy all of my new eBooks in the Kindle format. The reason of this is fairly simple, the Kindle app is available on just about every platform and iBooks is not. Should the day come when I don't have an iPad (even the thought of that happening causes me to break out in a cold sweat!!), I can just pickup a Kindle and still have access to my library.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://locahost:4000/films/2012/10/29/skyfall</id>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/films/2012/10/29/skyfall"/>
+    <title>Skyfall</title>
+    <updated>2012-10-29T15:51:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://localhost:4000/</uri>
+    </author>
+    <content type="html">&lt;p&gt;After the success of Casino Royale, everyone had thought we were entering a new era of the Bond film. Then came along Quantum Of Solace, which its fair to say wasn't exactly  the film everyone was hoping for. So the question we now need to ask is … after a four year hiatus does Skyfall deliver?&lt;/p&gt;
+
+&lt;p&gt;Well according to a few people I know, the answer is no. In fact one of my closest friends wrote a review over on his blog 'The Random Viewer', you can read it by &lt;a href=&quot;http://therandomviewer.wordpress.com/2012/10/26/skyfall-how-the-mighty-have-fallen/&quot; title=&quot;clicking here&quot;&gt;clicking here&lt;/a&gt;, explaining his frustrations. Now most of the time I completely side with his views on Film and TV, however in this case I'm afraid I'm going to have to completely disagree.&lt;/p&gt;
+
+&lt;p&gt;The latest Bond film to me is a fitting tribute to the 50th anniversary of the franchise and while in some respects it may be seen as a slightly trimmed down offering in terms of the exotic locations and the gadgets being used. I don't think this is a bad thing, don't get me wrong I love the early bond films however it was starting to getting a little ridiculous by the time we got to Die Another Day in terms of the gadgets 007 was being deployed with. I am still curious to know who genuinely thought that giving Bond an invisible car was a good idea.&lt;/p&gt;
+
+&lt;p&gt;Casino Royale made efforts to change that and while Skyfall does re-introduce some fan favourites such as Q, it isn't done in way that is unbelievable, a fact that even Q makes reference in the film. I thought Ben Whishaw as the young Q played off excellently against Craig's older, damaged and worn Bond. After all anybody who can announce &quot;I can do more damaged sitting in my pyjamas on my laptop before my first cup of earl grey then you can do in a year in the field&quot; has got to be alright in my book (but that could just be the geek in me talking!).&lt;/p&gt;
+
+&lt;p&gt;While I will agree that the Bond girls (or is it meant to be Bond women now?) aren't necessarily utilised as much as in previous incarnations. I do think that the balance was appropriate for a film, which seems to focus primarily on whether Bond is a relic of the cold war era and whether the world really needs people like him anymore.&lt;/p&gt;
+
+&lt;p&gt;Finally ,what about the product placement people keep going on about? Well truth be told it really didn't bother me and I didn't really feel it was over the top. After all product placement is a reality of the film and television industry these days, although I will agree with my friend that some of the placement was pretty hilarious!&lt;/p&gt;
+
+&lt;p&gt;So would I recommend it - absolutely! While it may not be the very best Bond film we've seen, it does take some bold risks which in my opinion work well. The nod back to some of Bond's previous exploits was a nice touch that any fan of the franchise should greatly enjoy and appreciate. With the recent news that we can expect the next Bond to be released in 2014, I personally can't wait to see what they will do next.&lt;/p&gt;
+
+&lt;p&gt;James Bond Will Return …&lt;/p&gt;
 </content>
   </entry>
   

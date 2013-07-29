@@ -1,0 +1,257 @@
+<link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed"><!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title>Dale Manning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The random thoughts and ideas of a geek...">
+    
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        padding-top: 0px;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></sc\
+ript>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-static-top">
+      <div>
+        <div class="container">
+          <p>
+          <H1 class="title">Dale</H1> <H1 class="titlered">Manning</H1>
+          <br>
+          <H5>The random thoughts and ideas of a geek...</H5>
+          </p>
+          <p>
+          <ul class="breadcrumb">
+              	<li><a href="/">Home</a> <span class="divider">/</span></li>
+  				<li><a href="/about/">About</a> <span class="divider">/</span></li>
+                <li><a href="/archive/">Archive</a></li>
+          </ul>
+         </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+<div class="row-fluid">
+  <div class="span8">
+    <h1 class="posttitle">Building a home theatre system - Part 3</h1>
+    <p class="muted">09 April 2013</p>
+    <p>Welcome to my third post looking at building a home theatre system. If you missed part 1 you can find it <a href="http://dalemmanning.wordpress.com/2013/03/23/building-a-home-theatre-system-part-1/">here</a> and part 2 can be found <a href="http://dalemmanning.wordpress.com/2013/03/23/building-a-home-theatre-system-part-1/">here</a>. This post will focus on the software actually needed to convert your media.</p>
+
+<p>OK, so far I have discussed the various pieces of hardware which I use in order to playback my media and how to go about actually jailbreaking your ATV 2 and installing XBMC. This final part will take a look at the process I go through in order to actually convert my DVD's to individual media files.</p>
+
+<p>My core software setup:</p>
+
+<ul>
+<li>DVD Ripping software :: <a href="http://www.macdvdripperpro.com">Mac DVD Ripper Pro</a></li>
+<li>Conversion software :: <a href="http://handbrake.fr">Handbrake</a></li>
+<li>Utility :: <a href="http://www.serialangels.co.uk/wimoweh/wimoweh.html">Wimoweh</a></li>
+</ul>
+
+
+<p>My workflow in a nutshell:</p>
+
+<ol>
+<li>Rip the contents of each DVD to the Hard Drive (e.g. each DVD of a TV series).</li>
+<li>Load DVD Player and open the first DVD image.</li>
+<li>Use DVD player to identify the title numbers for each episode.</li>
+<li>Load Handbrake and add each title to the conversion queue, with each episode/film saving to my NAS drive and following a XBMC friendly naming convention.</li>
+<li>Hit Start and let it get on with it!</li>
+</ol>
+
+
+<h5>Step 1 :: Rip the contents of each DVD to the Hard Drive</h5>
+
+<p>So why rip the DVD's first when Handbrake is perfectly capable of converting straight from the DVD? The first answer is that I've found it provides better results and a faster conversion time overall. The second answer is because it allows me to create a batch conversion list within Handbrake which can be left to do its own thing without the need for intervention on my part. I tend to feed in the DVD's while working on other things, so its not like I'm sitting around waiting for each DVD to rip. I save the DVD image to my 'Shared' folder, although you can obviously save it anywhere you like. I've selected this folder because its the one folder which is excluded from my Time Machine backup!</p>
+
+<p>For a while I ran <a href="http://thelittleappfactory.com/ripit/">RipIt</a>, but over the past 18 months I've switched over to <a href="http://www.macdvdripperpro.com">Mac DVD Ripper Pro</a> which has given me consistently reliable results. Really you can use the software of your choice here and both companies will allow you to try them out before you buy.</p>
+
+<p>The latest versions of the both pieces of the software mentioned above will allow you to instantly convert the DVD if you wish, I've never tried using this function as I've always been happy with Handbrake but it certainly provides an easier option if you don't want to play around with different pieces of software.</p>
+
+<p><em>Just as a small side note, Blu Ray discs are a very different kettle of fish and I'll probably write about those in a later post.</em></p>
+
+<h5>Step 2 &amp; 3 :: Use DVD Player to identify the title numbers for each episode</h5>
+
+<p>OK so this is possible the most tedious part of the whole process but a necessary one. Each DVD from a TV series will typically have 3-4 episodes on it and each of this episodes will live in a particular title. It is these title numbers which allow you to name your episodes correctly when you are setting up your queue in Handbrake during step 4.</p>
+
+<p>This is what you need to do in order to identify the title numbers:</p>
+
+<ol>
+<li>Load DVD Player (If it runs in full screen, press escape).</li>
+<li>Click on File > Open DVD Media and click on the first image file/folder you want to open.</li>
+<li>Once you reach the menu, load the first episode and let it start playing.</li>
+<li>You will see that the Controller has the playback time currently displayed, click on the time twice. This will display the title number for you e.g. 14/51.</li>
+<li>Make a note of the title number and return to the main menu.</li>
+<li>Repeat the process until you have identified all of the episodes.</li>
+</ol>
+
+
+<p>Now as a general rule, the title numbers will actually be fairly logical e.g. Titles 1 to 4 and once you have identified the pattern on the first couple of DVD's you can easily apply it to the rest of the series.</p>
+
+<h5>Step 4 :: Load Handbrake and add each title to the conversion queue.</h5>
+
+<p>My conversion software of choice is <a href="http://handbrake.fr">Handbrake</a>, an excellent piece of open-source software which provides you with a range of built-in presets for almost all of the common apple devices such as the ATV 1-3, iPod, iPhone and iPad. Alternatively you can create your own presets which is what I've done.</p>
+
+<p>You will need to play around with the presets until you have settings that you are happy with, you will probably find that the ATV options will do the job for you or at the very least provide a good starting point.</p>
+
+<p>This is what you need to do in order to create your queue:</p>
+
+<ol>
+<li>Load Handbrake.</li>
+<li>When prompted to select a source, open the first image file/folder you wish to convert.</li>
+<li>Handbrake will then scan through the available titles, this can take a minute or so.</li>
+<li>Select the preset you wish to use (if you select and preset click on the cog button you can make it the default).</li>
+<li>Select the destination you wish to use to store your converted files.</li>
+<li>Select the title you want to convert (see step 2 &amp; 3).</li>
+<li>Enter the name for the file (See the next section for a discussion of naming conventions).</li>
+<li>Click on the <em>'Add to Queue'</em> button.</li>
+<li>Repeat steps 6 &amp; 7 for each title on the DVD.</li>
+<li>Click on the <em>'Source'</em> button to select the next image file/folder you wish to convert.</li>
+<li>Repeat the process for each DVD.</li>
+<li>Click start.</li>
+</ol>
+
+
+<p>Trust me I say that after going through it a few times this will become second nature to you!</p>
+
+<p>There are a couple of things to consider before you start using Handbrake:</p>
+
+<ul>
+<li>The last stable release (0.9.8) has some bugs regarding Mountain Lion particularly if your machine is set to sleep after a period of inactivity. Handbrake isn't recognised by the system as being busy and as a result will put the whole system to sleep (a rather annoying problem when you are trying to convert a bunch of video!). This is where the excellent <a href="http://www.serialangels.co.uk/wimoweh/wimoweh.html">Wimoweh</a> app comes in, it allows you prevent system sleep if certain apps are running.</li>
+<li>You can also set the behaviour of Handbrake once it has finished the queue, simply go to <em>Handbrake > Preferences</em> and in the <em>'When Done'</em> combo box select an action. I've setup mine to shut down my machine once it has finished the current queue, but you can just tell it to display an alert window or even do nothing at all.</li>
+</ul>
+
+
+<h5>XBMC Friendly naming conventions</h5>
+
+<p>If you want XBMC to be able to scrap your files for you and download all of the required metadata so that you can get TV/Film information, you need to make sure that you name your files correctly. This will require a little bit of research on your part but its worth it. The two best resources you have at your disposal are <a href="http://www.themoviedb.org">The Movie Database</a> and <a href="http://thetvdb.com">The TV Database</a>, you can find all of the required information on these two sites.</p>
+
+<p>To give you an example of why some research might be required, lets take Doctor Who. Now I have a couple of seasons of the new Doctor Who starring Matt Smith that I wanted to add to my library, but it turns out that if I had just named the root folder <em>'Doctor Who'</em> my episodes would have the information for the episodes starring Patrick Troughton! Instead I needed to name my root folder <em>'Doctor Who (2005)'</em>.</p>
+
+<p>So once you have the correct name for you root folder you can start to build up everything else, in the end my Doctor Who folder looked like this:</p>
+
+<ul>
+<li>Doctor Who (2005)
+
+<ul>
+<li>Season 5
+
+<ul>
+<li>Doctor Who (2005) - S05E01</li>
+<li>Doctor Who (2005) - S05E02</li>
+<li>...</li>
+</ul>
+</li>
+<li>Season 6
+
+<ul>
+<li>Doctor Who (2005) - S06E01</li>
+<li>Doctor Who (2005) - S06E02</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>So within each TV series root folder you have a folder for each season labelled <em>'Season ...'</em> and inside each season folder you have your episodes labelled <em>'TV Series name - S..E..'</em>. By using this convention you will ensure that XBMC is able to scrap you TV files without any problems. For files which span multiple episodes you can use <em>'TV Series name - S..E..-E..'</em>  e.g. Doctor Who (2005) - S05E01-E02.</p>
+
+<p>Films are slightly easier and most of the time simply putting the full name of the film will provide results however I always place the year of release in brackets after the film name. e.g. 28 Days Later (2002). If you have a film that is spanned over a number of files you can make use of the following naming convention:</p>
+
+<ul>
+<li>Avatar (2009)
+
+<ul>
+<li>Avatar (2009) - Part 1</li>
+<li>Avatar (2009) - Part 2</li>
+</ul>
+</li>
+</ul>
+
+
+<p>This will allow XBMC to automatically switch to the necessary file during playback.</p>
+
+<p>This system has always worked extremely well for me and generally if I have problems its because I've made an error. However XBMC does support a number of different naming conventions and you can find out more by <a href="http://wiki.xbmc.org/index.php?title=Video_library/Naming_files">clicking here</a>.</p>
+
+<hr />
+
+<p>That is part 3 finished and for now a completion to this series of posts. I hope you have found it useful and at the very least a good starting point for building your own home theatre system. I'm sure that over time I will return and revise the information here as I continue to build and play around with what I have. If you like what I've written, please let me know via twitter or the comments below.</p>
+
+  </div>
+  <div class="span4">
+    <script type="text/javascript">
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+<body onLoad="MM_preloadImages('../img/rss.png','../img/twitter.png','../img/appnet.png','../img/flickr.png','../img/mail.png')">
+
+<table width="85%" border="0" align="right">
+<tr>
+	<td colspan="4"><H5 class="sidebar">About</H5> <H5 class="sidebarred">Me</H5></td>
+<tr>
+<tr>
+	<td colspan="4"><i>I’m a geek who loves film and TV, comics and games however technology is my biggest passion. I believe that technology has the ability to help make both my working and personal life a better one when used correctly.</i></td>
+<tr>
+<tr>
+	<td colspan="4"><H5 class="sidebar">Follow</H5> <H5 class="sidebarred">Me</H5></td>
+<tr>
+  <tr>
+    <td align="center" valign="middle"><a href="feed://localhost:4000/atom.xml" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('RSS','','/img/rss.png',1)"><img src="/img/rssBW.png" alt="RSS" width="40" height="40" id="RSS"></a></td>
+    <td align="center" valign="middle"><a href="http://www.twitter.com/dalemmanning" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Twitter','','/img/twitter.png',1)"><img src="/img/twitterBW.png" alt="Twitter" width="40" height="40" id="Twitter"></a></td>
+    <td align="center" valign="middle"><a href="https://alpha.app.net/dalemmanning" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Appnet','','/img/appnet.png',1)"><img src="/img/appnetBW.png" alt="AppdotNet" width="40" height="40" id="Appnet"></a></td>
+    <td align="center" valign="middle"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Mail','','/img/mail.png',1)"><img src="/img/mailBW.png" alt="Mail" width="40" height="40" id="Mail"></a></td>
+  </tr>
+</table>
+
+
+
+
+
+
+  </div>
+</div>
+
+    </div>
+  </body>
+<br><br><br>
+<div class="navbar navbar-static-bottom">
+<p  class="footer"><small><strong>&copy; Dale Manning :: 2013</strong><br><i>The views expressed here are my own. They are not those of my employer.</i></small></p>
+</div>
+  
+</html>

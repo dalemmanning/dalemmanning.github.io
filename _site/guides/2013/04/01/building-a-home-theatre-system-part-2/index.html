@@ -1,0 +1,181 @@
+<link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed"><!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title>Dale Manning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The random thoughts and ideas of a geek...">
+    
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        padding-top: 0px;
+      }
+    </style>
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+  
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></sc\
+ript>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-static-top">
+      <div>
+        <div class="container">
+          <p>
+          <H1 class="title">Dale</H1> <H1 class="titlered">Manning</H1>
+          <br>
+          <H5>The random thoughts and ideas of a geek...</H5>
+          </p>
+          <p>
+          <ul class="breadcrumb">
+              	<li><a href="/">Home</a> <span class="divider">/</span></li>
+  				<li><a href="/about/">About</a> <span class="divider">/</span></li>
+                <li><a href="/archive/">Archive</a></li>
+          </ul>
+         </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+<div class="row-fluid">
+  <div class="span8">
+    <h1 class="posttitle">Building a home theatre system - Part 2</h1>
+    <p class="muted">01 April 2013</p>
+    <p>Welcome to my second post looking at building a home theatre system. Sorry that this is being a little later than promised, I wanted to make sure everything was correct before I posted this. If you missed part 1 you can find it <a href="http://dalemmanning.wordpress.com/2013/03/23/building-a-home-theatre-system-part-1/">here</a>. This post will focus on the software required to jailbreak the ATV2.</p>
+
+<p>As I mentioned during my first post, jailbreaking the ATV2 was an important move in building the home theatre setup I currently have. It turned my little hockey puck into a powerful media playback device and allow me to use XBMC, which is the centre of the entire setup.</p>
+
+<h5>Jailbreaking - Installing</h5>
+
+<p>I use Seas0nPass from Firecore to jailbreak my ATV, I've never had any problems with it and its always been a very straightforward process. I would go into a complete step-by-step explanation of the process but the truth is the guys at Firecore are smart people and they can do a much better job than I can. You can find their instructions, as well the latest download links for Mac and Windows by  <a href="http://support.firecore.com/entries/387605-jailbreaking-101-seas0npass">clicking here</a>.</p>
+
+<p>However there are a couple of things which could be useful to you, so here goes:</p>
+
+<ul>
+<li><p>You will need a Micro USB cable in order to complete the process, most people do have at least one lying around the house but if you can easily pick one up from amazon.</p></li>
+<li><p>There are two types of jailbreak:</p>
+
+<ul>
+<li><em>Tethered:</em> A tethered jailbreak means that should you ever need to boot your ATV2 backup you will need to use Seas0nPass to bring it back to life (as a general rule any major iOS upgrade will result in a tethered jailbreak being available first).</li>
+<li><em>Untethered:</em> My preferred type of jailbreak, once you have this installed you can shutdown/power up your ATV to your hearts content without the need to run Seas0nPass again.</li>
+</ul>
+</li>
+<li>Apple stop signing all previous versions of their ATV updates as soon as a new one is released, which means you need to be careful when beginning the jailbreak process. You can find the current jailbreak status of the iOS upgrades by <a href="http://forum.firecore.com/topic/3418">clicking here</a>.</li>
+</ul>
+
+
+<h5>Jailbreaking - Upgrading</h5>
+
+<p>So what about upgrading your jailbreak when a nice new iOS upgrade comes along ... Well this is where things get a little tricky, the first thing you need to consider is that it will generally take a little while for a jailbreak to be released for the newest upgrades. Apple aren't exactly keen on people changing the default settings of any of their devices and as a result they have a habit of throwing a few curveballs into the mix (See the ATV3 for an example).</p>
+
+<p>Once a new jailbreak is available you will need to backup your important settings, especially if you do plan to use XBMC, as a new jailbreak will wipe your ATV. Luckily this isn't so difficult and you can SFTP into your device and copy your settings folder. I make use of <a href="http://www.binarynights.com">Forklift</a> in order to backup my settings but you can use just about any FTP software.</p>
+
+<blockquote><p>Example of backup procedure:</p>
+
+<ol>
+<li>Look up your ATV IP address :: Settings > General > Network</li>
+<li>Load Forklift or FTP software of choice.</li>
+<li>Create a new SFTP connection to the IP address of your ATV.</li>
+<li>Enter username: <em>root</em> and password: <em>alpine</em> (which is the default).</li>
+</ol>
+
+
+<p>From here you will have access to the root folder of the ATV and you can find the settings you want to > backup. For example the settings for XBMC can be found at:</p>
+
+<p><em>/private/var/mobile/Library/Preferences/XBMC/</em> :: which contains all of your add-ons, skins and user data.<br/>
+<em>/private/var/mobile/Library/Preferences/XBMC/userdata/</em> :: which is just your user data and is the most important folder of all.</p></blockquote>
+
+<p>I tend to create a backup of my user data folder every couple of weeks, so all I have to do after an iOS upgrade is copy the user data folder back and I'm good to go!</p>
+
+<h5>XBMC - Installing</h5>
+
+<p>There are a couple of different ways to install the latest version of XBMC <em>'Frodo'</em>, I tend to stick with the recommended install method which is to use the command line instructions. However if playing around on the command line isn't for you, you can purchase Firecore's <a href="http://firecore.com/atvflash-black">ATV Flash Black</a> which will do everything for you.</p>
+
+<p>XBMC themselves recommend the command line method and to be honest it isn't to difficult, just like Firecore they have a very comprehensive set of instructions <a href="http://wiki.xbmc.org/index.php?title=HOW-TO:Install_XBMC_on_Apple_TV_2#ATV_5.x">available here</a>.</p>
+
+<h5>XBMC - Updating</h5>
+
+<p>The nice thing about XBMC is that you can update it all you want and your user data remains completely intact! Its always advisable to update to the latest version when possible as they are constantly ironing out bugs (if you are really brave you can switchover to using their nightly builds...).</p>
+
+<p>Just as with installing XBMC, updating is very straightforward and the instructions are <a href="http://wiki.xbmc.org/index.php?title=HOW-TO:Install_XBMC_on_Apple_TV_2#Updating">available here</a>. While I've never had anything go wrong during the update, just remember to backup your settings every now and then.</p>
+
+<h5>XMBC - Add-ons</h5>
+
+<p>The greatest advantage that XBMC has is the number of add-ons which are available to you both official and unofficial. This includes additional skins (I've tried a fair few but I always comeback to the default which is extremely responsive on the ATV2), video plugins for services such as iPlayer or 4od and audio plugins for services such as Rdio or Spotify.</p>
+
+<hr />
+
+<p>So that's part 2 finished, thanks again for taking the time to read this. Next time I will discuss the software I use for the actual conversion of my media. Check back next week for part 3 and if you like what I've written, please let me know via twitter or the comments below.</p>
+
+  </div>
+  <div class="span4">
+    <script type="text/javascript">
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+<body onLoad="MM_preloadImages('../img/rss.png','../img/twitter.png','../img/appnet.png','../img/flickr.png','../img/mail.png')">
+
+<table width="85%" border="0" align="right">
+<tr>
+	<td colspan="4"><H5 class="sidebar">About</H5> <H5 class="sidebarred">Me</H5></td>
+<tr>
+<tr>
+	<td colspan="4"><i>I’m a geek who loves film and TV, comics and games however technology is my biggest passion. I believe that technology has the ability to help make both my working and personal life a better one when used correctly.</i></td>
+<tr>
+<tr>
+	<td colspan="4"><H5 class="sidebar">Follow</H5> <H5 class="sidebarred">Me</H5></td>
+<tr>
+  <tr>
+    <td align="center" valign="middle"><a href="feed://localhost:4000/atom.xml" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('RSS','','/img/rss.png',1)"><img src="/img/rssBW.png" alt="RSS" width="40" height="40" id="RSS"></a></td>
+    <td align="center" valign="middle"><a href="http://www.twitter.com/dalemmanning" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Twitter','','/img/twitter.png',1)"><img src="/img/twitterBW.png" alt="Twitter" width="40" height="40" id="Twitter"></a></td>
+    <td align="center" valign="middle"><a href="https://alpha.app.net/dalemmanning" target="_blank" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Appnet','','/img/appnet.png',1)"><img src="/img/appnetBW.png" alt="AppdotNet" width="40" height="40" id="Appnet"></a></td>
+    <td align="center" valign="middle"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Mail','','/img/mail.png',1)"><img src="/img/mailBW.png" alt="Mail" width="40" height="40" id="Mail"></a></td>
+  </tr>
+</table>
+
+
+
+
+
+
+  </div>
+</div>
+
+    </div>
+  </body>
+<br><br><br>
+<div class="navbar navbar-static-bottom">
+<p  class="footer"><small><strong>&copy; Dale Manning :: 2013</strong><br><i>The views expressed here are my own. They are not those of my employer.</i></small></p>
+</div>
+  
+</html>
