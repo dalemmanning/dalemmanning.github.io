@@ -4,7 +4,7 @@
   <title>Dale Manning</title>
   <link href="http://localhost:4000/"/>
   <link type="application/atom+xml" rel="self" href="http://localhost:4000/atom.xml"/>
-  <updated>2013-07-29T13:02:14+01:00</updated>
+  <updated>2013-07-29T14:10:04+01:00</updated>
   <id>http://localhost:4000/</id>
   <author>
     <name>Dale Manning</name>
@@ -14,7 +14,7 @@
   
   <entry>
     <id>http://locahost:4000/comics/2013/03/26/dark-victory</id>
-    <link type="text/html" rel="alternate" href="http://locahost:4000/comics/2013/03/26/dark-victory/"/>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/comics/2013/03/26/dark-victory"/>
     <title>Batman Reread 02 - Dark Victory</title>
     <updated>2013-03-26T13:05:48+00:00</updated>
     <author>
@@ -55,7 +55,7 @@
   
   <entry>
     <id>http://locahost:4000/general/2012/10/29/welcome</id>
-    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2012/10/29/welcome/"/>
+    <link type="text/html" rel="alternate" href="http://locahost:4000/general/2012/10/29/welcome"/>
     <title>Welcome</title>
     <updated>2012-10-29T15:11:00+00:00</updated>
     <author>
