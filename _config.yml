@@ -1,0 +1,12 @@
+name: "Dale Manning"
+description: "The random thoughts and ideas of a geek..."
+permalink: /:categories/:year/:month/:day/:title
+
+url: "http://localhost:4000"
+feedurl: "feed://localhost:4000"
+
+paginate: 6
+
+markdown: rdiscount
+permalink: pretty
+pygments: true

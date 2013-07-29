@@ -1,0 +1,22 @@
+---
+layout: default
+title: The random thoughts and ideas of a geek ...
+---
+<section id="archive">
+  <H5 class="sidebar">This year's posts</h5>
+  {%for post in site.posts %}
+    {% unless post.next %}
+      <ul class="this">
+    {% else %}
+      {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+      {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+      {% if year != nyear %}
+        </ul>
+        <H5 class="sidebar">{{ post.date | date: '%Y' }}</h5>
+        <ul class="past">
+      {% endif %}
+    {% endunless %}
+      <li><time>{{ post.date | date_to_long_string }}</time> - <a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
+</section>
