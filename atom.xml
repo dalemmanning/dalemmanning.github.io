@@ -5,24 +5,24 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
  
   <title>Dale Manning</title>
-  <link href="http://localhost:4000/"/>
-  <link type="application/atom+xml" rel="self" href="http://localhost:4000/atom.xml"/>
+  <link href="http://dalemmanning.me.uk/"/>
+  <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>http://localhost:4000/</id>
+  <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
-    <email>dalemmanning@gmail.com</email>
+    <email>desk@dalemmanning.me.uk</email>
   </author>
 
   {% for post in site.posts %}
   <entry>
-    <id>http://locahost:4000{{ post.id }}</id>
+    <id>http://dalemmanningme.uk{{ post.id }}</id>
     <link type="text/html" rel="alternate" href="http://locahost:4000{{ post.url }}"/>
     <title>{{ post.title | xml_escape }}</title>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <author>
       <name>Dale Manning</name>
-      <uri>http://localhost:4000/</uri>
+      <uri>http://dalemmanning.me.uk/</uri>
     </author>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
