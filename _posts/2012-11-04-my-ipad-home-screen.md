@@ -8,7 +8,8 @@ So over the past few months more and more of my friends and colleagues have been
 
 So I've decided maybe I should actually write down what apps I use, along with an explanation for why they get used on a daily basis.
 
-![My iPad Home Screen](https://dl.dropbox.com/u/12515864/Blog%20Images/MyiPadHomescreen.jpg)
+
+![My iPad Home Screen](/img/postimages/MyiPadHomescreen.gif)
 
 The wallpaper is created by [Simon C Page](http://simoncpage.co.uk/blog/2012/03/ipad-hd-retina-wallpaper/ "Simon C Page") and I found out about it through a post on the [MacDrifter](http://www.macdrifter.com/2012/11/some-retina-quality-ipad-wallpapers-link.html "MacDrifter") website.
 

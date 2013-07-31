@@ -27,10 +27,9 @@ There are a number of different podcatchers available on the App Store, however 
 
 In short I love Instacast, its a great app which fulfils  its intended purpose of allowing me to manage my podcasts with ease and simplicity. Apple should seriously consider taking a page out of Vedemio's book during their next redesign of their Podcasts app.
 
-It is available for the price of £2.99 and you can find it on the App Store by clicking here.
+It is available for the price of £2.99 and you can find it on the App Store by [clicking here][link1].
 
-
-
+[link1]: https://itunes.apple.com/gb/app/instacast/id577056377?mt=8&affId=1644991
 
 
 

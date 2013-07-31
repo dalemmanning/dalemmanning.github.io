@@ -9,7 +9,7 @@ I've had a few people ask me over the past few months about my home theatre setu
 
 Please be aware this isn't going to be a quick and easy guide to converting all of your media. I plan to write a pretty in depth piece here, so that I can make sure I explain everything properly. As a result I will probably split this up into two or three posts.
 
-###The Background###
+#####The Background
 
 Generally one of the questions I get asked is why bother? The first answer is because it just makes everything so much easier, if I want to watch an episode of a particular TV show I can just load it up, navigate to the show I want and hit play. I don't have to turn on the blu-ray player, put in the DVD with the correct episode on and then wait for the inevitable trailers, studio information and menus to all load up.
 
@@ -17,7 +17,7 @@ The other answer is to save space. To give you a clue here how much space I'm ta
 
 I've been converting all of my media for around the past year, I've almost finished converting my TV boxsets (it would be fair to say that this has been a rather large project!). Most of my TV boxsets are now in my parents attic in plastic containers, that have plenty of packets of silicon to keep any potential moisture away from them. The movies have been moved to three 240 disk folders and I plan to eventually convert all of those as well.
 
-###The Hardware###
+#####The Hardware
 
 My media system is based around the following hardware: 
 

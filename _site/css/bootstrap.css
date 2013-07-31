@@ -105,6 +105,9 @@ img {
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #map_canvas img,
@@ -845,7 +848,14 @@ h4 {
 
 h5 {
   font-size: 20px;
+  margin-top:20px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h5.header {
+  font-size: 20px;
   margin-left:15px;
+  margin-top:5px;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 

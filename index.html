@@ -6,11 +6,12 @@ title: The random thoughts and ideas of a geek ...
 <div class="row-fluid">
   <div class="span12">
     <h2 class="posttitle">{{ post.title }}</h2>
-    <h4 class="posttitle">{{ post.date | date_to_long_string }}</h4>
+    <p class="muted">{{ post.date | date_to_long_string }}</p>
     <p>{{ post.excerpt }}</p>
     <p>
       <a href="{{ post.url }}">Read Post</a>
     </p>
+    <hr>
   </div>
 </div>
 {% endfor %}
