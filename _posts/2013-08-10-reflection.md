@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Reflection"
+date:   2013-08-10 11:20
+categories: general
+---
+
+This time of year is always a strange one for me, as a teacher I am lucky enough to get a 5-6 week summer holiday. During the past 8 years I've generally had assignments due in the summer period, however as I have now completed my degree (more on that in a bit) I actually have this summer to myself. Its usually this break I have the most trouble with, to suddenly go from being surrounded by 1400 students and seeing your friends everyday, to being on your own for extended periods of time takes some getting used to and in the past has lead to me feeling very low. So as I approached this summer break, I was a little anxious about things but I made myself a two promises. The first is that I wouldn't let my depression get the best of me and the second is that I wouldn't feel guilty about taking sometime for myself (*something I have a very nasty habit of doing*).
+
+I've found the most important step in keeping these promises is just get out of the flat, I will generally take a 30-60 minute walk everyday. Even just being surrounded by random people you don't know has the ability to remind you that in fact you aren't on your own, as well as providing you with a lot of thinking time. Over the past two weeks, I've found myself thinking about what I've managed to achieve over the past year and I felt need to write some of them down.
+
+The biggest one is that I can now successfully say that I have completed my degree, I received a Open University Open Degree with honours, receiving a 2.2 grade. I am proud of my grade, it may not be the highest grade you can receive but I also know it represents eight years of hard work on my part and I wouldn't change a thing! My graduation ceremony takes place on the 28th September and I can guarantee I am going to be grinning like an idiot when I step up on that stage to collect my certificate!
+
+Once I had completed my degree, it was then full steam ahead in completing all of the prerequisites which were required in order for me to begin my assessment only route in September. First up was the numeracy and literacy tests which are required in order to become a qualified teacher, I was extremely happy with the fact I managed to pass both of those first time around. Next I had to complete a placement at another school, which it would be fair to say caused a fair amount of anxiety on my part. I was very unsure about my ability to actually operate in another school environment, let alone actually pass the placement. However while it did prove to be one of the hardest things I've ever done, I'm happy to say that I did successfully complete it; it proved to be extremely beneficial, allowing me to learn to great deal about different teaching techniques and I feel that I am starting the new school year as a stronger teacher.
+
+My placement was split in half in order for me to return to my normal school, in order to help deliver animation and podcasting workshops to over 500 year 5 and 6 students. It was a brilliant two weeks of watching just how creative students can be, it reminded me just how much I love my job as well as that sometimes in order to be creative you need to stop overthinking things and just go with the flow.
+
+Over the next few weeks, we will get our GCSE and A-Level results in and I'm sure I'll be running through some more reflection during those walks. But I can honestly say, I feel like I've done the best for my students and I hope that they feel I have as well.
+
+So why have I written all of this down? Well I guess its because I wanted to remind myself that even during those moments of self doubt, I have achieved a lot this year (*I know technically the year isn't over but when you work in a school you get into the habit of thinking in regards to the school year*) and I should be proud of what I have done. But also to remind myself, that in fact its alright to take sometime off every now and then....
