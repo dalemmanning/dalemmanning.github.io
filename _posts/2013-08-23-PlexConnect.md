@@ -5,6 +5,8 @@ date:   2013-08-24 13:00
 categories: general
 ---
 
+**UPDATE:** Well it was going to happen at some point, during the recent channel update on the ATV, Apple have stopped PlexConnect from working. Hopefully a solution will be found soon.
+
 So a while ago I wrote [three posts][myMediaSetup] which explained my home media setup using XBMC on a jailbroken ATV2 and while I still think its a very good system, over the past month I've been playing around with an alternative.
 
 I started having a problem with my ATV, constantly crashing and requiring a hard reset. Not really a problem, when it's happened in the past I've just put the ATV through a fresh jailbreak and away I go. However, the latest version of the Seas0npass is tethered only and I always try to avoid them if I can. So when I heard about Plexconnect I decided to give it a go; it is the brainchild of three brilliant individuals Baa, roidy and f00br and it allows you to access your Plex media library on your ATV *without* jailbreaking!
