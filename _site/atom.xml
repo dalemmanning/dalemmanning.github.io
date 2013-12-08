@@ -4,13 +4,30 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2013-12-08T08:18:11+00:00</updated>
+  <updated>2013-12-08T08:37:12+00:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
     <email>desk@dalemmanning.me.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://dalemmanningme.uk/downloads/2013/12/08/Downloads</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/downloads/2013/12/08/Downloads/"/>
+    <title>Downloads added to the site </title>
+    <updated>2013-12-08T08:22:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Over the years I&#39;ve carried out a lot of training and written a lot of software guides in order to ease the transition for new users. Now I will be the first to admit they may not be perfect but they have received positive feedback and I&#39;ve decided to share them on the site in a new &lt;a href=&quot;http://dalemmanning.me.uk/downloads/&quot;&gt;downloads section&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;While the iLife guides are for the &#39;09 and &#39;11 versions, I am in the process of creating new versions for iLife &#39;13. Once I&#39;ve finished writing them I will upload them as well.&lt;/p&gt;
+
+&lt;p&gt;All of the downloads are licenced under the &lt;a href=&quot;http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US&quot;&gt;Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License&lt;/a&gt;, which is fairly open and all I ask is that you respect the licence guidelines.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://dalemmanningme.uk/general/2013/08/24/PlexConnect</id>
