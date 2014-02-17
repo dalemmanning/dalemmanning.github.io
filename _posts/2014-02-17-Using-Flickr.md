@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Using Flickr"
-date:   2014-02-17 40:00
+date:   2014-02-17 11:40
 categories: photomanagement
 ---
 

@@ -4,7 +4,7 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2014-02-17T11:39:24+00:00</updated>
+  <updated>2014-02-17T11:47:40+00:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
@@ -13,10 +13,10 @@
 
   
   <entry>
-    <id>http://dalemmanningme.uk/ios/2014/02/17/Using-Flickr</id>
-    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/ios/2014/02/17/Using-Flickr/"/>
+    <id>http://dalemmanningme.uk/photomanagement/2014/02/17/Using-Flickr</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/photomanagement/2014/02/17/Using-Flickr/"/>
     <title>Using Flickr</title>
-    <updated>2014-02-17T11:00:00+00:00</updated>
+    <updated>2014-02-17T11:40:00+00:00</updated>
     <author>
       <name>Dale Manning</name>
       <uri>http://dalemmanning.me.uk/</uri>
