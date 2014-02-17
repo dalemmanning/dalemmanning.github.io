@@ -2,7 +2,7 @@
 layout: post
 title:  "Using Flickr"
 date:   2014-02-17 40:00
-categories: PhotoManagement
+categories: photomanagement
 ---
 
 Flickr is a combination of photo storage and photo sharing, providing you with access to 1TB of free storage. In regard to photo sharing the general idea behind Flickr is that anything you upload is public and therefore anyone can see it. However it is possible to change those default settings so everything you upload remains private. This post will talk you through making use of Flickr to create a private photo storage area, which can be shared with family and friends if you want.
