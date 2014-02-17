@@ -4,13 +4,30 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2014-02-17T11:48:46+00:00</updated>
+  <updated>2014-02-17T17:38:53+00:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
     <email>desk@dalemmanning.me.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://dalemmanningme.uk/education/2014/02/17/Launch-Of-Youtube-Channel</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/education/2014/02/17/Launch-Of-Youtube-Channel/"/>
+    <title>YouTube channel launch</title>
+    <updated>2014-02-17T17:29:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Over the past week I&#39;ve been working on some new teaching materials for use with my 6th Form classes. In particular I&#39;ve been creating screencasts for them to use as reference materials even if I&#39;m not teaching them during a particular lesson.&lt;/p&gt;
+
+&lt;p&gt;They have had a positive response from the students and other members of staff, so I have decided to share them via my own &lt;a href=&quot;http://www.youtube.com/user/dalemmanning&quot;&gt;YouTube&lt;/a&gt; channel. If you find them useful please feel free to make use of them, I only ask that you credit me and the site appropriately.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ll be adding videos which cover a range of subjects over the next few weeks/months, but at the moment I&#39;m focusing on Photoshop CS3 as my students are currently completing the print/e-media component of their practical projects.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://dalemmanningme.uk/photomanagement/2014/02/17/Using-Flickr</id>
