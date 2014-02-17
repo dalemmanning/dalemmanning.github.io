@@ -4,13 +4,132 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2014-02-16T15:55:39+00:00</updated>
+  <updated>2014-02-17T11:39:24+00:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
     <email>desk@dalemmanning.me.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://dalemmanningme.uk/ios/2014/02/17/Using-Flickr</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/ios/2014/02/17/Using-Flickr/"/>
+    <title>Using Flickr</title>
+    <updated>2014-02-17T11:00:00+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Flickr is a combination of photo storage and photo sharing, providing you with access to 1TB of free storage. In regard to photo sharing the general idea behind Flickr is that anything you upload is public and therefore anyone can see it. However it is possible to change those default settings so everything you upload remains private. This post will talk you through making use of Flickr to create a private photo storage area, which can be shared with family and friends if you want.&lt;/p&gt;
+
+&lt;p&gt;OK, so the first thing you will need to do is create an account over at &lt;a href=&quot;http://www.flickr.com&quot;&gt;flickr.com&lt;/a&gt; and follow the instructions to create an account. You are going to need this username and password a few times over the course of this, so keep it to hand.&lt;/p&gt;
+
+&lt;h4&gt;Making Flickr Private:&lt;/h4&gt;
+
+&lt;p&gt;So the first thing I did when I signed up to Flickr was set my account so that only my friends and family could see anything I uploaded.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ll be honest this was mainly because I am extremely protective of my niece and godchildren, I do not want images of them to be easily found (it could also be said that I&#39;m a little paranoid!). That being said I&#39;m not judging anyone who doesn&#39;t want to go through all of this.&lt;/p&gt;
+
+&lt;p&gt;The first step is to access the settings for your account, in order to do this move over your account photo and click on &lt;em&gt;Settings&lt;/em&gt; in the drop down menu.&lt;/p&gt;
+
+&lt;p&gt;Click on the &lt;em&gt;&#39;Privacy &amp;amp; Permissions&#39;&lt;/em&gt; tab, under this tab you will find a number of different sections. I made changes in the Global Settings and Defaults for new uploads sections, you can find a copy of my settings below:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;h5&gt;Global Settings&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Who can access your original image files:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Allow other to share your stuff:&lt;/strong&gt; No&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Who can add you to a photo:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Allow you stuff to be added to a gallery:&lt;/strong&gt; No&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hide your EXIF data:&lt;/strong&gt; Yes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hide your stuff from public search:&lt;/strong&gt; Yes, on flickr.com and 3rd-party sites&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hide your profile from public search:&lt;/strong&gt; Yes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Who can see what on your profile:&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Email address:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IM names:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Real name:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Current city:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Make your photo eligible for invitation by Getty Images:&lt;/strong&gt; No thanks, I don&#39;t want to license my photos through Getty Images&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h5&gt;Defaults for new uploads&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Who will be able to see, comment on, add notes, or add people:&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;View: &lt;/strong&gt;Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Comment on:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add notes, tags and people:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What license will your content have:&lt;/strong&gt; All rights reserved&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Who will be able to see your stuff on a map:&lt;/strong&gt; Your friends and family&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Import EXIF location data:&lt;/strong&gt; No&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;As I said you can alter these settings to meet your own needs, with my current settings anyone can chose to follow me but they will go into a pending list and I have to assign them a friend or family level of access.&lt;/p&gt;
+
+&lt;p&gt;However it is also worth knowing that you can assign Guest Passes to a photoset, which means that if you want to share photos with someone who is not a friend/family member or even a Flickr member. You can do this by clicking on a photo/set, clicking on the share icon and clicking on create Guest Pass.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/postimages/2014-02-17-Using-Flickr-GuestPass.jpg&quot; alt=&quot;Flickr Guest Pass Account&quot; /&gt;
+&lt;br&gt;&lt;/p&gt;
+
+&lt;h4&gt;iOS Photo Uploading&lt;/h4&gt;
+
+&lt;p&gt;There are different ways to integrate Flickr into your iOS workflow, the first is to enter your account details into the system share panel. This can be handy for uploading the odd individual photo you have been sent by someone else. So go into:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;Settings&lt;/em&gt; &gt; &lt;em&gt;Flickr&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Enter your username and password when requested and thats it. You will now have the ability to  upload photos to Flickr via the share screen on your iOS device.&lt;/p&gt;
+
+&lt;p&gt;The second option you have is to install the official &lt;a href=&quot;https://itunes.apple.com/gb/app/flickr/id328407587?mt=8&quot;&gt;Flickr app&lt;/a&gt;, which prompts you to turn on Auto Upload once you launch the app for the first time. This will then keep an eye on your camera roll and upload any new photos straight onto your Flickr account, it is worth noting that by default they are all assigned the &#39;private&#39; setting.&lt;/p&gt;
+
+&lt;p&gt;One final point is that you can also select whether you want to use Cellular and WiFi or WiFi only when uploading your photos. You can do this by:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;Flickr App&lt;/em&gt; &gt; &lt;em&gt;More&lt;/em&gt; &gt; &lt;em&gt;Auto Upload&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/postimages/2014-02-17-Using-Flickr-FlickrApp.jpg&quot; alt=&quot;IOS Flickr App&quot; /&gt;
+&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;So here you can turn Auto Upload On/Off and select how you want to upload your photos. You should think carefully about this, if you take a lot of photos you could find yourself burning through your Cellular allowance pretty quickly. After all the latest iPhone has an 8 megapixel image, which generally means that each photo is a couple of MB in size.&lt;/p&gt;
+
+&lt;h4&gt;OSX Photo Uploading&lt;/h4&gt;
+
+&lt;p&gt;As with iOS there are many different ways to integrate Flickr into your OS X workflow, the first and easiest is to enter your details into the Internet Accounts panel within your system preferences (&lt;em&gt;OSX Mountain Lion and Mavericks Only&lt;/em&gt;). This will allow you to upload straight to Flickr from Finder, by simply clicking on the image and click on the Share button. You can do this by:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;System Preferences&lt;/em&gt; &gt; &lt;em&gt;Internet Accounts&lt;/em&gt; &gt; &lt;em&gt;Flickr&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/postimages/2014-02-17-Using-Flickr-OSXFlickr.jpg&quot; alt=&quot;OSX Flickr Account&quot; /&gt;
+&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Another option is to use iPhoto, which can upload entire events to Flickr as a set (&lt;em&gt;sets are the equivalent of iPhoto&#39;s events&lt;/em&gt;). The advantage of this is that you can get everything organised in iPhoto, including specific names or edits and then chose to upload everything to Flickr.&lt;/p&gt;
+
+&lt;p&gt;In order to get iPhoto setup, you just need to enter your Flickr account details into the iPhoto preferences:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;&lt;em&gt;iPhoto&lt;/em&gt; &gt; &lt;em&gt;Preferences&lt;/em&gt; &gt; &lt;em&gt;Accounts&lt;/em&gt; &gt; &lt;em&gt;Add Account&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/postimages/2014-02-17-Using-Flickr-iPhotoFlickr.jpg&quot; alt=&quot;OSX iPhoto Account&quot; /&gt;
+&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have done this, you can then select an event and click on the share button which will open the share dialog box. From here you can select Flickr and chose to create a new set, add to an existing set or just upload straight to your photostream.&lt;/p&gt;
+
+&lt;p&gt;The final option you have is to just upload your photos via the Flickr website, however I prefer to use an application like iPhoto as it will always return to the upload if I have an interruption in my internet connection.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This post initially started out as a guide for a friend of mine who takes a lot of photos and wanted another option alongside iCloud in order to help keep their photos safe. I decided to write it up as a post should anyone else find it useful.&lt;/p&gt;
+
+&lt;p&gt;I&#39;m not necessarily saying that Flickr should be your only photo backup, but with 1TB of free space you have nothing to lose, as with anything please take the time to create a proper backup of your photos.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://dalemmanningme.uk/ios/2014/02/16/Working-with-iPad-Part-1</id>
