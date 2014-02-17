@@ -9,7 +9,7 @@ Flickr is a combination of photo storage and photo sharing, providing you with a
 
 OK, so the first thing you will need to do is create an account over at [flickr.com][Flickr] and follow the instructions to create an account. You are going to need this username and password a few times over the course of this, so keep it to hand.
 
-#### Making Flickr Private:
+#### Making Flickr Private
 
 So the first thing I did when I signed up to Flickr was set my account so that only my friends and family could see anything I uploaded. 
 
