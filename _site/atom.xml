@@ -4,13 +4,36 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2014-03-15T15:17:29+00:00</updated>
+  <updated>2014-03-16T12:02:34+00:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
     <email>desk@dalemmanning.me.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://dalemmanningme.uk/comics/2014/03/16/Comic-Book-Readers</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/comics/2014/03/16/Comic-Book-Readers/"/>
+    <title>Comic Book Reading Apps</title>
+    <updated>2014-03-16T08:23:54+00:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Alongside my recent move to purchasing digital comics, came the need to select a comic book reading app for my iPad. Ideally I was looking for an app which would allow me to read my comic book files straight from my synology NAS without the need to sync them onto my iPad unless I wanted to. It took a while but I eventually found &lt;a href=&quot;https://itunes.apple.com/gb/app/comicglass-comicreader/id363992049?mt=8&quot;&gt;ComicGlass&lt;/a&gt; and it does everything I needed it to.&lt;/p&gt;
+
+&lt;p&gt;ComicGlass will allow you to copy comic books via iTunes or Dropbox but it also allows you to run your very own comic book media server. The developer has created versions of the &lt;a href=&quot;http://comicglass.net/download/toolsdownload/&quot;&gt;media server&lt;/a&gt; for Windows and OS X, as well as PHP version which can be run on a web server. As the synology has the ability to run a web server with virtual hosts, I decided to go with the PHP version. The advantage of this is that my mac does not need to be running to allow me access to my comic books.&lt;/p&gt;
+
+&lt;p&gt;The setup is very straightforward, I created a new folder called &#39;ComicGlass&#39; inside the web folder on the synology and copied the index.php file into it. The purpose of this php file is to create a index of the folders and files, ready to be served to the &#39;ComicGlass&#39; app. Inside the ComicGlass folder, I&#39;ve created another folder simply called &#39;comics&#39; and all of my comic book files are saved into it.&lt;/p&gt;
+
+&lt;p&gt;Using ComicGlass I can quickly navigate my comic book collection and read them straight from the Media Server, providing they are cbz files. If you have cbr files it will download them before you can read them. It&#39;s a really nicely implemented system and the developer has clearly put a lot of work into it, however there a few small things that I hope get improved over time. The biggest one is the interface design, if you do want to download a comic it gets placed onto a wooden book shelf and unfortunately it just looks wrong on iOS 7. In reality it is a small thing but it is enough to disrupt the overall experience for me.&lt;/p&gt;
+
+&lt;p&gt;So over the past few weeks, I&#39;ve been trying out &lt;a href=&quot;https://itunes.apple.com/gb/app/chunky-comic-reader/id663567628?mt=8&quot;&gt;Chunky Comic Reader&lt;/a&gt; and I&#39;ve really been enjoying it. While I can&#39;t read straight from my NAS, it does allow me to access my comic folder via AFP and download them. The nicest aspect of the app is that it organises everything for you, just download the issues you want to read and Chunky will place them into the appropriately named categories. It also allows you to connect to all of the main cloud storage providers such as Dropbox, Google, Onedrive and Box, as well as supporting the Transporter sync protocol. It even supports connecting straight to your Image comics account, which is described as experimental but has worked pretty well for me so far.&lt;/p&gt;
+
+&lt;p&gt;I&#39;m pretty sure that I&#39;m going to stick with Chunky Reader for now, it&#39;s a really nice app that just makes the reading experience a pleasant one but I&#39;m sure that I&#39;ll use ComicGlass from time to time as well. I&#39;m really looking forward to seeing where the developers of both apps take them next.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://dalemmanningme.uk/comics/2014/03/15/getting-digital-distribution-right</id>
