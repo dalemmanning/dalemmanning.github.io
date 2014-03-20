@@ -5,12 +5,12 @@ require('./test/remark/api_test.js');
 require('./test/remark/controller_test.js');
 require('./test/remark/converter_test.js');
 require('./test/remark/lexer_test.js');
-require('./test/remark/models/slide_test.js');
 require('./test/remark/models/slideshow_test.js');
+require('./test/remark/models/slide_test.js');
 require('./test/remark/parser_test.js');
-require('./test/remark/views/slideView_test.js');
 require('./test/remark/views/slideshowView_test.js');
-},{"./test/remark/api_test.js":2,"./test/remark/controller_test.js":3,"./test/remark/converter_test.js":4,"./test/remark/lexer_test.js":5,"./test/remark/models/slide_test.js":6,"./test/remark/models/slideshow_test.js":7,"./test/remark/parser_test.js":8,"./test/remark/views/slideView_test.js":9,"./test/remark/views/slideshowView_test.js":10,"should":11,"sinon":12}],13:[function(require,module,exports){
+require('./test/remark/views/slideView_test.js');
+},{"./test/remark/api_test.js":2,"./test/remark/controller_test.js":3,"./test/remark/lexer_test.js":4,"./test/remark/models/slideshow_test.js":5,"./test/remark/parser_test.js":6,"./test/remark/views/slideshowView_test.js":7,"./test/remark/views/slideView_test.js":8,"./test/remark/models/slide_test.js":9,"./test/remark/converter_test.js":10,"should":11,"sinon":12}],13:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -252,32 +252,6 @@ EventEmitter.prototype.listeners = function(type) {
 
 })(require("__browserify_process"))
 },{"__browserify_process":13}],4:[function(require,module,exports){
-var converter = require('../../src/remark/converter');
-
-describe('converter', function () {
-
-  describe('convertMarkdown', function () {
-    var convert = converter.convertMarkdown;
-
-    it('should unescape block-quote before conversion', function () {
-      convert('&gt; a block quote\n&gt; another block quote')
-        .should.equal('<blockquote>\n<p>a block quote\nanother block quote</p>\n</blockquote>\n');
-    });
-
-    it('should unescape HTML', function () {
-      convert('&lt;b class="test"&gt;a&lt;/b&gt;')
-        .should.equal('<p><b class="test">a</b></p>\n');
-    });
-
-    it('should unescape once HTML escaped twice in code tags', function () {
-      convert('<p><code>&amp;lt;p&amp;gt;a&amp;lt;/p&amp;gt;</code></p>')
-       .should.equal('<p><code>&lt;p&gt;a&lt;/p&gt;</code></p>');
-    });
-  });
-
-});
-
-},{"../../src/remark/converter":15}],5:[function(require,module,exports){
 var Lexer = require('../../src/remark/lexer');
 
 describe('Lexer', function () {
@@ -392,7 +366,7 @@ describe('Lexer', function () {
 
 });
 
-},{"../../src/remark/lexer":16}],8:[function(require,module,exports){
+},{"../../src/remark/lexer":15}],6:[function(require,module,exports){
 var Parser = require('../../src/remark/parser');
 
 describe('Parser', function () {
@@ -548,7 +522,225 @@ describe('Parser', function () {
 
 });
 
-},{"../../src/remark/parser":17}],6:[function(require,module,exports){
+},{"../../src/remark/parser":16}],10:[function(require,module,exports){
+var converter = require('../../src/remark/converter');
+
+describe('converter', function () {
+
+  describe('convertMarkdown', function () {
+    var convert = converter.convertMarkdown;
+
+    it('should unescape block-quote before conversion', function () {
+      convert('&gt; a block quote\n&gt; another block quote')
+        .should.equal('<blockquote>\n<p>a block quote\nanother block quote</p>\n</blockquote>\n');
+    });
+
+    it('should unescape HTML', function () {
+      convert('&lt;b class="test"&gt;a&lt;/b&gt;')
+        .should.equal('<p><b class="test">a</b></p>\n');
+    });
+
+    it('should unescape once HTML escaped twice in code tags', function () {
+      convert('<p><code>&amp;lt;p&amp;gt;a&amp;lt;/p&amp;gt;</code></p>')
+       .should.equal('<p><code>&lt;p&gt;a&lt;/p&gt;</code></p>');
+    });
+  });
+
+});
+
+},{"../../src/remark/converter":17}],5:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , Slideshow = require('../../../src/remark/models/slideshow')
+  , Slide = require('../../../src/remark/models/slide')
+  ;
+
+describe('Slideshow', function () {
+  var events
+    , slideshow
+    ;
+
+  beforeEach(function () {
+    events = new EventEmitter();
+    slideshow = new Slideshow(events);
+  });
+
+  describe('loading from source', function () {
+    it('should create slides', function () {
+      slideshow.loadFromString('a\n---\nb');
+      slideshow.getSlides().length.should.equal(2);
+    });
+
+    it('should replace slides', function () {
+      slideshow.loadFromString('a\n---\nb\n---\nc');
+      slideshow.getSlides().length.should.equal(3);
+    });
+  });
+
+  describe('continued slides', function () {
+    it('should be created when using only two dashes', function () {
+      slideshow.loadFromString('a\n--\nb');
+
+      slideshow.getSlides()[1].properties.should.have.property('continued', 'true');
+    });
+  });
+
+  describe('name mapping', function () {
+    it('should map named slide', function () {
+      slideshow.loadFromString('name: a\n---\nno name\n---\nname: b');
+      slideshow.getSlideByName('a').should.exist;
+      slideshow.getSlideByName('b').should.exist;
+    });
+  });
+
+  describe('templates', function () {
+    it('should have properties inherited by referenced slide', function () {
+      slideshow.loadFromString('name: a\na\n---\ntemplate: a\nb');
+      slideshow.getSlides()[1].source.should.equal('\na\nb');
+    });
+
+    it('should have source inherited by referenced slide', function () {
+      slideshow.loadFromString('name: a\na\n---\ntemplate: a\nb');
+      slideshow.getSlides()[1].source.should.equal('\na\nb');
+    });
+  });
+
+  describe('layout slides', function () {
+    it('should be default template for subsequent slides', function () {
+      slideshow.loadFromString('layout: true\na\n---\nb');
+      slideshow.getSlides()[0].source.should.equal('\nab');
+    });
+
+    it('should not be default template for subsequent layout slide', function () {
+      slideshow.loadFromString('layout: true\na\n---\nlayout: true\nb\n---\nc');
+      slideshow.getSlides()[0].source.should.equal('\nbc');
+    });
+
+    it('should be omitted from list of slides', function () {
+      slideshow.loadFromString('name: a\nlayout: true\n---\nname: b');
+      slideshow.getSlides().length.should.equal(1);
+    });
+  });
+
+  describe('events', function () {
+    it('should emit slidesChanged event', function (done) {
+      events.on('slidesChanged', function () {
+        done();
+      });
+
+      slideshow.loadFromString('a\n---\nb');
+    });
+  });
+});
+
+},{"events":14,"../../../src/remark/models/slideshow":18,"../../../src/remark/models/slide":19}],8:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , Slide = require('../../../src/remark/models/slide')
+  , SlideView = require('../../../src/remark/views/slideView')
+  , utils = require('../../../src/remark/utils')
+  ;
+
+describe('SlideView', function () {
+  var slideshow = {
+        getHighlightStyle: function () { return 'default'; }
+      , getSlides: function () { return []; }
+      }
+    , scaler = {
+        dimensions: {width: 10, height: 10}
+      }
+    ;
+
+  describe('background', function () {
+    it('should be set from background slide property', function () {
+      var slide = new Slide(1, {
+            source: '',
+            properties: {'background-image': 'url(image.jpg)'}
+          })
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
+        ;
+
+        slideView.contentElement.style.backgroundImage.should.match(/^url\(.*image\.jpg\)$/);
+    });
+  });
+
+  describe('classes', function () {
+    it('should contain "content" class by default', function () {
+      var slide = new Slide(1, {source: ''})
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
+        , classes = utils.getClasses(slideView.contentElement)
+        ;
+
+      classes.should.include('remark-slide-content');
+    });
+
+    it('should contain additional classes from slide properties', function () {
+      var slide = new Slide(1, {
+            source: '',
+            properties: {'class': 'middle, center'}
+          })
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
+        , classes = utils.getClasses(slideView.contentElement)
+        ;
+
+      classes.should.include('remark-slide-content');
+      classes.should.include('middle');
+      classes.should.include('center');
+    });
+  });
+
+  describe('empty paragraph removal', function () {
+    it('should have empty paragraphs removed', function () {
+      var slide = new Slide(1, {source: '&lt;p&gt; &lt;/p&gt;'})
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide);
+
+      slideView.contentElement.innerHTML.should.not.include('<p></p>');
+    });
+  });
+
+  describe('show slide', function () {
+    it('should set the slide visible', function () {
+      var slide = new Slide(1, {source: ''})
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
+        ;
+
+        slideView.show();
+
+        var classes = utils.getClasses(slideView.containerElement);
+        classes.should.include('remark-visible');
+        classes.should.not.include('remark-fading');
+    });
+
+    it('should remove any fading element', function () {
+      var slide = new Slide(1, {source: ''})
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
+        ;
+        utils.addClass(slideView.containerElement, 'remark-fading');
+
+        slideView.show();
+
+        var classes = utils.getClasses(slideView.containerElement);
+        classes.should.include('remark-visible');
+        classes.should.not.include('remark-fading');
+    });
+  });
+
+  describe('hide slide', function () {
+    it('should mark the slide as fading', function () {
+      var slide = new Slide(1, {source: ''})
+        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
+        ;
+        utils.addClass(slideView.containerElement, 'remark-visible');
+
+        slideView.hide();
+
+        var classes = utils.getClasses(slideView.containerElement);
+        classes.should.not.include('remark-visible');
+        classes.should.include('remark-fading');
+    });
+  });
+
+});
+
+},{"events":14,"../../../src/remark/models/slide":19,"../../../src/remark/views/slideView":20,"../../../src/remark/utils":21}],9:[function(require,module,exports){
 var Slide = require('../../../src/remark/models/slide');
 
 describe('Slide', function () {
@@ -663,199 +855,7 @@ describe('Slide', function () {
   });
 });
 
-},{"../../../src/remark/models/slide":18}],7:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , Slideshow = require('../../../src/remark/models/slideshow')
-  , Slide = require('../../../src/remark/models/slide')
-  ;
-
-describe('Slideshow', function () {
-  var events
-    , slideshow
-    ;
-
-  beforeEach(function () {
-    events = new EventEmitter();
-    slideshow = new Slideshow(events);
-  });
-
-  describe('loading from source', function () {
-    it('should create slides', function () {
-      slideshow.loadFromString('a\n---\nb');
-      slideshow.getSlides().length.should.equal(2);
-    });
-
-    it('should replace slides', function () {
-      slideshow.loadFromString('a\n---\nb\n---\nc');
-      slideshow.getSlides().length.should.equal(3);
-    });
-  });
-
-  describe('continued slides', function () {
-    it('should be created when using only two dashes', function () {
-      slideshow.loadFromString('a\n--\nb');
-
-      slideshow.getSlides()[1].properties.should.have.property('continued', 'true');
-    });
-  });
-
-  describe('name mapping', function () {
-    it('should map named slide', function () {
-      slideshow.loadFromString('name: a\n---\nno name\n---\nname: b');
-      slideshow.getSlideByName('a').should.exist;
-      slideshow.getSlideByName('b').should.exist;
-    });
-  });
-
-  describe('templates', function () {
-    it('should have properties inherited by referenced slide', function () {
-      slideshow.loadFromString('name: a\na\n---\ntemplate: a\nb');
-      slideshow.getSlides()[1].source.should.equal('\na\nb');
-    });
-
-    it('should have source inherited by referenced slide', function () {
-      slideshow.loadFromString('name: a\na\n---\ntemplate: a\nb');
-      slideshow.getSlides()[1].source.should.equal('\na\nb');
-    });
-  });
-
-  describe('layout slides', function () {
-    it('should be default template for subsequent slides', function () {
-      slideshow.loadFromString('layout: true\na\n---\nb');
-      slideshow.getSlides()[0].source.should.equal('\nab');
-    });
-
-    it('should not be default template for subsequent layout slide', function () {
-      slideshow.loadFromString('layout: true\na\n---\nlayout: true\nb\n---\nc');
-      slideshow.getSlides()[0].source.should.equal('\nbc');
-    });
-
-    it('should be omitted from list of slides', function () {
-      slideshow.loadFromString('name: a\nlayout: true\n---\nname: b');
-      slideshow.getSlides().length.should.equal(1);
-    });
-  });
-
-  describe('events', function () {
-    it('should emit slidesChanged event', function (done) {
-      events.on('slidesChanged', function () {
-        done();
-      });
-
-      slideshow.loadFromString('a\n---\nb');
-    });
-  });
-});
-
-},{"events":14,"../../../src/remark/models/slideshow":19,"../../../src/remark/models/slide":18}],9:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , Slide = require('../../../src/remark/models/slide')
-  , SlideView = require('../../../src/remark/views/slideView')
-  , utils = require('../../../src/remark/utils')
-  ;
-
-describe('SlideView', function () {
-  var slideshow = {
-        getHighlightStyle: function () { return 'default'; }
-      , getSlides: function () { return []; }
-      }
-    , scaler = {
-        dimensions: {width: 10, height: 10}
-      }
-    ;
-
-  describe('background', function () {
-    it('should be set from background slide property', function () {
-      var slide = new Slide(1, {
-            source: '',
-            properties: {'background-image': 'url(image.jpg)'}
-          })
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
-        ;
-
-        slideView.contentElement.style.backgroundImage.should.match(/^url\(.*image\.jpg\)$/);
-    });
-  });
-
-  describe('classes', function () {
-    it('should contain "content" class by default', function () {
-      var slide = new Slide(1, {source: ''})
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
-        , classes = utils.getClasses(slideView.contentElement)
-        ;
-
-      classes.should.include('remark-slide-content');
-    });
-
-    it('should contain additional classes from slide properties', function () {
-      var slide = new Slide(1, {
-            source: '',
-            properties: {'class': 'middle, center'}
-          })
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
-        , classes = utils.getClasses(slideView.contentElement)
-        ;
-
-      classes.should.include('remark-slide-content');
-      classes.should.include('middle');
-      classes.should.include('center');
-    });
-  });
-
-  describe('empty paragraph removal', function () {
-    it('should have empty paragraphs removed', function () {
-      var slide = new Slide(1, {source: '&lt;p&gt; &lt;/p&gt;'})
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide);
-
-      slideView.contentElement.innerHTML.should.not.include('<p></p>');
-    });
-  });
-
-  describe('show slide', function () {
-    it('should set the slide visible', function () {
-      var slide = new Slide(1, {source: ''})
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
-        ;
-
-        slideView.show();
-
-        var classes = utils.getClasses(slideView.containerElement);
-        classes.should.include('remark-visible');
-        classes.should.not.include('remark-fading');
-    });
-
-    it('should remove any fading element', function () {
-      var slide = new Slide(1, {source: ''})
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
-        ;
-        utils.addClass(slideView.containerElement, 'remark-fading');
-
-        slideView.show();
-
-        var classes = utils.getClasses(slideView.containerElement);
-        classes.should.include('remark-visible');
-        classes.should.not.include('remark-fading');
-    });
-  });
-
-  describe('hide slide', function () {
-    it('should mark the slide as fading', function () {
-      var slide = new Slide(1, {source: ''})
-        , slideView = new SlideView(new EventEmitter(), slideshow, scaler, slide)
-        ;
-        utils.addClass(slideView.containerElement, 'remark-visible');
-
-        slideView.hide();
-
-        var classes = utils.getClasses(slideView.containerElement);
-        classes.should.not.include('remark-visible');
-        classes.should.include('remark-fading');
-    });
-  });
-
-});
-
-},{"events":14,"../../../src/remark/models/slide":18,"../../../src/remark/views/slideView":20,"../../../src/remark/utils":21}],22:[function(require,module,exports){
+},{"../../../src/remark/models/slide":19}],22:[function(require,module,exports){
 var events = require('events');
 
 exports.isArray = isArray;
@@ -1525,7 +1525,194 @@ assert.doesNotThrow = function(block, /*optional*/error, /*optional*/message) {
 assert.ifError = function(err) { if (err) {throw err;}};
 
 })()
-},{"util":22,"buffer":24}],25:[function(require,module,exports){
+},{"util":22,"buffer":24}],21:[function(require,module,exports){
+exports.addClass = function (element, className) {
+  element.className = exports.getClasses(element)
+    .concat([className])
+    .join(' ');
+};
+
+exports.removeClass = function (element, className) {
+  element.className = exports.getClasses(element)
+    .filter(function (klass) { return klass !== className; })
+    .join(' ');
+};
+
+exports.toggleClass = function (element, className) {
+  var classes = exports.getClasses(element),
+      index = classes.indexOf(className);
+
+  if (index !== -1) {
+    classes.splice(index, 1);
+  }
+  else {
+    classes.push(className);
+  }
+
+  element.className = classes.join(' ');
+};
+
+exports.getClasses = function (element) {
+  return element.className
+    .split(' ')
+    .filter(function (s) { return s !== ''; });
+};
+
+exports.getPrefixedProperty = function (element, propertyName) {
+  var capitalizedPropertName = propertyName[0].toUpperCase() +
+    propertyName.slice(1);
+
+  return element[propertyName] || element['moz' + capitalizedPropertName] ||
+    element['webkit' + capitalizedPropertName];
+};
+
+exports.getHTMLElement = function () {
+  return document.getElementsByTagName('html')[0];
+};
+
+exports.getBodyElement = function () {
+  return document.body;
+};
+
+exports.getLocationHash = function () {
+  return window.location.hash;
+};
+
+exports.setLocationHash = function (hash) {
+  window.location.hash = hash;
+};
+},{}],15:[function(require,module,exports){
+module.exports = Lexer;
+
+var CODE = 1,
+    CONTENT = 2,
+    FENCES = 3,
+    SEPARATOR = 4,
+    NOTES_SEPARATOR = 5;
+
+var regexByName = {
+    CODE: /(?:^|\n)( {4}[^\n]+\n*)+/,
+    CONTENT: /(?:\\)?((?:\.[a-zA-Z_\-][a-zA-Z\-_0-9]*)+)\[/,
+    FENCES: /(?:^|\n) *(`{3,}|~{3,}) *(?:\S+)? *\n(?:[\s\S]+?)\s*\3 *(?:\n+|$)/,
+    SEPARATOR: /(?:^|\n)(---?)(?:\n|$)/,
+    NOTES_SEPARATOR: /(?:^|\n)(\?{3})(?:\n|$)/
+  };
+
+var block = replace(/CODE|CONTENT|FENCES|SEPARATOR|NOTES_SEPARATOR/, regexByName),
+    inline = replace(/CODE|CONTENT|FENCES/, regexByName);
+
+function Lexer () { }
+
+Lexer.prototype.lex = function (src) {
+  var tokens = lex(src, block),
+      i;
+
+  for (i = tokens.length - 2; i >= 0; i--) {
+    if (tokens[i].type === 'text' && tokens[i+1].type === 'text') {
+      tokens[i].text += tokens[i+1].text;
+      tokens.splice(i+1, 1);
+    }
+  }
+
+  return tokens;
+};
+
+function lex (src, regex, tokens) {
+  var cap, text;
+
+  tokens = tokens || [];
+
+  while ((cap = regex.exec(src)) !== null) {
+    if (cap.index > 0) {
+      tokens.push({
+        type: 'text',
+        text: src.substring(0, cap.index)
+      });
+    }
+
+    if (cap[CODE]) {
+      tokens.push({
+        type: 'code',
+        text: cap[0]
+      });
+    }
+    else if (cap[FENCES]) {
+      tokens.push({
+        type: 'fences',
+        text: cap[0]
+      });
+    }
+    else if (cap[SEPARATOR]) {
+      tokens.push({
+        type: 'separator',
+        text: cap[SEPARATOR]
+      });
+    }
+    else if (cap[NOTES_SEPARATOR]) {
+      tokens.push({
+        type: 'notes_separator',
+        text: cap[NOTES_SEPARATOR]
+      });
+    }
+    else if (cap[CONTENT]) {
+      text = getTextInBrackets(src, cap.index + cap[0].length);
+      if (text !== undefined) {
+        src = src.substring(text.length + 1);
+        tokens.push({
+          type: 'content_start',
+          classes: cap[CONTENT].substring(1).split('.'),
+          block: text.indexOf('\n') !== -1
+        });
+        lex(text, inline, tokens);
+        tokens.push({
+          type: 'content_end',
+          block: text.indexOf('\n') !== -1
+        });
+      }
+      else {
+        tokens.push({
+          type: 'text',
+          text: cap[0]
+        });
+      }
+    }
+
+    src = src.substring(cap.index + cap[0].length);
+  }
+
+  if (src || (!src && tokens.length === 0)) {
+    tokens.push({
+      type: 'text',
+      text: src
+    });
+  }
+
+  return tokens;
+}
+
+function replace (regex, replacements) {
+  return new RegExp(regex.source.replace(/\w{2,}/g, function (key) {
+    return replacements[key].source;
+  }));
+}
+
+function getTextInBrackets (src, offset) {
+  var depth = 1,
+      pos = offset,
+      chr;
+
+  while (depth > 0 && pos < src.length) {
+    chr = src[pos++];
+    depth += (chr === '[' && 1) || (chr === ']' && -1) || 0;
+  }
+
+  if (depth === 0) {
+    src = src.substr(offset, pos - offset - 1);
+    return src;
+  }
+}
+
+},{}],25:[function(require,module,exports){
 (function(){/* Automatically generated */
 
 var hljs = new (/*
@@ -4067,194 +4254,7 @@ module.exports = {
 };
 
 })()
-},{}],21:[function(require,module,exports){
-exports.addClass = function (element, className) {
-  element.className = exports.getClasses(element)
-    .concat([className])
-    .join(' ');
-};
-
-exports.removeClass = function (element, className) {
-  element.className = exports.getClasses(element)
-    .filter(function (klass) { return klass !== className; })
-    .join(' ');
-};
-
-exports.toggleClass = function (element, className) {
-  var classes = exports.getClasses(element),
-      index = classes.indexOf(className);
-
-  if (index !== -1) {
-    classes.splice(index, 1);
-  }
-  else {
-    classes.push(className);
-  }
-
-  element.className = classes.join(' ');
-};
-
-exports.getClasses = function (element) {
-  return element.className
-    .split(' ')
-    .filter(function (s) { return s !== ''; });
-};
-
-exports.getPrefixedProperty = function (element, propertyName) {
-  var capitalizedPropertName = propertyName[0].toUpperCase() +
-    propertyName.slice(1);
-
-  return element[propertyName] || element['moz' + capitalizedPropertName] ||
-    element['webkit' + capitalizedPropertName];
-};
-
-exports.getHTMLElement = function () {
-  return document.getElementsByTagName('html')[0];
-};
-
-exports.getBodyElement = function () {
-  return document.body;
-};
-
-exports.getLocationHash = function () {
-  return window.location.hash;
-};
-
-exports.setLocationHash = function (hash) {
-  window.location.hash = hash;
-};
-},{}],16:[function(require,module,exports){
-module.exports = Lexer;
-
-var CODE = 1,
-    CONTENT = 2,
-    FENCES = 3,
-    SEPARATOR = 4,
-    NOTES_SEPARATOR = 5;
-
-var regexByName = {
-    CODE: /(?:^|\n)( {4}[^\n]+\n*)+/,
-    CONTENT: /(?:\\)?((?:\.[a-zA-Z_\-][a-zA-Z\-_0-9]*)+)\[/,
-    FENCES: /(?:^|\n) *(`{3,}|~{3,}) *(?:\S+)? *\n(?:[\s\S]+?)\s*\3 *(?:\n+|$)/,
-    SEPARATOR: /(?:^|\n)(---?)(?:\n|$)/,
-    NOTES_SEPARATOR: /(?:^|\n)(\?{3})(?:\n|$)/
-  };
-
-var block = replace(/CODE|CONTENT|FENCES|SEPARATOR|NOTES_SEPARATOR/, regexByName),
-    inline = replace(/CODE|CONTENT|FENCES/, regexByName);
-
-function Lexer () { }
-
-Lexer.prototype.lex = function (src) {
-  var tokens = lex(src, block),
-      i;
-
-  for (i = tokens.length - 2; i >= 0; i--) {
-    if (tokens[i].type === 'text' && tokens[i+1].type === 'text') {
-      tokens[i].text += tokens[i+1].text;
-      tokens.splice(i+1, 1);
-    }
-  }
-
-  return tokens;
-};
-
-function lex (src, regex, tokens) {
-  var cap, text;
-
-  tokens = tokens || [];
-
-  while ((cap = regex.exec(src)) !== null) {
-    if (cap.index > 0) {
-      tokens.push({
-        type: 'text',
-        text: src.substring(0, cap.index)
-      });
-    }
-
-    if (cap[CODE]) {
-      tokens.push({
-        type: 'code',
-        text: cap[0]
-      });
-    }
-    else if (cap[FENCES]) {
-      tokens.push({
-        type: 'fences',
-        text: cap[0]
-      });
-    }
-    else if (cap[SEPARATOR]) {
-      tokens.push({
-        type: 'separator',
-        text: cap[SEPARATOR]
-      });
-    }
-    else if (cap[NOTES_SEPARATOR]) {
-      tokens.push({
-        type: 'notes_separator',
-        text: cap[NOTES_SEPARATOR]
-      });
-    }
-    else if (cap[CONTENT]) {
-      text = getTextInBrackets(src, cap.index + cap[0].length);
-      if (text !== undefined) {
-        src = src.substring(text.length + 1);
-        tokens.push({
-          type: 'content_start',
-          classes: cap[CONTENT].substring(1).split('.'),
-          block: text.indexOf('\n') !== -1
-        });
-        lex(text, inline, tokens);
-        tokens.push({
-          type: 'content_end',
-          block: text.indexOf('\n') !== -1
-        });
-      }
-      else {
-        tokens.push({
-          type: 'text',
-          text: cap[0]
-        });
-      }
-    }
-
-    src = src.substring(cap.index + cap[0].length);
-  }
-
-  if (src || (!src && tokens.length === 0)) {
-    tokens.push({
-      type: 'text',
-      text: src
-    });
-  }
-
-  return tokens;
-}
-
-function replace (regex, replacements) {
-  return new RegExp(regex.source.replace(/\w{2,}/g, function (key) {
-    return replacements[key].source;
-  }));
-}
-
-function getTextInBrackets (src, offset) {
-  var depth = 1,
-      pos = offset,
-      chr;
-
-  while (depth > 0 && pos < src.length) {
-    chr = src[pos++];
-    depth += (chr === '[' && 1) || (chr === ']' && -1) || 0;
-  }
-
-  if (depth === 0) {
-    src = src.substr(offset, pos - offset - 1);
-    return src;
-  }
-}
-
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = Slide;
 
 function Slide (slideNo, slide, template) {
@@ -9148,60 +9148,7 @@ function styleDocument () {
     }
   }
 }
-},{"./remark/api":31,"./remark/highlighter":25,"./polyfills":32,"./remark/resources":33}],31:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , highlighter = require('./highlighter')
-  , Slideshow = require('./models/slideshow')
-  , SlideshowView = require('./views/slideshowView')
-  , Controller = require('./controller')
-  , utils = require('./utils')
-  ;
-
-// Expose highlighter to allow enumerating available styles and
-// including external language grammars
-module.exports.highlighter = highlighter;
-
-// Creates slideshow initialized from options
-module.exports.create = function (options) {
-  var events
-    , slideshow
-    , slideshowView
-    , controller
-    ;
-
-  options = applyDefaults(options);
-
-  events = new EventEmitter();
-  events.setMaxListeners(0);
-
-  slideshow = new Slideshow(events, options);
-  slideshowView = new SlideshowView(events, options.container, slideshow);
-  controller = options.controller || new Controller(events, slideshowView);
-
-  return slideshow;
-};
-
-function applyDefaults (options) {
-  var sourceElement;
-
-  options = options || {};
-
-  if (!options.hasOwnProperty('source')) {
-    sourceElement = document.getElementById('source');
-    if (sourceElement) {
-      options.source = sourceElement.innerHTML;
-      sourceElement.style.display = 'none';
-    }
-  }
-
-  if (!(options.container instanceof window.HTMLElement)) {
-    options.container = utils.getBodyElement();
-  }
-
-  return options;
-}
-
-},{"events":14,"./highlighter":25,"./models/slideshow":19,"./views/slideshowView":34,"./controller":35,"./utils":21}],35:[function(require,module,exports){
+},{"./remark/api":31,"./remark/highlighter":25,"./polyfills":32,"./remark/resources":33}],34:[function(require,module,exports){
 var utils = require('./utils');
 
 module.exports = Controller;
@@ -9395,7 +9342,7 @@ function addTouchEventListeners (events) {
   });
 }
 
-},{"./utils":21}],17:[function(require,module,exports){
+},{"./utils":21}],16:[function(require,module,exports){
 var Lexer = require('./lexer'),
     converter = require('./converter');
 
@@ -9482,7 +9429,60 @@ function extractProperties (source, properties) {
   return source;
 }
 
-},{"./lexer":16,"./converter":15}],19:[function(require,module,exports){
+},{"./lexer":15,"./converter":17}],31:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , highlighter = require('./highlighter')
+  , Slideshow = require('./models/slideshow')
+  , SlideshowView = require('./views/slideshowView')
+  , Controller = require('./controller')
+  , utils = require('./utils')
+  ;
+
+// Expose highlighter to allow enumerating available styles and
+// including external language grammars
+module.exports.highlighter = highlighter;
+
+// Creates slideshow initialized from options
+module.exports.create = function (options) {
+  var events
+    , slideshow
+    , slideshowView
+    , controller
+    ;
+
+  options = applyDefaults(options);
+
+  events = new EventEmitter();
+  events.setMaxListeners(0);
+
+  slideshow = new Slideshow(events, options);
+  slideshowView = new SlideshowView(events, options.container, slideshow);
+  controller = options.controller || new Controller(events, slideshowView);
+
+  return slideshow;
+};
+
+function applyDefaults (options) {
+  var sourceElement;
+
+  options = options || {};
+
+  if (!options.hasOwnProperty('source')) {
+    sourceElement = document.getElementById('source');
+    if (sourceElement) {
+      options.source = sourceElement.innerHTML;
+      sourceElement.style.display = 'none';
+    }
+  }
+
+  if (!(options.container instanceof window.HTMLElement)) {
+    options.container = utils.getBodyElement();
+  }
+
+  return options;
+}
+
+},{"events":14,"./highlighter":25,"./views/slideshowView":35,"./models/slideshow":18,"./controller":34,"./utils":21}],18:[function(require,module,exports){
 var Navigation = require('./slideshow/navigation')
   , Events = require('./slideshow/events')
   , utils = require('../utils')
@@ -9626,61 +9626,7 @@ function expandVariables (slides) {
   });
 }
 
-},{"./slideshow/navigation":36,"./slideshow/events":37,"../utils":21,"./slide":18,"../parser":17}],32:[function(require,module,exports){
-exports.apply = function () {
-  forEach([Array, window.NodeList, window.HTMLCollection], extend);
-};
-
-function forEach (list, f) {
-  var i;
-
-  for (i = 0; i < list.length; ++i) {
-    f(list[i], i);
-  }
-}
-
-function extend (object) {
-  var prototype = object && object.prototype;
-
-  if (!prototype) {
-    return;
-  }
-
-  prototype.forEach = prototype.forEach || function (f) {
-    forEach(this, f);
-  };
-
-  prototype.filter = prototype.filter || function (f) {
-    var result = [];
-
-    this.forEach(function (element) {
-      if (f(element, result.length)) {
-        result.push(element);
-      }
-    });
-
-    return result;
-  };
-
-  prototype.map = prototype.map || function (f) {
-    var result = [];
-
-    this.forEach(function (element) {
-      result.push(f(element, result.length));
-    });
-
-    return result;
-  };
-}
-},{}],33:[function(require,module,exports){
-/* Automatically generated */
-
-module.exports = {
-  documentStyles: "html.remark-container,body.remark-container{height:100%;width:100%;-webkit-print-color-adjust:exact;}.remark-container{background:#d7d8d2;margin:0;overflow:hidden;}.remark-container:focus{outline-style:solid;outline-width:1px;}:-webkit-full-screen .remark-container{width:100%;height:100%;}.remark-slides-area{position:relative;height:100%;width:100%;}.remark-slide-container{display:none;position:absolute;height:100%;width:100%;page-break-after:always;}.remark-slide-scaler{background-color:transparent;overflow:hidden;position:absolute;-webkit-transform-origin:top left;-moz-transform-origin:top left;transform-origin:top-left;-moz-box-shadow:0 0 30px #888;-webkit-box-shadow:0 0 30px #888;box-shadow:0 0 30px #888;}.remark-slide{height:100%;width:100%;display:table;table-layout:fixed;}.remark-slide>.left{text-align:left;}.remark-slide>.center{text-align:center;}.remark-slide>.right{text-align:right;}.remark-slide>.top{vertical-align:top;}.remark-slide>.middle{vertical-align:middle;}.remark-slide>.bottom{vertical-align:bottom;}.remark-slide .remark-slide-content{background-position:center;background-repeat:no-repeat;display:table-cell;padding:1em 4em 1em 4em;}.remark-slide .remark-slide-content .left{display:block;text-align:left;}.remark-slide .remark-slide-content .center{display:block;text-align:center;}.remark-slide .remark-slide-content .right{display:block;text-align:right;}.remark-slide .remark-slide-number{bottom:12px;opacity:0.5;position:absolute;right:20px;}.remark-slide-content{background-color:#fff;}.remark-visible{display:block;z-index:2;}.remark-fading{display:block;z-index:1;}.remark-fading .remark-slide-scaler{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;}.remark-backdrop{position:absolute;top:0;bottom:0;left:0;right:0;display:none;background:#000;z-index:2;}.remark-pause{bottom:0;top:0;right:0;left:0;display:none;position:absolute;z-index:1000;}.remark-pause .remark-pause-lozenge{margin-top:30%;text-align:center;}.remark-pause .remark-pause-lozenge span{color:white;background:black;border:2px solid black;border-radius:20px;padding:20px 30px;font-family:Helvetica,arial,freesans,clean,sans-serif;font-size:42pt;font-weight:bold;}.remark-container.remark-presenter-mode.remark-pause-mode .remark-pause{display:block;}.remark-container.remark-presenter-mode.remark-pause-mode .remark-backdrop{display:block;opacity:0.5;}.remark-help{bottom:0;top:0;right:0;left:0;display:none;position:absolute;z-index:1000;-webkit-transform-origin:top left;-moz-transform-origin:top left;transform-origin:top-left;}.remark-help .remark-help-content{color:white;font-family:Helvetica,arial,freesans,clean,sans-serif;font-size:12pt;position:absolute;top:0px;bottom:10%;left:10%;height:10%;}.remark-help .remark-help-content td{color:white;font-size:12pt;padding:10px;}.remark-help .remark-help-content td:first-child{padding-left:0;}.remark-help .remark-help-content .key{background:white;color:black;min-width:1em;display:inline-block;padding:3px 6px;text-align:center;border-radius:4px;}.remark-help .dismiss{top:85%;}.remark-container.remark-help-mode .remark-help{display:block;}.remark-container.remark-help-mode .remark-backdrop{display:block;opacity:0.95;}.remark-preview-area{bottom:2%;left:2%;display:none;opacity:0.5;position:absolute;height:47.25%;width:48%;}.remark-preview-area .remark-slide-container{display:block;}.remark-notes-area{background:#e7e8e2;bottom:0;display:none;left:52%;overflow:hidden;padding:1.5em;position:absolute;right:0;top:0;}.remark-notes-area .remark-notes{clear:both;margin-top:30px;}.remark-toolbar{color:#979892;padding-bottom:1em;vertical-align:middle;}.remark-toolbar .remark-toolbar-link{border:2px solid #d7d8d2;color:#979892;display:inline-block;padding:2px 2px;text-decoration:none;text-align:center;min-width:20px;}.remark-toolbar .remark-toolbar-link:hover{border-color:#979892;color:#676862;}.remark-toolbar .remark-toolbar-timer{border:2px solid black;border-radius:10px;background:black;color:white;display:inline-block;float:right;padding:10px;font-family:sans-serif;font-weight:bold;font-size:200%;text-decoration:none;text-align:center;}.remark-container.remark-presenter-mode .remark-slides-area{top:2%;left:2%;height:47.25%;width:48%;}.remark-container.remark-presenter-mode .remark-preview-area{display:block;}.remark-container.remark-presenter-mode .remark-notes-area{display:block;}@media print{.remark-container{overflow:visible;background-color:#fff;} .remark-slide-container{display:block;position:relative;} .remark-slide-scaler{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;}}@page {size:908px 681px;margin:0;}",
-  containerLayout: "<div class=\"remark-notes-area\">\n  <div class=\"remark-toolbar\">\n    <a class=\"remark-toolbar-link\" href=\"#increase\">+</a>\n    <a class=\"remark-toolbar-link\" href=\"#decrease\">-</a>\n    <span class=\"remark-toolbar-timer\">0:00:00</span>\n  </div>\n  <div class=\"remark-notes\"></div>\n</div>\n<div class=\"remark-slides-area\">\n\n</div>\n<div class=\"remark-preview-area\">\n</div>\n<div class=\"remark-backdrop\"></div>\n<div class=\"remark-pause\">\n  <div class=\"remark-pause-lozenge\">\n    <span>Paused</span>\n  </div>\n</div>\n<div class=\"remark-help\">\n  <div class=\"remark-help-content\">\n    <h1>Help</h1>\n    <p><b>Keyboard shortcuts</b></p>\n    <table class=\"light-keys\">\n      <tr>\n        <td>\n          <span class=\"key\"><b>&uarr;</b></span>,\n          <span class=\"key\"><b>&larr;</b></span>,\n          <span class=\"key\">Pg Up</span>,\n          <span class=\"key\">k</span>\n        </td>\n        <td>Go to previous slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\"><b>&darr;</b></span>,\n          <span class=\"key\"><b>&rarr;</b></span>,\n          <span class=\"key\">Pg Dn</span>,\n          <span class=\"key\">Space</span>,\n          <span class=\"key\">j</span>\n        </td>\n        <td>Go to next slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">Home</span>\n        </td>\n        <td>Go to first slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">End</span>\n        </td>\n        <td>Go to last slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">f</span>\n        </td>\n        <td>Toggle fullscreen mode</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">c</span>\n        </td>\n        <td>Clone slideshow</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">p</span>\n        </td>\n        <td>Toggle presenter mode</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">w</span>\n        </td>\n        <td>Pause/Resume the presentation</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">t</span>\n        </td>\n        <td>Restart the presentation timer</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">?</span>,\n          <span class=\"key\">h</span>\n        </td>\n        <td>Toggle this help</td>\n      </tr>\n    </table>\n  </div>\n  <div class=\"content dismiss\">\n    <table class=\"light-keys\">\n      <tr>\n        <td>\n          <span class=\"key\">Esc</span>\n        </td>\n        <td>Back to slideshow</td>\n      </tr>\n    </table>\n  </div>\n</div>\n"
-};
-
-},{}],20:[function(require,module,exports){
+},{"./slideshow/navigation":36,"./slideshow/events":37,"../utils":21,"./slide":19,"../parser":16}],20:[function(require,module,exports){
 var converter = require('../converter')
   , highlighter = require('../highlighter')
   , utils = require('../utils')
@@ -9863,6 +9809,10 @@ function highlightCodeBlocks (content, slideshow) {
     ;
 
   codeBlocks.forEach(function (block) {
+    if (block.parentElement.tagName !== 'PRE') {
+      return;
+    }
+
     if (block.className === '') {
       block.className = slideshow.getHighlightLanguage();
     }
@@ -9875,7 +9825,7 @@ function highlightCodeBlocks (content, slideshow) {
   });
 }
 
-},{"../converter":15,"../highlighter":25,"../utils":21}],34:[function(require,module,exports){
+},{"../converter":17,"../highlighter":25,"../utils":21}],35:[function(require,module,exports){
 var SlideView = require('./slideView')
   , Scaler = require('../scaler')
   , resources = require('../resources')
@@ -10203,42 +10153,61 @@ SlideshowView.prototype.scaleElements = function () {
   self.scaler.scaleToFit(self.pauseElement, self.containerElement);
 };
 
-},{"./slideView":20,"../scaler":38,"../resources":33,"../utils":21}],2:[function(require,module,exports){
-var sinon = require('sinon')
-  , api = require('../../src/remark/api')
-  , highlighter = require('../../src/remark/highlighter')
-  , Slideshow = require('../../src/remark/models/slideshow')
-  , utils = require('../../src/remark/utils')
-  ;
+},{"./slideView":20,"../scaler":38,"../utils":21,"../resources":33}],32:[function(require,module,exports){
+exports.apply = function () {
+  forEach([Array, window.NodeList, window.HTMLCollection], extend);
+};
 
-describe('API', function () {
-  it('should be exposed', function () {
-    var remark = require('../../src/remark.js');
-    window.remark.should.equal(api);
-  });
+function forEach (list, f) {
+  var i;
 
-  it('should expose highlighter', function () {
-    api.highlighter.should.equal(highlighter);
-  });
+  for (i = 0; i < list.length; ++i) {
+    f(list[i], i);
+  }
+}
 
-  it('should allow creating slideshow', function () {
-    var html = document.createElement('html');
-    var body = document.createElement('body');
+function extend (object) {
+  var prototype = object && object.prototype;
 
-    // Stub to prevent altering test runner DOM
-    sinon.stub(utils, 'getHTMLElement').returns(html);
-    sinon.stub(utils, 'getBodyElement').returns(body);
-    sinon.stub(utils, 'setLocationHash');
+  if (!prototype) {
+    return;
+  }
 
-    api.create().should.be.an.instanceOf(Slideshow);
+  prototype.forEach = prototype.forEach || function (f) {
+    forEach(this, f);
+  };
 
-    utils.getHTMLElement.restore();
-    utils.getBodyElement.restore();
-    utils.setLocationHash.restore();
-  });
-});
+  prototype.filter = prototype.filter || function (f) {
+    var result = [];
 
-},{"../../src/remark.js":30,"../../src/remark/highlighter":25,"../../src/remark/api":31,"../../src/remark/models/slideshow":19,"../../src/remark/utils":21,"sinon":12}],3:[function(require,module,exports){
+    this.forEach(function (element) {
+      if (f(element, result.length)) {
+        result.push(element);
+      }
+    });
+
+    return result;
+  };
+
+  prototype.map = prototype.map || function (f) {
+    var result = [];
+
+    this.forEach(function (element) {
+      result.push(f(element, result.length));
+    });
+
+    return result;
+  };
+}
+},{}],33:[function(require,module,exports){
+/* Automatically generated */
+
+module.exports = {
+  documentStyles: "html.remark-container,body.remark-container{height:100%;width:100%;-webkit-print-color-adjust:exact;}.remark-container{background:#d7d8d2;margin:0;overflow:hidden;}.remark-container:focus{outline-style:solid;outline-width:1px;}:-webkit-full-screen .remark-container{width:100%;height:100%;}.remark-slides-area{position:relative;height:100%;width:100%;}.remark-slide-container{display:none;position:absolute;height:100%;width:100%;page-break-after:always;}.remark-slide-scaler{background-color:transparent;overflow:hidden;position:absolute;-webkit-transform-origin:top left;-moz-transform-origin:top left;transform-origin:top-left;-moz-box-shadow:0 0 30px #888;-webkit-box-shadow:0 0 30px #888;box-shadow:0 0 30px #888;}.remark-slide{height:100%;width:100%;display:table;table-layout:fixed;}.remark-slide>.left{text-align:left;}.remark-slide>.center{text-align:center;}.remark-slide>.right{text-align:right;}.remark-slide>.top{vertical-align:top;}.remark-slide>.middle{vertical-align:middle;}.remark-slide>.bottom{vertical-align:bottom;}.remark-slide .remark-slide-content{background-position:center;background-repeat:no-repeat;display:table-cell;padding:1em 4em 1em 4em;}.remark-slide .remark-slide-content .left{display:block;text-align:left;}.remark-slide .remark-slide-content .center{display:block;text-align:center;}.remark-slide .remark-slide-content .right{display:block;text-align:right;}.remark-slide .remark-slide-number{bottom:12px;opacity:0.5;position:absolute;right:20px;}.remark-slide-content{background-color:#fff;}.remark-visible{display:block;z-index:2;}.remark-fading{display:block;z-index:1;}.remark-fading .remark-slide-scaler{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;}.remark-backdrop{position:absolute;top:0;bottom:0;left:0;right:0;display:none;background:#000;z-index:2;}.remark-pause{bottom:0;top:0;right:0;left:0;display:none;position:absolute;z-index:1000;}.remark-pause .remark-pause-lozenge{margin-top:30%;text-align:center;}.remark-pause .remark-pause-lozenge span{color:white;background:black;border:2px solid black;border-radius:20px;padding:20px 30px;font-family:Helvetica,arial,freesans,clean,sans-serif;font-size:42pt;font-weight:bold;}.remark-container.remark-presenter-mode.remark-pause-mode .remark-pause{display:block;}.remark-container.remark-presenter-mode.remark-pause-mode .remark-backdrop{display:block;opacity:0.5;}.remark-help{bottom:0;top:0;right:0;left:0;display:none;position:absolute;z-index:1000;-webkit-transform-origin:top left;-moz-transform-origin:top left;transform-origin:top-left;}.remark-help .remark-help-content{color:white;font-family:Helvetica,arial,freesans,clean,sans-serif;font-size:12pt;position:absolute;top:0px;bottom:10%;left:10%;height:10%;}.remark-help .remark-help-content td{color:white;font-size:12pt;padding:10px;}.remark-help .remark-help-content td:first-child{padding-left:0;}.remark-help .remark-help-content .key{background:white;color:black;min-width:1em;display:inline-block;padding:3px 6px;text-align:center;border-radius:4px;}.remark-help .dismiss{top:85%;}.remark-container.remark-help-mode .remark-help{display:block;}.remark-container.remark-help-mode .remark-backdrop{display:block;opacity:0.95;}.remark-preview-area{bottom:2%;left:2%;display:none;opacity:0.5;position:absolute;height:47.25%;width:48%;}.remark-preview-area .remark-slide-container{display:block;}.remark-notes-area{background:#e7e8e2;bottom:0;display:none;left:52%;overflow:hidden;padding:1.5em;position:absolute;right:0;top:0;}.remark-notes-area .remark-notes{clear:both;margin-top:30px;}.remark-toolbar{color:#979892;padding-bottom:1em;vertical-align:middle;}.remark-toolbar .remark-toolbar-link{border:2px solid #d7d8d2;color:#979892;display:inline-block;padding:2px 2px;text-decoration:none;text-align:center;min-width:20px;}.remark-toolbar .remark-toolbar-link:hover{border-color:#979892;color:#676862;}.remark-toolbar .remark-toolbar-timer{border:2px solid black;border-radius:10px;background:black;color:white;display:inline-block;float:right;padding:10px;font-family:sans-serif;font-weight:bold;font-size:200%;text-decoration:none;text-align:center;}.remark-container.remark-presenter-mode .remark-slides-area{top:2%;left:2%;height:47.25%;width:48%;}.remark-container.remark-presenter-mode .remark-preview-area{display:block;}.remark-container.remark-presenter-mode .remark-notes-area{display:block;}@media print{.remark-container{overflow:visible;background-color:#fff;} .remark-slide-container{display:block;position:relative;} .remark-slide-scaler{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;}}@page {size:908px 681px;margin:0;}",
+  containerLayout: "<div class=\"remark-notes-area\">\n  <div class=\"remark-toolbar\">\n    <a class=\"remark-toolbar-link\" href=\"#increase\">+</a>\n    <a class=\"remark-toolbar-link\" href=\"#decrease\">-</a>\n    <span class=\"remark-toolbar-timer\">0:00:00</span>\n  </div>\n  <div class=\"remark-notes\"></div>\n</div>\n<div class=\"remark-slides-area\">\n\n</div>\n<div class=\"remark-preview-area\">\n</div>\n<div class=\"remark-backdrop\"></div>\n<div class=\"remark-pause\">\n  <div class=\"remark-pause-lozenge\">\n    <span>Paused</span>\n  </div>\n</div>\n<div class=\"remark-help\">\n  <div class=\"remark-help-content\">\n    <h1>Help</h1>\n    <p><b>Keyboard shortcuts</b></p>\n    <table class=\"light-keys\">\n      <tr>\n        <td>\n          <span class=\"key\"><b>&uarr;</b></span>,\n          <span class=\"key\"><b>&larr;</b></span>,\n          <span class=\"key\">Pg Up</span>,\n          <span class=\"key\">k</span>\n        </td>\n        <td>Go to previous slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\"><b>&darr;</b></span>,\n          <span class=\"key\"><b>&rarr;</b></span>,\n          <span class=\"key\">Pg Dn</span>,\n          <span class=\"key\">Space</span>,\n          <span class=\"key\">j</span>\n        </td>\n        <td>Go to next slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">Home</span>\n        </td>\n        <td>Go to first slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">End</span>\n        </td>\n        <td>Go to last slide</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">f</span>\n        </td>\n        <td>Toggle fullscreen mode</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">c</span>\n        </td>\n        <td>Clone slideshow</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">p</span>\n        </td>\n        <td>Toggle presenter mode</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">w</span>\n        </td>\n        <td>Pause/Resume the presentation</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">t</span>\n        </td>\n        <td>Restart the presentation timer</td>\n      </tr>\n      <tr>\n        <td>\n          <span class=\"key\">?</span>,\n          <span class=\"key\">h</span>\n        </td>\n        <td>Toggle this help</td>\n      </tr>\n    </table>\n  </div>\n  <div class=\"content dismiss\">\n    <table class=\"light-keys\">\n      <tr>\n        <td>\n          <span class=\"key\">Esc</span>\n        </td>\n        <td>Back to slideshow</td>\n      </tr>\n    </table>\n  </div>\n</div>\n"
+};
+
+},{}],3:[function(require,module,exports){
 var sinon = require('sinon')
   , EventEmitter = require('events').EventEmitter
   , Controller = require('../../src/remark/controller')
@@ -10383,7 +10352,128 @@ describe('Controller', function () {
   });
 });
 
-},{"events":14,"../../src/remark/controller":35,"../../src/remark/utils":21,"sinon":12}],39:[function(require,module,exports){
+},{"events":14,"../../src/remark/controller":34,"../../src/remark/utils":21,"sinon":12}],2:[function(require,module,exports){
+var sinon = require('sinon')
+  , api = require('../../src/remark/api')
+  , highlighter = require('../../src/remark/highlighter')
+  , Slideshow = require('../../src/remark/models/slideshow')
+  , utils = require('../../src/remark/utils')
+  ;
+
+describe('API', function () {
+  it('should be exposed', function () {
+    var remark = require('../../src/remark.js');
+    window.remark.should.equal(api);
+  });
+
+  it('should expose highlighter', function () {
+    api.highlighter.should.equal(highlighter);
+  });
+
+  it('should allow creating slideshow', function () {
+    var html = document.createElement('html');
+    var body = document.createElement('body');
+
+    // Stub to prevent altering test runner DOM
+    sinon.stub(utils, 'getHTMLElement').returns(html);
+    sinon.stub(utils, 'getBodyElement').returns(body);
+    sinon.stub(utils, 'setLocationHash');
+
+    api.create().should.be.an.instanceOf(Slideshow);
+
+    utils.getHTMLElement.restore();
+    utils.getBodyElement.restore();
+    utils.setLocationHash.restore();
+  });
+});
+
+},{"../../src/remark.js":30,"../../src/remark/api":31,"../../src/remark/models/slideshow":18,"../../src/remark/highlighter":25,"../../src/remark/utils":21,"sinon":12}],39:[function(require,module,exports){
+exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
+  var e, m,
+      eLen = nBytes * 8 - mLen - 1,
+      eMax = (1 << eLen) - 1,
+      eBias = eMax >> 1,
+      nBits = -7,
+      i = isBE ? 0 : (nBytes - 1),
+      d = isBE ? 1 : -1,
+      s = buffer[offset + i];
+
+  i += d;
+
+  e = s & ((1 << (-nBits)) - 1);
+  s >>= (-nBits);
+  nBits += eLen;
+  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8);
+
+  m = e & ((1 << (-nBits)) - 1);
+  e >>= (-nBits);
+  nBits += mLen;
+  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8);
+
+  if (e === 0) {
+    e = 1 - eBias;
+  } else if (e === eMax) {
+    return m ? NaN : ((s ? -1 : 1) * Infinity);
+  } else {
+    m = m + Math.pow(2, mLen);
+    e = e - eBias;
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
+};
+
+exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
+  var e, m, c,
+      eLen = nBytes * 8 - mLen - 1,
+      eMax = (1 << eLen) - 1,
+      eBias = eMax >> 1,
+      rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0),
+      i = isBE ? (nBytes - 1) : 0,
+      d = isBE ? -1 : 1,
+      s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0;
+
+  value = Math.abs(value);
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0;
+    e = eMax;
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2);
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--;
+      c *= 2;
+    }
+    if (e + eBias >= 1) {
+      value += rt / c;
+    } else {
+      value += rt * Math.pow(2, 1 - eBias);
+    }
+    if (value * c >= 2) {
+      e++;
+      c /= 2;
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0;
+      e = eMax;
+    } else if (e + eBias >= 1) {
+      m = (value * c - 1) * Math.pow(2, mLen);
+      e = e + eBias;
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+      e = 0;
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8);
+
+  e = (e << mLen) | m;
+  eLen += mLen;
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8);
+
+  buffer[offset + i - d] |= s * 128;
+};
+
+},{}],40:[function(require,module,exports){
 var events = require('events');
 var util = require('util');
 
@@ -10504,93 +10594,32 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":14,"util":22}],40:[function(require,module,exports){
-exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
-  var e, m,
-      eLen = nBytes * 8 - mLen - 1,
-      eMax = (1 << eLen) - 1,
-      eBias = eMax >> 1,
-      nBits = -7,
-      i = isBE ? 0 : (nBytes - 1),
-      d = isBE ? 1 : -1,
-      s = buffer[offset + i];
+},{"events":14,"util":22}],37:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter;
 
-  i += d;
+module.exports = Events;
 
-  e = s & ((1 << (-nBits)) - 1);
-  s >>= (-nBits);
-  nBits += eLen;
-  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8);
+function Events (events) {
+  var self = this
+    , externalEvents = new EventEmitter()
+    ;
 
-  m = e & ((1 << (-nBits)) - 1);
-  e >>= (-nBits);
-  nBits += mLen;
-  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8);
+  externalEvents.setMaxListeners(0);
 
-  if (e === 0) {
-    e = 1 - eBias;
-  } else if (e === eMax) {
-    return m ? NaN : ((s ? -1 : 1) * Infinity);
-  } else {
-    m = m + Math.pow(2, mLen);
-    e = e - eBias;
-  }
-  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
-};
+  self.on = function () {
+    externalEvents.on.apply(externalEvents, arguments);
+    return self;
+  };
 
-exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
-  var e, m, c,
-      eLen = nBytes * 8 - mLen - 1,
-      eMax = (1 << eLen) - 1,
-      eBias = eMax >> 1,
-      rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0),
-      i = isBE ? (nBytes - 1) : 0,
-      d = isBE ? -1 : 1,
-      s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0;
+  ['showSlide', 'hideSlide', 'beforeShowSlide', 'afterShowSlide', 'beforeHideSlide', 'afterHideSlide'].map(function (eventName) {
+    events.on(eventName, function (slideIndex) {
+      var slide = self.getSlides()[slideIndex];
+      externalEvents.emit(eventName, slide);
+    });
+  });
+}
 
-  value = Math.abs(value);
-
-  if (isNaN(value) || value === Infinity) {
-    m = isNaN(value) ? 1 : 0;
-    e = eMax;
-  } else {
-    e = Math.floor(Math.log(value) / Math.LN2);
-    if (value * (c = Math.pow(2, -e)) < 1) {
-      e--;
-      c *= 2;
-    }
-    if (e + eBias >= 1) {
-      value += rt / c;
-    } else {
-      value += rt * Math.pow(2, 1 - eBias);
-    }
-    if (value * c >= 2) {
-      e++;
-      c /= 2;
-    }
-
-    if (e + eBias >= eMax) {
-      m = 0;
-      e = eMax;
-    } else if (e + eBias >= 1) {
-      m = (value * c - 1) * Math.pow(2, mLen);
-      e = e + eBias;
-    } else {
-      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
-      e = 0;
-    }
-  }
-
-  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8);
-
-  e = (e << mLen) | m;
-  eLen += mLen;
-  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8);
-
-  buffer[offset + i - d] |= s * 128;
-};
-
-},{}],36:[function(require,module,exports){
+},{"events":14}],36:[function(require,module,exports){
 module.exports = Navigation;
 
 function Navigation (events) {
@@ -10729,403 +10758,86 @@ function Navigation (events) {
   }
 }
 
-},{}],37:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter;
+},{}],38:[function(require,module,exports){
+var referenceWidth = 908
+  , referenceHeight = 681
+  , referenceRatio = referenceWidth / referenceHeight
+  ;
 
-module.exports = Events;
+module.exports = Scaler;
 
-function Events (events) {
-  var self = this
-    , externalEvents = new EventEmitter()
-    ;
+function Scaler (events, slideshow) {
+  var self = this;
 
-  externalEvents.setMaxListeners(0);
+  self.events = events;
+  self.slideshow = slideshow;
+  self.ratio = getRatio(slideshow);
+  self.dimensions = getDimensions(self.ratio);
 
-  self.on = function () {
-    externalEvents.on.apply(externalEvents, arguments);
-    return self;
-  };
-
-  ['showSlide', 'hideSlide', 'beforeShowSlide', 'afterShowSlide', 'beforeHideSlide', 'afterHideSlide'].map(function (eventName) {
-    events.on(eventName, function (slideIndex) {
-      var slide = self.getSlides()[slideIndex];
-      externalEvents.emit(eventName, slide);
-    });
+  self.events.on('propertiesChanged', function (changes) {
+    if (changes.hasOwnProperty('ratio')) {
+      self.ratio = getRatio(slideshow);
+      self.dimensions = getDimensions(self.ratio);
+    }
   });
 }
 
-},{"events":14}],12:[function(require,module,exports){
-(function(){/*jslint eqeqeq: false, onevar: false, forin: true, nomen: false, regexp: false, plusplus: false*/
-/*global module, require, __dirname, document*/
-/**
- * Sinon core utilities. For internal use only.
- *
- * @author Christian Johansen (christian@cjohansen.no)
- * @license BSD
- *
- * Copyright (c) 2010-2013 Christian Johansen
- */
-"use strict";
+Scaler.prototype.scaleToFit = function (element, container) {
+  var self = this
+    , containerHeight = container.clientHeight
+    , containerWidth = container.clientWidth
+    , scale
+    , scaledWidth
+    , scaledHeight
+    , ratio = self.ratio
+    , dimensions = self.dimensions
+    , direction
+    , left
+    , top
+    ;
 
-var sinon = (function (formatio) {
-    var div = typeof document != "undefined" && document.createElement("div");
-    var hasOwn = Object.prototype.hasOwnProperty;
+  if (containerWidth / ratio.width > containerHeight / ratio.height) {
+    scale = containerHeight / dimensions.height;
+  }
+  else {
+    scale = containerWidth / dimensions.width;
+  }
 
-    function isDOMNode(obj) {
-        var success = false;
+  scaledWidth = dimensions.width * scale;
+  scaledHeight = dimensions.height * scale;
 
-        try {
-            obj.appendChild(div);
-            success = div.parentNode == obj;
-        } catch (e) {
-            return false;
-        } finally {
-            try {
-                obj.removeChild(div);
-            } catch (e) {
-                // Remove failed, not much we can do about that
-            }
-        }
+  left = (containerWidth - scaledWidth) / 2;
+  top = (containerHeight - scaledHeight) / 2;
 
-        return success;
-    }
+  element.style['-webkit-transform'] = 'scale(' + scale + ')';
+  element.style.MozTransform = 'scale(' + scale + ')';
+  element.style.left = Math.max(left, 0) + 'px';
+  element.style.top = Math.max(top, 0) + 'px';
+};
 
-    function isElement(obj) {
-        return div && obj && obj.nodeType === 1 && isDOMNode(obj);
-    }
+function getRatio (slideshow) {
+  var ratioComponents = slideshow.getRatio().split(':')
+    , ratio
+    ;
 
-    function isFunction(obj) {
-        return typeof obj === "function" || !!(obj && obj.constructor && obj.call && obj.apply);
-    }
+  ratio = {
+    width: parseInt(ratioComponents[0], 10)
+  , height: parseInt(ratioComponents[1], 10)
+  };
 
-    function mirrorProperties(target, source) {
-        for (var prop in source) {
-            if (!hasOwn.call(target, prop)) {
-                target[prop] = source[prop];
-            }
-        }
-    }
+  ratio.ratio = ratio.width / ratio.height;
 
-    function isRestorable (obj) {
-        return typeof obj === "function" && typeof obj.restore === "function" && obj.restore.sinon;
-    }
+  return ratio;
+}
 
-    var sinon = {
-        wrapMethod: function wrapMethod(object, property, method) {
-            if (!object) {
-                throw new TypeError("Should wrap property of object");
-            }
+function getDimensions (ratio) {
+  return {
+    width: Math.floor(referenceWidth / referenceRatio * ratio.ratio)
+  , height: referenceHeight
+  };
+}
 
-            if (typeof method != "function") {
-                throw new TypeError("Method wrapper should be function");
-            }
-
-            var wrappedMethod = object[property],
-                error;
-
-            if (!isFunction(wrappedMethod)) {
-                error = new TypeError("Attempted to wrap " + (typeof wrappedMethod) + " property " +
-                                    property + " as function");
-            }
-
-            if (wrappedMethod.restore && wrappedMethod.restore.sinon) {
-                error = new TypeError("Attempted to wrap " + property + " which is already wrapped");
-            }
-
-            if (wrappedMethod.calledBefore) {
-                var verb = !!wrappedMethod.returns ? "stubbed" : "spied on";
-                error = new TypeError("Attempted to wrap " + property + " which is already " + verb);
-            }
-
-            if (error) {
-                if (wrappedMethod._stack) {
-                    error.stack += '\n--------------\n' + wrappedMethod._stack;
-                }
-                throw error;
-            }
-
-            // IE 8 does not support hasOwnProperty on the window object and Firefox has a problem
-            // when using hasOwn.call on objects from other frames.
-            var owned = object.hasOwnProperty ? object.hasOwnProperty(property) : hasOwn.call(object, property);
-            object[property] = method;
-            method.displayName = property;
-            // Set up a stack trace which can be used later to find what line of
-            // code the original method was created on.
-            method._stack = (new Error('Stack Trace for original')).stack;
-
-            method.restore = function () {
-                // For prototype properties try to reset by delete first.
-                // If this fails (ex: localStorage on mobile safari) then force a reset
-                // via direct assignment.
-                if (!owned) {
-                    delete object[property];
-                }
-                if (object[property] === method) {
-                    object[property] = wrappedMethod;
-                }
-            };
-
-            method.restore.sinon = true;
-            mirrorProperties(method, wrappedMethod);
-
-            return method;
-        },
-
-        extend: function extend(target) {
-            for (var i = 1, l = arguments.length; i < l; i += 1) {
-                for (var prop in arguments[i]) {
-                    if (arguments[i].hasOwnProperty(prop)) {
-                        target[prop] = arguments[i][prop];
-                    }
-
-                    // DONT ENUM bug, only care about toString
-                    if (arguments[i].hasOwnProperty("toString") &&
-                        arguments[i].toString != target.toString) {
-                        target.toString = arguments[i].toString;
-                    }
-                }
-            }
-
-            return target;
-        },
-
-        create: function create(proto) {
-            var F = function () {};
-            F.prototype = proto;
-            return new F();
-        },
-
-        deepEqual: function deepEqual(a, b) {
-            if (sinon.match && sinon.match.isMatcher(a)) {
-                return a.test(b);
-            }
-            if (typeof a != "object" || typeof b != "object") {
-                return a === b;
-            }
-
-            if (isElement(a) || isElement(b)) {
-                return a === b;
-            }
-
-            if (a === b) {
-                return true;
-            }
-
-            if ((a === null && b !== null) || (a !== null && b === null)) {
-                return false;
-            }
-
-            var aString = Object.prototype.toString.call(a);
-            if (aString != Object.prototype.toString.call(b)) {
-                return false;
-            }
-
-            if (aString == "[object Date]") {
-                return a.valueOf() === b.valueOf();
-            }
-
-            var prop, aLength = 0, bLength = 0;
-
-            if (aString == "[object Array]" && a.length !== b.length) {
-                return false;
-            }
-
-            for (prop in a) {
-                aLength += 1;
-
-                if (!deepEqual(a[prop], b[prop])) {
-                    return false;
-                }
-            }
-
-            for (prop in b) {
-                bLength += 1;
-            }
-
-            return aLength == bLength;
-        },
-
-        functionName: function functionName(func) {
-            var name = func.displayName || func.name;
-
-            // Use function decomposition as a last resort to get function
-            // name. Does not rely on function decomposition to work - if it
-            // doesn't debugging will be slightly less informative
-            // (i.e. toString will say 'spy' rather than 'myFunc').
-            if (!name) {
-                var matches = func.toString().match(/function ([^\s\(]+)/);
-                name = matches && matches[1];
-            }
-
-            return name;
-        },
-
-        functionToString: function toString() {
-            if (this.getCall && this.callCount) {
-                var thisValue, prop, i = this.callCount;
-
-                while (i--) {
-                    thisValue = this.getCall(i).thisValue;
-
-                    for (prop in thisValue) {
-                        if (thisValue[prop] === this) {
-                            return prop;
-                        }
-                    }
-                }
-            }
-
-            return this.displayName || "sinon fake";
-        },
-
-        getConfig: function (custom) {
-            var config = {};
-            custom = custom || {};
-            var defaults = sinon.defaultConfig;
-
-            for (var prop in defaults) {
-                if (defaults.hasOwnProperty(prop)) {
-                    config[prop] = custom.hasOwnProperty(prop) ? custom[prop] : defaults[prop];
-                }
-            }
-
-            return config;
-        },
-
-        format: function (val) {
-            return "" + val;
-        },
-
-        defaultConfig: {
-            injectIntoThis: true,
-            injectInto: null,
-            properties: ["spy", "stub", "mock", "clock", "server", "requests"],
-            useFakeTimers: true,
-            useFakeServer: true
-        },
-
-        timesInWords: function timesInWords(count) {
-            return count == 1 && "once" ||
-                count == 2 && "twice" ||
-                count == 3 && "thrice" ||
-                (count || 0) + " times";
-        },
-
-        calledInOrder: function (spies) {
-            for (var i = 1, l = spies.length; i < l; i++) {
-                if (!spies[i - 1].calledBefore(spies[i]) || !spies[i].called) {
-                    return false;
-                }
-            }
-
-            return true;
-        },
-
-        orderByFirstCall: function (spies) {
-            return spies.sort(function (a, b) {
-                // uuid, won't ever be equal
-                var aCall = a.getCall(0);
-                var bCall = b.getCall(0);
-                var aId = aCall && aCall.callId || -1;
-                var bId = bCall && bCall.callId || -1;
-
-                return aId < bId ? -1 : 1;
-            });
-        },
-
-        log: function () {},
-
-        logError: function (label, err) {
-            var msg = label + " threw exception: ";
-            sinon.log(msg + "[" + err.name + "] " + err.message);
-            if (err.stack) { sinon.log(err.stack); }
-
-            setTimeout(function () {
-                err.message = msg + err.message;
-                throw err;
-            }, 0);
-        },
-
-        typeOf: function (value) {
-            if (value === null) {
-                return "null";
-            }
-            else if (value === undefined) {
-                return "undefined";
-            }
-            var string = Object.prototype.toString.call(value);
-            return string.substring(8, string.length - 1).toLowerCase();
-        },
-
-        createStubInstance: function (constructor) {
-            if (typeof constructor !== "function") {
-                throw new TypeError("The constructor should be a function.");
-            }
-            return sinon.stub(sinon.create(constructor.prototype));
-        },
-
-        restore: function (object) {
-            if (object !== null && typeof object === "object") {
-                for (var prop in object) {
-                    if (isRestorable(object[prop])) {
-                        object[prop].restore();
-                    }
-                }
-            }
-            else if (isRestorable(object)) {
-                object.restore();
-            }
-        }
-    };
-
-    var isNode = typeof module !== "undefined" && module.exports;
-    var isAMD = typeof define === 'function' && typeof define.amd === 'object' && define.amd;
-
-    if (isAMD) {
-        define(function(){
-            return sinon;
-        });
-    } else if (isNode) {
-        try {
-            formatio = require("formatio");
-        } catch (e) {}
-        module.exports = sinon;
-        module.exports.spy = require("./sinon/spy");
-        module.exports.spyCall = require("./sinon/call");
-        module.exports.behavior = require("./sinon/behavior");
-        module.exports.stub = require("./sinon/stub");
-        module.exports.mock = require("./sinon/mock");
-        module.exports.collection = require("./sinon/collection");
-        module.exports.assert = require("./sinon/assert");
-        module.exports.sandbox = require("./sinon/sandbox");
-        module.exports.test = require("./sinon/test");
-        module.exports.testCase = require("./sinon/test_case");
-        module.exports.assert = require("./sinon/assert");
-        module.exports.match = require("./sinon/match");
-    }
-
-    if (formatio) {
-        var formatter = formatio.configure({ quoteStrings: false });
-        sinon.format = function () {
-            return formatter.ascii.apply(formatter, arguments);
-        };
-    } else if (isNode) {
-        try {
-            var util = require("util");
-            sinon.format = function (value) {
-                return typeof value == "object" && value.toString === Object.prototype.toString ? util.inspect(value) : value;
-            };
-        } catch (e) {
-            /* Node, but no util module - would be very old, but better safe than
-             sorry */
-        }
-    }
-
-    return sinon;
-}(typeof formatio == "object" && formatio));
-
-})()
-},{"util":22,"./sinon/spy":41,"./sinon/call":42,"./sinon/behavior":43,"./sinon/stub":44,"./sinon/mock":45,"./sinon/collection":46,"./sinon/assert":47,"./sinon/sandbox":48,"./sinon/test":49,"./sinon/test_case":50,"./sinon/match":51,"formatio":52}],41:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 (function(){/**
   * @depend ../sinon.js
   * @depend call.js
@@ -11536,212 +11248,6 @@ var sinon = (function (formatio) {
 
 })()
 },{"../sinon":12}],42:[function(require,module,exports){
-(function(){/**
-  * @depend ../sinon.js
-  * @depend match.js
-  */
-/*jslint eqeqeq: false, onevar: false, plusplus: false*/
-/*global module, require, sinon*/
-/**
-  * Spy calls
-  *
-  * @author Christian Johansen (christian@cjohansen.no)
-  * @author Maximilian Antoni (mail@maxantoni.de)
-  * @license BSD
-  *
-  * Copyright (c) 2010-2013 Christian Johansen
-  * Copyright (c) 2013 Maximilian Antoni
-  */
-"use strict";
-
-(function (sinon) {
-    var commonJSModule = typeof module !== 'undefined' && module.exports;
-    if (!sinon && commonJSModule) {
-        sinon = require("../sinon");
-    }
-
-    if (!sinon) {
-        return;
-    }
-
-    function throwYieldError(proxy, text, args) {
-        var msg = sinon.functionName(proxy) + text;
-        if (args.length) {
-            msg += " Received [" + slice.call(args).join(", ") + "]";
-        }
-        throw new Error(msg);
-    }
-
-    var slice = Array.prototype.slice;
-
-    var callProto = {
-        calledOn: function calledOn(thisValue) {
-            if (sinon.match && sinon.match.isMatcher(thisValue)) {
-                return thisValue.test(this.thisValue);
-            }
-            return this.thisValue === thisValue;
-        },
-
-        calledWith: function calledWith() {
-            for (var i = 0, l = arguments.length; i < l; i += 1) {
-                if (!sinon.deepEqual(arguments[i], this.args[i])) {
-                    return false;
-                }
-            }
-
-            return true;
-        },
-
-        calledWithMatch: function calledWithMatch() {
-            for (var i = 0, l = arguments.length; i < l; i += 1) {
-                var actual = this.args[i];
-                var expectation = arguments[i];
-                if (!sinon.match || !sinon.match(expectation).test(actual)) {
-                    return false;
-                }
-            }
-            return true;
-        },
-
-        calledWithExactly: function calledWithExactly() {
-            return arguments.length == this.args.length &&
-                this.calledWith.apply(this, arguments);
-        },
-
-        notCalledWith: function notCalledWith() {
-            return !this.calledWith.apply(this, arguments);
-        },
-
-        notCalledWithMatch: function notCalledWithMatch() {
-            return !this.calledWithMatch.apply(this, arguments);
-        },
-
-        returned: function returned(value) {
-            return sinon.deepEqual(value, this.returnValue);
-        },
-
-        threw: function threw(error) {
-            if (typeof error === "undefined" || !this.exception) {
-                return !!this.exception;
-            }
-
-            return this.exception === error || this.exception.name === error;
-        },
-
-        calledWithNew: function calledWithNew() {
-            return this.proxy.prototype && this.thisValue instanceof this.proxy;
-        },
-
-        calledBefore: function (other) {
-            return this.callId < other.callId;
-        },
-
-        calledAfter: function (other) {
-            return this.callId > other.callId;
-        },
-
-        callArg: function (pos) {
-            this.args[pos]();
-        },
-
-        callArgOn: function (pos, thisValue) {
-            this.args[pos].apply(thisValue);
-        },
-
-        callArgWith: function (pos) {
-            this.callArgOnWith.apply(this, [pos, null].concat(slice.call(arguments, 1)));
-        },
-
-        callArgOnWith: function (pos, thisValue) {
-            var args = slice.call(arguments, 2);
-            this.args[pos].apply(thisValue, args);
-        },
-
-        "yield": function () {
-            this.yieldOn.apply(this, [null].concat(slice.call(arguments, 0)));
-        },
-
-        yieldOn: function (thisValue) {
-            var args = this.args;
-            for (var i = 0, l = args.length; i < l; ++i) {
-                if (typeof args[i] === "function") {
-                    args[i].apply(thisValue, slice.call(arguments, 1));
-                    return;
-                }
-            }
-            throwYieldError(this.proxy, " cannot yield since no callback was passed.", args);
-        },
-
-        yieldTo: function (prop) {
-            this.yieldToOn.apply(this, [prop, null].concat(slice.call(arguments, 1)));
-        },
-
-        yieldToOn: function (prop, thisValue) {
-            var args = this.args;
-            for (var i = 0, l = args.length; i < l; ++i) {
-                if (args[i] && typeof args[i][prop] === "function") {
-                    args[i][prop].apply(thisValue, slice.call(arguments, 2));
-                    return;
-                }
-            }
-            throwYieldError(this.proxy, " cannot yield to '" + prop +
-                "' since no callback was passed.", args);
-        },
-
-        toString: function () {
-            var callStr = this.proxy.toString() + "(";
-            var args = [];
-
-            for (var i = 0, l = this.args.length; i < l; ++i) {
-                args.push(sinon.format(this.args[i]));
-            }
-
-            callStr = callStr + args.join(", ") + ")";
-
-            if (typeof this.returnValue != "undefined") {
-                callStr += " => " + sinon.format(this.returnValue);
-            }
-
-            if (this.exception) {
-                callStr += " !" + this.exception.name;
-
-                if (this.exception.message) {
-                    callStr += "(" + this.exception.message + ")";
-                }
-            }
-
-            return callStr;
-        }
-    };
-
-    callProto.invokeCallback = callProto.yield;
-
-    function createSpyCall(spy, thisValue, args, returnValue, exception, id) {
-        if (typeof id !== "number") {
-            throw new TypeError("Call id is not a number");
-        }
-        var proxyCall = sinon.create(callProto);
-        proxyCall.proxy = spy;
-        proxyCall.thisValue = thisValue;
-        proxyCall.args = args;
-        proxyCall.returnValue = returnValue;
-        proxyCall.exception = exception;
-        proxyCall.callId = id;
-
-        return proxyCall;
-    }
-    createSpyCall.toString = callProto.toString; // used by mocks
-
-    if (commonJSModule) {
-        module.exports = createSpyCall;
-    } else {
-        sinon.spyCall = createSpyCall;
-    }
-}(typeof sinon == "object" && sinon || null));
-
-
-})()
-},{"../sinon":12}],43:[function(require,module,exports){
 (function(process){/**
  * @depend ../sinon.js
  */
@@ -12075,169 +11581,7 @@ var sinon = (function (formatio) {
     }
 }(typeof sinon == "object" && sinon || null));
 })(require("__browserify_process"))
-},{"../sinon":12,"__browserify_process":13}],44:[function(require,module,exports){
-(function(){/**
- * @depend ../sinon.js
- * @depend spy.js
- * @depend behavior.js
- */
-/*jslint eqeqeq: false, onevar: false*/
-/*global module, require, sinon*/
-/**
- * Stub functions
- *
- * @author Christian Johansen (christian@cjohansen.no)
- * @license BSD
- *
- * Copyright (c) 2010-2013 Christian Johansen
- */
-"use strict";
-
-(function (sinon) {
-    var commonJSModule = typeof module !== 'undefined' && module.exports;
-
-    if (!sinon && commonJSModule) {
-        sinon = require("../sinon");
-    }
-
-    if (!sinon) {
-        return;
-    }
-
-    function stub(object, property, func) {
-        if (!!func && typeof func != "function") {
-            throw new TypeError("Custom stub should be function");
-        }
-
-        var wrapper;
-
-        if (func) {
-            wrapper = sinon.spy && sinon.spy.create ? sinon.spy.create(func) : func;
-        } else {
-            wrapper = stub.create();
-        }
-
-        if (!object && typeof property === "undefined") {
-            return sinon.stub.create();
-        }
-
-        if (typeof property === "undefined" && typeof object == "object") {
-            for (var prop in object) {
-                if (typeof object[prop] === "function") {
-                    stub(object, prop);
-                }
-            }
-
-            return object;
-        }
-
-        return sinon.wrapMethod(object, property, wrapper);
-    }
-
-    function getDefaultBehavior(stub) {
-        return stub.defaultBehavior || getParentBehaviour(stub) || sinon.behavior.create(stub);
-    }
-
-    function getParentBehaviour(stub) {
-        return (stub.parent && getCurrentBehavior(stub.parent));
-    }
-
-    function getCurrentBehavior(stub) {
-        var behavior = stub.behaviors[stub.callCount - 1];
-        return behavior && behavior.isPresent() ? behavior : getDefaultBehavior(stub);
-    }
-
-    var uuid = 0;
-
-    sinon.extend(stub, (function () {
-        var proto = {
-            create: function create() {
-                var functionStub = function () {
-                    return getCurrentBehavior(functionStub).invoke(this, arguments);
-                };
-
-                functionStub.id = "stub#" + uuid++;
-                var orig = functionStub;
-                functionStub = sinon.spy.create(functionStub);
-                functionStub.func = orig;
-
-                sinon.extend(functionStub, stub);
-                functionStub._create = sinon.stub.create;
-                functionStub.displayName = "stub";
-                functionStub.toString = sinon.functionToString;
-
-                functionStub.defaultBehavior = null;
-                functionStub.behaviors = [];
-
-                return functionStub;
-            },
-
-            resetBehavior: function () {
-                var i;
-
-                this.defaultBehavior = null;
-                this.behaviors = [];
-
-                delete this.returnValue;
-                delete this.returnArgAt;
-                this.returnThis = false;
-
-                if (this.fakes) {
-                    for (i = 0; i < this.fakes.length; i++) {
-                        this.fakes[i].resetBehavior();
-                    }
-                }
-            },
-
-            onCall: function(index) {
-                if (!this.behaviors[index]) {
-                    this.behaviors[index] = sinon.behavior.create(this);
-                }
-
-                return this.behaviors[index];
-            },
-
-            onFirstCall: function() {
-                return this.onCall(0);
-            },
-
-            onSecondCall: function() {
-                return this.onCall(1);
-            },
-
-            onThirdCall: function() {
-                return this.onCall(2);
-            }
-        };
-
-        for (var method in sinon.behavior) {
-            if (sinon.behavior.hasOwnProperty(method) &&
-                !proto.hasOwnProperty(method) &&
-                method != 'create' &&
-                method != 'withArgs' &&
-                method != 'invoke') {
-                proto[method] = (function(behaviorMethod) {
-                    return function() {
-                        this.defaultBehavior = this.defaultBehavior || sinon.behavior.create(this);
-                        this.defaultBehavior[behaviorMethod].apply(this.defaultBehavior, arguments);
-                        return this;
-                    };
-                }(method));
-            }
-        }
-
-        return proto;
-    }()));
-
-    if (commonJSModule) {
-        module.exports = stub;
-    } else {
-        sinon.stub = stub;
-    }
-}(typeof sinon == "object" && sinon || null));
-
-})()
-},{"../sinon":12}],45:[function(require,module,exports){
+},{"../sinon":12,"__browserify_process":13}],43:[function(require,module,exports){
 (function(){/**
  * @depend ../sinon.js
  * @depend stub.js
@@ -12689,7 +12033,584 @@ var sinon = (function (formatio) {
 }(typeof sinon == "object" && sinon || null));
 
 })()
-},{"../sinon":12,"./match":51}],46:[function(require,module,exports){
+},{"../sinon":12,"./match":44}],45:[function(require,module,exports){
+(function(){/**
+  * @depend ../sinon.js
+  * @depend match.js
+  */
+/*jslint eqeqeq: false, onevar: false, plusplus: false*/
+/*global module, require, sinon*/
+/**
+  * Spy calls
+  *
+  * @author Christian Johansen (christian@cjohansen.no)
+  * @author Maximilian Antoni (mail@maxantoni.de)
+  * @license BSD
+  *
+  * Copyright (c) 2010-2013 Christian Johansen
+  * Copyright (c) 2013 Maximilian Antoni
+  */
+"use strict";
+
+(function (sinon) {
+    var commonJSModule = typeof module !== 'undefined' && module.exports;
+    if (!sinon && commonJSModule) {
+        sinon = require("../sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function throwYieldError(proxy, text, args) {
+        var msg = sinon.functionName(proxy) + text;
+        if (args.length) {
+            msg += " Received [" + slice.call(args).join(", ") + "]";
+        }
+        throw new Error(msg);
+    }
+
+    var slice = Array.prototype.slice;
+
+    var callProto = {
+        calledOn: function calledOn(thisValue) {
+            if (sinon.match && sinon.match.isMatcher(thisValue)) {
+                return thisValue.test(this.thisValue);
+            }
+            return this.thisValue === thisValue;
+        },
+
+        calledWith: function calledWith() {
+            for (var i = 0, l = arguments.length; i < l; i += 1) {
+                if (!sinon.deepEqual(arguments[i], this.args[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+
+        calledWithMatch: function calledWithMatch() {
+            for (var i = 0, l = arguments.length; i < l; i += 1) {
+                var actual = this.args[i];
+                var expectation = arguments[i];
+                if (!sinon.match || !sinon.match(expectation).test(actual)) {
+                    return false;
+                }
+            }
+            return true;
+        },
+
+        calledWithExactly: function calledWithExactly() {
+            return arguments.length == this.args.length &&
+                this.calledWith.apply(this, arguments);
+        },
+
+        notCalledWith: function notCalledWith() {
+            return !this.calledWith.apply(this, arguments);
+        },
+
+        notCalledWithMatch: function notCalledWithMatch() {
+            return !this.calledWithMatch.apply(this, arguments);
+        },
+
+        returned: function returned(value) {
+            return sinon.deepEqual(value, this.returnValue);
+        },
+
+        threw: function threw(error) {
+            if (typeof error === "undefined" || !this.exception) {
+                return !!this.exception;
+            }
+
+            return this.exception === error || this.exception.name === error;
+        },
+
+        calledWithNew: function calledWithNew() {
+            return this.proxy.prototype && this.thisValue instanceof this.proxy;
+        },
+
+        calledBefore: function (other) {
+            return this.callId < other.callId;
+        },
+
+        calledAfter: function (other) {
+            return this.callId > other.callId;
+        },
+
+        callArg: function (pos) {
+            this.args[pos]();
+        },
+
+        callArgOn: function (pos, thisValue) {
+            this.args[pos].apply(thisValue);
+        },
+
+        callArgWith: function (pos) {
+            this.callArgOnWith.apply(this, [pos, null].concat(slice.call(arguments, 1)));
+        },
+
+        callArgOnWith: function (pos, thisValue) {
+            var args = slice.call(arguments, 2);
+            this.args[pos].apply(thisValue, args);
+        },
+
+        "yield": function () {
+            this.yieldOn.apply(this, [null].concat(slice.call(arguments, 0)));
+        },
+
+        yieldOn: function (thisValue) {
+            var args = this.args;
+            for (var i = 0, l = args.length; i < l; ++i) {
+                if (typeof args[i] === "function") {
+                    args[i].apply(thisValue, slice.call(arguments, 1));
+                    return;
+                }
+            }
+            throwYieldError(this.proxy, " cannot yield since no callback was passed.", args);
+        },
+
+        yieldTo: function (prop) {
+            this.yieldToOn.apply(this, [prop, null].concat(slice.call(arguments, 1)));
+        },
+
+        yieldToOn: function (prop, thisValue) {
+            var args = this.args;
+            for (var i = 0, l = args.length; i < l; ++i) {
+                if (args[i] && typeof args[i][prop] === "function") {
+                    args[i][prop].apply(thisValue, slice.call(arguments, 2));
+                    return;
+                }
+            }
+            throwYieldError(this.proxy, " cannot yield to '" + prop +
+                "' since no callback was passed.", args);
+        },
+
+        toString: function () {
+            var callStr = this.proxy.toString() + "(";
+            var args = [];
+
+            for (var i = 0, l = this.args.length; i < l; ++i) {
+                args.push(sinon.format(this.args[i]));
+            }
+
+            callStr = callStr + args.join(", ") + ")";
+
+            if (typeof this.returnValue != "undefined") {
+                callStr += " => " + sinon.format(this.returnValue);
+            }
+
+            if (this.exception) {
+                callStr += " !" + this.exception.name;
+
+                if (this.exception.message) {
+                    callStr += "(" + this.exception.message + ")";
+                }
+            }
+
+            return callStr;
+        }
+    };
+
+    callProto.invokeCallback = callProto.yield;
+
+    function createSpyCall(spy, thisValue, args, returnValue, exception, id) {
+        if (typeof id !== "number") {
+            throw new TypeError("Call id is not a number");
+        }
+        var proxyCall = sinon.create(callProto);
+        proxyCall.proxy = spy;
+        proxyCall.thisValue = thisValue;
+        proxyCall.args = args;
+        proxyCall.returnValue = returnValue;
+        proxyCall.exception = exception;
+        proxyCall.callId = id;
+
+        return proxyCall;
+    }
+    createSpyCall.toString = callProto.toString; // used by mocks
+
+    if (commonJSModule) {
+        module.exports = createSpyCall;
+    } else {
+        sinon.spyCall = createSpyCall;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+
+})()
+},{"../sinon":12}],12:[function(require,module,exports){
+(function(){/*jslint eqeqeq: false, onevar: false, forin: true, nomen: false, regexp: false, plusplus: false*/
+/*global module, require, __dirname, document*/
+/**
+ * Sinon core utilities. For internal use only.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2013 Christian Johansen
+ */
+"use strict";
+
+var sinon = (function (formatio) {
+    var div = typeof document != "undefined" && document.createElement("div");
+    var hasOwn = Object.prototype.hasOwnProperty;
+
+    function isDOMNode(obj) {
+        var success = false;
+
+        try {
+            obj.appendChild(div);
+            success = div.parentNode == obj;
+        } catch (e) {
+            return false;
+        } finally {
+            try {
+                obj.removeChild(div);
+            } catch (e) {
+                // Remove failed, not much we can do about that
+            }
+        }
+
+        return success;
+    }
+
+    function isElement(obj) {
+        return div && obj && obj.nodeType === 1 && isDOMNode(obj);
+    }
+
+    function isFunction(obj) {
+        return typeof obj === "function" || !!(obj && obj.constructor && obj.call && obj.apply);
+    }
+
+    function mirrorProperties(target, source) {
+        for (var prop in source) {
+            if (!hasOwn.call(target, prop)) {
+                target[prop] = source[prop];
+            }
+        }
+    }
+
+    function isRestorable (obj) {
+        return typeof obj === "function" && typeof obj.restore === "function" && obj.restore.sinon;
+    }
+
+    var sinon = {
+        wrapMethod: function wrapMethod(object, property, method) {
+            if (!object) {
+                throw new TypeError("Should wrap property of object");
+            }
+
+            if (typeof method != "function") {
+                throw new TypeError("Method wrapper should be function");
+            }
+
+            var wrappedMethod = object[property],
+                error;
+
+            if (!isFunction(wrappedMethod)) {
+                error = new TypeError("Attempted to wrap " + (typeof wrappedMethod) + " property " +
+                                    property + " as function");
+            }
+
+            if (wrappedMethod.restore && wrappedMethod.restore.sinon) {
+                error = new TypeError("Attempted to wrap " + property + " which is already wrapped");
+            }
+
+            if (wrappedMethod.calledBefore) {
+                var verb = !!wrappedMethod.returns ? "stubbed" : "spied on";
+                error = new TypeError("Attempted to wrap " + property + " which is already " + verb);
+            }
+
+            if (error) {
+                if (wrappedMethod._stack) {
+                    error.stack += '\n--------------\n' + wrappedMethod._stack;
+                }
+                throw error;
+            }
+
+            // IE 8 does not support hasOwnProperty on the window object and Firefox has a problem
+            // when using hasOwn.call on objects from other frames.
+            var owned = object.hasOwnProperty ? object.hasOwnProperty(property) : hasOwn.call(object, property);
+            object[property] = method;
+            method.displayName = property;
+            // Set up a stack trace which can be used later to find what line of
+            // code the original method was created on.
+            method._stack = (new Error('Stack Trace for original')).stack;
+
+            method.restore = function () {
+                // For prototype properties try to reset by delete first.
+                // If this fails (ex: localStorage on mobile safari) then force a reset
+                // via direct assignment.
+                if (!owned) {
+                    delete object[property];
+                }
+                if (object[property] === method) {
+                    object[property] = wrappedMethod;
+                }
+            };
+
+            method.restore.sinon = true;
+            mirrorProperties(method, wrappedMethod);
+
+            return method;
+        },
+
+        extend: function extend(target) {
+            for (var i = 1, l = arguments.length; i < l; i += 1) {
+                for (var prop in arguments[i]) {
+                    if (arguments[i].hasOwnProperty(prop)) {
+                        target[prop] = arguments[i][prop];
+                    }
+
+                    // DONT ENUM bug, only care about toString
+                    if (arguments[i].hasOwnProperty("toString") &&
+                        arguments[i].toString != target.toString) {
+                        target.toString = arguments[i].toString;
+                    }
+                }
+            }
+
+            return target;
+        },
+
+        create: function create(proto) {
+            var F = function () {};
+            F.prototype = proto;
+            return new F();
+        },
+
+        deepEqual: function deepEqual(a, b) {
+            if (sinon.match && sinon.match.isMatcher(a)) {
+                return a.test(b);
+            }
+            if (typeof a != "object" || typeof b != "object") {
+                return a === b;
+            }
+
+            if (isElement(a) || isElement(b)) {
+                return a === b;
+            }
+
+            if (a === b) {
+                return true;
+            }
+
+            if ((a === null && b !== null) || (a !== null && b === null)) {
+                return false;
+            }
+
+            var aString = Object.prototype.toString.call(a);
+            if (aString != Object.prototype.toString.call(b)) {
+                return false;
+            }
+
+            if (aString == "[object Date]") {
+                return a.valueOf() === b.valueOf();
+            }
+
+            var prop, aLength = 0, bLength = 0;
+
+            if (aString == "[object Array]" && a.length !== b.length) {
+                return false;
+            }
+
+            for (prop in a) {
+                aLength += 1;
+
+                if (!deepEqual(a[prop], b[prop])) {
+                    return false;
+                }
+            }
+
+            for (prop in b) {
+                bLength += 1;
+            }
+
+            return aLength == bLength;
+        },
+
+        functionName: function functionName(func) {
+            var name = func.displayName || func.name;
+
+            // Use function decomposition as a last resort to get function
+            // name. Does not rely on function decomposition to work - if it
+            // doesn't debugging will be slightly less informative
+            // (i.e. toString will say 'spy' rather than 'myFunc').
+            if (!name) {
+                var matches = func.toString().match(/function ([^\s\(]+)/);
+                name = matches && matches[1];
+            }
+
+            return name;
+        },
+
+        functionToString: function toString() {
+            if (this.getCall && this.callCount) {
+                var thisValue, prop, i = this.callCount;
+
+                while (i--) {
+                    thisValue = this.getCall(i).thisValue;
+
+                    for (prop in thisValue) {
+                        if (thisValue[prop] === this) {
+                            return prop;
+                        }
+                    }
+                }
+            }
+
+            return this.displayName || "sinon fake";
+        },
+
+        getConfig: function (custom) {
+            var config = {};
+            custom = custom || {};
+            var defaults = sinon.defaultConfig;
+
+            for (var prop in defaults) {
+                if (defaults.hasOwnProperty(prop)) {
+                    config[prop] = custom.hasOwnProperty(prop) ? custom[prop] : defaults[prop];
+                }
+            }
+
+            return config;
+        },
+
+        format: function (val) {
+            return "" + val;
+        },
+
+        defaultConfig: {
+            injectIntoThis: true,
+            injectInto: null,
+            properties: ["spy", "stub", "mock", "clock", "server", "requests"],
+            useFakeTimers: true,
+            useFakeServer: true
+        },
+
+        timesInWords: function timesInWords(count) {
+            return count == 1 && "once" ||
+                count == 2 && "twice" ||
+                count == 3 && "thrice" ||
+                (count || 0) + " times";
+        },
+
+        calledInOrder: function (spies) {
+            for (var i = 1, l = spies.length; i < l; i++) {
+                if (!spies[i - 1].calledBefore(spies[i]) || !spies[i].called) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+
+        orderByFirstCall: function (spies) {
+            return spies.sort(function (a, b) {
+                // uuid, won't ever be equal
+                var aCall = a.getCall(0);
+                var bCall = b.getCall(0);
+                var aId = aCall && aCall.callId || -1;
+                var bId = bCall && bCall.callId || -1;
+
+                return aId < bId ? -1 : 1;
+            });
+        },
+
+        log: function () {},
+
+        logError: function (label, err) {
+            var msg = label + " threw exception: ";
+            sinon.log(msg + "[" + err.name + "] " + err.message);
+            if (err.stack) { sinon.log(err.stack); }
+
+            setTimeout(function () {
+                err.message = msg + err.message;
+                throw err;
+            }, 0);
+        },
+
+        typeOf: function (value) {
+            if (value === null) {
+                return "null";
+            }
+            else if (value === undefined) {
+                return "undefined";
+            }
+            var string = Object.prototype.toString.call(value);
+            return string.substring(8, string.length - 1).toLowerCase();
+        },
+
+        createStubInstance: function (constructor) {
+            if (typeof constructor !== "function") {
+                throw new TypeError("The constructor should be a function.");
+            }
+            return sinon.stub(sinon.create(constructor.prototype));
+        },
+
+        restore: function (object) {
+            if (object !== null && typeof object === "object") {
+                for (var prop in object) {
+                    if (isRestorable(object[prop])) {
+                        object[prop].restore();
+                    }
+                }
+            }
+            else if (isRestorable(object)) {
+                object.restore();
+            }
+        }
+    };
+
+    var isNode = typeof module !== "undefined" && module.exports;
+    var isAMD = typeof define === 'function' && typeof define.amd === 'object' && define.amd;
+
+    if (isAMD) {
+        define(function(){
+            return sinon;
+        });
+    } else if (isNode) {
+        try {
+            formatio = require("formatio");
+        } catch (e) {}
+        module.exports = sinon;
+        module.exports.spy = require("./sinon/spy");
+        module.exports.spyCall = require("./sinon/call");
+        module.exports.behavior = require("./sinon/behavior");
+        module.exports.stub = require("./sinon/stub");
+        module.exports.mock = require("./sinon/mock");
+        module.exports.collection = require("./sinon/collection");
+        module.exports.assert = require("./sinon/assert");
+        module.exports.sandbox = require("./sinon/sandbox");
+        module.exports.test = require("./sinon/test");
+        module.exports.testCase = require("./sinon/test_case");
+        module.exports.assert = require("./sinon/assert");
+        module.exports.match = require("./sinon/match");
+    }
+
+    if (formatio) {
+        var formatter = formatio.configure({ quoteStrings: false });
+        sinon.format = function () {
+            return formatter.ascii.apply(formatter, arguments);
+        };
+    } else if (isNode) {
+        try {
+            var util = require("util");
+            sinon.format = function (value) {
+                return typeof value == "object" && value.toString === Object.prototype.toString ? util.inspect(value) : value;
+            };
+        } catch (e) {
+            /* Node, but no util module - would be very old, but better safe than
+             sorry */
+        }
+    }
+
+    return sinon;
+}(typeof formatio == "object" && formatio));
+
+})()
+},{"util":22,"./sinon/spy":41,"./sinon/behavior":42,"./sinon/call":45,"./sinon/mock":43,"./sinon/collection":46,"./sinon/assert":47,"./sinon/stub":48,"./sinon/test_case":49,"./sinon/test":50,"./sinon/sandbox":51,"./sinon/match":44,"formatio":52}],46:[function(require,module,exports){
 (function(){/**
  * @depend ../sinon.js
  * @depend stub.js
@@ -12841,6 +12762,168 @@ var sinon = (function (formatio) {
         module.exports = collection;
     } else {
         sinon.collection = collection;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+})()
+},{"../sinon":12}],48:[function(require,module,exports){
+(function(){/**
+ * @depend ../sinon.js
+ * @depend spy.js
+ * @depend behavior.js
+ */
+/*jslint eqeqeq: false, onevar: false*/
+/*global module, require, sinon*/
+/**
+ * Stub functions
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2013 Christian Johansen
+ */
+"use strict";
+
+(function (sinon) {
+    var commonJSModule = typeof module !== 'undefined' && module.exports;
+
+    if (!sinon && commonJSModule) {
+        sinon = require("../sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function stub(object, property, func) {
+        if (!!func && typeof func != "function") {
+            throw new TypeError("Custom stub should be function");
+        }
+
+        var wrapper;
+
+        if (func) {
+            wrapper = sinon.spy && sinon.spy.create ? sinon.spy.create(func) : func;
+        } else {
+            wrapper = stub.create();
+        }
+
+        if (!object && typeof property === "undefined") {
+            return sinon.stub.create();
+        }
+
+        if (typeof property === "undefined" && typeof object == "object") {
+            for (var prop in object) {
+                if (typeof object[prop] === "function") {
+                    stub(object, prop);
+                }
+            }
+
+            return object;
+        }
+
+        return sinon.wrapMethod(object, property, wrapper);
+    }
+
+    function getDefaultBehavior(stub) {
+        return stub.defaultBehavior || getParentBehaviour(stub) || sinon.behavior.create(stub);
+    }
+
+    function getParentBehaviour(stub) {
+        return (stub.parent && getCurrentBehavior(stub.parent));
+    }
+
+    function getCurrentBehavior(stub) {
+        var behavior = stub.behaviors[stub.callCount - 1];
+        return behavior && behavior.isPresent() ? behavior : getDefaultBehavior(stub);
+    }
+
+    var uuid = 0;
+
+    sinon.extend(stub, (function () {
+        var proto = {
+            create: function create() {
+                var functionStub = function () {
+                    return getCurrentBehavior(functionStub).invoke(this, arguments);
+                };
+
+                functionStub.id = "stub#" + uuid++;
+                var orig = functionStub;
+                functionStub = sinon.spy.create(functionStub);
+                functionStub.func = orig;
+
+                sinon.extend(functionStub, stub);
+                functionStub._create = sinon.stub.create;
+                functionStub.displayName = "stub";
+                functionStub.toString = sinon.functionToString;
+
+                functionStub.defaultBehavior = null;
+                functionStub.behaviors = [];
+
+                return functionStub;
+            },
+
+            resetBehavior: function () {
+                var i;
+
+                this.defaultBehavior = null;
+                this.behaviors = [];
+
+                delete this.returnValue;
+                delete this.returnArgAt;
+                this.returnThis = false;
+
+                if (this.fakes) {
+                    for (i = 0; i < this.fakes.length; i++) {
+                        this.fakes[i].resetBehavior();
+                    }
+                }
+            },
+
+            onCall: function(index) {
+                if (!this.behaviors[index]) {
+                    this.behaviors[index] = sinon.behavior.create(this);
+                }
+
+                return this.behaviors[index];
+            },
+
+            onFirstCall: function() {
+                return this.onCall(0);
+            },
+
+            onSecondCall: function() {
+                return this.onCall(1);
+            },
+
+            onThirdCall: function() {
+                return this.onCall(2);
+            }
+        };
+
+        for (var method in sinon.behavior) {
+            if (sinon.behavior.hasOwnProperty(method) &&
+                !proto.hasOwnProperty(method) &&
+                method != 'create' &&
+                method != 'withArgs' &&
+                method != 'invoke') {
+                proto[method] = (function(behaviorMethod) {
+                    return function() {
+                        this.defaultBehavior = this.defaultBehavior || sinon.behavior.create(this);
+                        this.defaultBehavior[behaviorMethod].apply(this.defaultBehavior, arguments);
+                        return this;
+                    };
+                }(method));
+            }
+        }
+
+        return proto;
+    }()));
+
+    if (commonJSModule) {
+        module.exports = stub;
+    } else {
+        sinon.stub = stub;
     }
 }(typeof sinon == "object" && sinon || null));
 
@@ -13031,213 +13114,7 @@ var sinon = (function (formatio) {
 }(typeof sinon == "object" && sinon || null, typeof window != "undefined" ? window : (typeof self != "undefined") ? self : global));
 
 })(window)
-},{"../sinon":12}],48:[function(require,module,exports){
-(function(){/**
- * @depend ../sinon.js
- * @depend collection.js
- * @depend util/fake_timers.js
- * @depend util/fake_server_with_clock.js
- */
-/*jslint eqeqeq: false, onevar: false, plusplus: false*/
-/*global require, module*/
-/**
- * Manages fake collections as well as fake utilities such as Sinon's
- * timers and fake XHR implementation in one convenient object.
- *
- * @author Christian Johansen (christian@cjohansen.no)
- * @license BSD
- *
- * Copyright (c) 2010-2013 Christian Johansen
- */
-"use strict";
-
-if (typeof module !== 'undefined' && module.exports) {
-    var sinon = require("../sinon");
-    sinon.extend(sinon, require("./util/fake_timers"));
-}
-
-(function () {
-    var push = [].push;
-
-    function exposeValue(sandbox, config, key, value) {
-        if (!value) {
-            return;
-        }
-
-        if (config.injectInto && !(key in config.injectInto) ) {
-            config.injectInto[key] = value;
-        } else {
-            push.call(sandbox.args, value);
-        }
-    }
-
-    function prepareSandboxFromConfig(config) {
-        var sandbox = sinon.create(sinon.sandbox);
-
-        if (config.useFakeServer) {
-            if (typeof config.useFakeServer == "object") {
-                sandbox.serverPrototype = config.useFakeServer;
-            }
-
-            sandbox.useFakeServer();
-        }
-
-        if (config.useFakeTimers) {
-            if (typeof config.useFakeTimers == "object") {
-                sandbox.useFakeTimers.apply(sandbox, config.useFakeTimers);
-            } else {
-                sandbox.useFakeTimers();
-            }
-        }
-
-        return sandbox;
-    }
-
-    sinon.sandbox = sinon.extend(sinon.create(sinon.collection), {
-        useFakeTimers: function useFakeTimers() {
-            this.clock = sinon.useFakeTimers.apply(sinon, arguments);
-
-            return this.add(this.clock);
-        },
-
-        serverPrototype: sinon.fakeServer,
-
-        useFakeServer: function useFakeServer() {
-            var proto = this.serverPrototype || sinon.fakeServer;
-
-            if (!proto || !proto.create) {
-                return null;
-            }
-
-            this.server = proto.create();
-            return this.add(this.server);
-        },
-
-        inject: function (obj) {
-            sinon.collection.inject.call(this, obj);
-
-            if (this.clock) {
-                obj.clock = this.clock;
-            }
-
-            if (this.server) {
-                obj.server = this.server;
-                obj.requests = this.server.requests;
-            }
-
-            return obj;
-        },
-
-        create: function (config) {
-            if (!config) {
-                return sinon.create(sinon.sandbox);
-            }
-
-            var sandbox = prepareSandboxFromConfig(config);
-            sandbox.args = sandbox.args || [];
-            var prop, value, exposed = sandbox.inject({});
-
-            if (config.properties) {
-                for (var i = 0, l = config.properties.length; i < l; i++) {
-                    prop = config.properties[i];
-                    value = exposed[prop] || prop == "sandbox" && sandbox;
-                    exposeValue(sandbox, config, prop, value);
-                }
-            } else {
-                exposeValue(sandbox, config, "sandbox", value);
-            }
-
-            return sandbox;
-        }
-    });
-
-    sinon.sandbox.useFakeXMLHttpRequest = sinon.sandbox.useFakeServer;
-
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = sinon.sandbox;
-    }
-}());
-
-})()
-},{"../sinon":12,"./util/fake_timers":53}],49:[function(require,module,exports){
-(function(){/**
- * @depend ../sinon.js
- * @depend stub.js
- * @depend mock.js
- * @depend sandbox.js
- */
-/*jslint eqeqeq: false, onevar: false, forin: true, plusplus: false*/
-/*global module, require, sinon*/
-/**
- * Test function, sandboxes fakes
- *
- * @author Christian Johansen (christian@cjohansen.no)
- * @license BSD
- *
- * Copyright (c) 2010-2013 Christian Johansen
- */
-"use strict";
-
-(function (sinon) {
-    var commonJSModule = typeof module !== 'undefined' && module.exports;
-
-    if (!sinon && commonJSModule) {
-        sinon = require("../sinon");
-    }
-
-    if (!sinon) {
-        return;
-    }
-
-    function test(callback) {
-        var type = typeof callback;
-
-        if (type != "function") {
-            throw new TypeError("sinon.test needs to wrap a test function, got " + type);
-        }
-
-        return function () {
-            var config = sinon.getConfig(sinon.config);
-            config.injectInto = config.injectIntoThis && this || config.injectInto;
-            var sandbox = sinon.sandbox.create(config);
-            var exception, result;
-            var args = Array.prototype.slice.call(arguments).concat(sandbox.args);
-
-            try {
-                result = callback.apply(this, args);
-            } catch (e) {
-                exception = e;
-            }
-
-            if (typeof exception !== "undefined") {
-                sandbox.restore();
-                throw exception;
-            }
-            else {
-                sandbox.verifyAndRestore();
-            }
-
-            return result;
-        };
-    }
-
-    test.config = {
-        injectIntoThis: true,
-        injectInto: null,
-        properties: ["spy", "stub", "mock", "clock", "server", "requests"],
-        useFakeTimers: true,
-        useFakeServer: true
-    };
-
-    if (commonJSModule) {
-        module.exports = test;
-    } else {
-        sinon.test = test;
-    }
-}(typeof sinon == "object" && sinon || null));
-
-})()
-},{"../sinon":12}],50:[function(require,module,exports){
+},{"../sinon":12}],49:[function(require,module,exports){
 (function(){/**
  * @depend ../sinon.js
  * @depend test.js
@@ -13337,7 +13214,85 @@ if (typeof module !== 'undefined' && module.exports) {
 }(typeof sinon == "object" && sinon || null));
 
 })()
-},{"../sinon":12}],51:[function(require,module,exports){
+},{"../sinon":12}],50:[function(require,module,exports){
+(function(){/**
+ * @depend ../sinon.js
+ * @depend stub.js
+ * @depend mock.js
+ * @depend sandbox.js
+ */
+/*jslint eqeqeq: false, onevar: false, forin: true, plusplus: false*/
+/*global module, require, sinon*/
+/**
+ * Test function, sandboxes fakes
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2013 Christian Johansen
+ */
+"use strict";
+
+(function (sinon) {
+    var commonJSModule = typeof module !== 'undefined' && module.exports;
+
+    if (!sinon && commonJSModule) {
+        sinon = require("../sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function test(callback) {
+        var type = typeof callback;
+
+        if (type != "function") {
+            throw new TypeError("sinon.test needs to wrap a test function, got " + type);
+        }
+
+        return function () {
+            var config = sinon.getConfig(sinon.config);
+            config.injectInto = config.injectIntoThis && this || config.injectInto;
+            var sandbox = sinon.sandbox.create(config);
+            var exception, result;
+            var args = Array.prototype.slice.call(arguments).concat(sandbox.args);
+
+            try {
+                result = callback.apply(this, args);
+            } catch (e) {
+                exception = e;
+            }
+
+            if (typeof exception !== "undefined") {
+                sandbox.restore();
+                throw exception;
+            }
+            else {
+                sandbox.verifyAndRestore();
+            }
+
+            return result;
+        };
+    }
+
+    test.config = {
+        injectIntoThis: true,
+        injectInto: null,
+        properties: ["spy", "stub", "mock", "clock", "server", "requests"],
+        useFakeTimers: true,
+        useFakeServer: true
+    };
+
+    if (commonJSModule) {
+        module.exports = test;
+    } else {
+        sinon.test = test;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+})()
+},{"../sinon":12}],44:[function(require,module,exports){
 (function(){/* @depend ../sinon.js */
 /*jslint eqeqeq: false, onevar: false, plusplus: false*/
 /*global module, require, sinon*/
@@ -13579,86 +13534,135 @@ if (typeof module !== 'undefined' && module.exports) {
 }(typeof sinon == "object" && sinon || null));
 
 })()
-},{"../sinon":12}],38:[function(require,module,exports){
-var referenceWidth = 908
-  , referenceHeight = 681
-  , referenceRatio = referenceWidth / referenceHeight
-  ;
+},{"../sinon":12}],51:[function(require,module,exports){
+(function(){/**
+ * @depend ../sinon.js
+ * @depend collection.js
+ * @depend util/fake_timers.js
+ * @depend util/fake_server_with_clock.js
+ */
+/*jslint eqeqeq: false, onevar: false, plusplus: false*/
+/*global require, module*/
+/**
+ * Manages fake collections as well as fake utilities such as Sinon's
+ * timers and fake XHR implementation in one convenient object.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2013 Christian Johansen
+ */
+"use strict";
 
-module.exports = Scaler;
+if (typeof module !== 'undefined' && module.exports) {
+    var sinon = require("../sinon");
+    sinon.extend(sinon, require("./util/fake_timers"));
+}
 
-function Scaler (events, slideshow) {
-  var self = this;
+(function () {
+    var push = [].push;
 
-  self.events = events;
-  self.slideshow = slideshow;
-  self.ratio = getRatio(slideshow);
-  self.dimensions = getDimensions(self.ratio);
+    function exposeValue(sandbox, config, key, value) {
+        if (!value) {
+            return;
+        }
 
-  self.events.on('propertiesChanged', function (changes) {
-    if (changes.hasOwnProperty('ratio')) {
-      self.ratio = getRatio(slideshow);
-      self.dimensions = getDimensions(self.ratio);
+        if (config.injectInto && !(key in config.injectInto) ) {
+            config.injectInto[key] = value;
+        } else {
+            push.call(sandbox.args, value);
+        }
     }
-  });
-}
 
-Scaler.prototype.scaleToFit = function (element, container) {
-  var self = this
-    , containerHeight = container.clientHeight
-    , containerWidth = container.clientWidth
-    , scale
-    , scaledWidth
-    , scaledHeight
-    , ratio = self.ratio
-    , dimensions = self.dimensions
-    , direction
-    , left
-    , top
-    ;
+    function prepareSandboxFromConfig(config) {
+        var sandbox = sinon.create(sinon.sandbox);
 
-  if (containerWidth / ratio.width > containerHeight / ratio.height) {
-    scale = containerHeight / dimensions.height;
-  }
-  else {
-    scale = containerWidth / dimensions.width;
-  }
+        if (config.useFakeServer) {
+            if (typeof config.useFakeServer == "object") {
+                sandbox.serverPrototype = config.useFakeServer;
+            }
 
-  scaledWidth = dimensions.width * scale;
-  scaledHeight = dimensions.height * scale;
+            sandbox.useFakeServer();
+        }
 
-  left = (containerWidth - scaledWidth) / 2;
-  top = (containerHeight - scaledHeight) / 2;
+        if (config.useFakeTimers) {
+            if (typeof config.useFakeTimers == "object") {
+                sandbox.useFakeTimers.apply(sandbox, config.useFakeTimers);
+            } else {
+                sandbox.useFakeTimers();
+            }
+        }
 
-  element.style['-webkit-transform'] = 'scale(' + scale + ')';
-  element.style.MozTransform = 'scale(' + scale + ')';
-  element.style.left = Math.max(left, 0) + 'px';
-  element.style.top = Math.max(top, 0) + 'px';
-};
+        return sandbox;
+    }
 
-function getRatio (slideshow) {
-  var ratioComponents = slideshow.getRatio().split(':')
-    , ratio
-    ;
+    sinon.sandbox = sinon.extend(sinon.create(sinon.collection), {
+        useFakeTimers: function useFakeTimers() {
+            this.clock = sinon.useFakeTimers.apply(sinon, arguments);
 
-  ratio = {
-    width: parseInt(ratioComponents[0], 10)
-  , height: parseInt(ratioComponents[1], 10)
-  };
+            return this.add(this.clock);
+        },
 
-  ratio.ratio = ratio.width / ratio.height;
+        serverPrototype: sinon.fakeServer,
 
-  return ratio;
-}
+        useFakeServer: function useFakeServer() {
+            var proto = this.serverPrototype || sinon.fakeServer;
 
-function getDimensions (ratio) {
-  return {
-    width: Math.floor(referenceWidth / referenceRatio * ratio.ratio)
-  , height: referenceHeight
-  };
-}
+            if (!proto || !proto.create) {
+                return null;
+            }
 
-},{}],24:[function(require,module,exports){
+            this.server = proto.create();
+            return this.add(this.server);
+        },
+
+        inject: function (obj) {
+            sinon.collection.inject.call(this, obj);
+
+            if (this.clock) {
+                obj.clock = this.clock;
+            }
+
+            if (this.server) {
+                obj.server = this.server;
+                obj.requests = this.server.requests;
+            }
+
+            return obj;
+        },
+
+        create: function (config) {
+            if (!config) {
+                return sinon.create(sinon.sandbox);
+            }
+
+            var sandbox = prepareSandboxFromConfig(config);
+            sandbox.args = sandbox.args || [];
+            var prop, value, exposed = sandbox.inject({});
+
+            if (config.properties) {
+                for (var i = 0, l = config.properties.length; i < l; i++) {
+                    prop = config.properties[i];
+                    value = exposed[prop] || prop == "sandbox" && sandbox;
+                    exposeValue(sandbox, config, prop, value);
+                }
+            } else {
+                exposeValue(sandbox, config, "sandbox", value);
+            }
+
+            return sandbox;
+        }
+    });
+
+    sinon.sandbox.useFakeXMLHttpRequest = sinon.sandbox.useFakeServer;
+
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = sinon.sandbox;
+    }
+}());
+
+})()
+},{"./util/fake_timers":53,"../sinon":12}],24:[function(require,module,exports){
 (function(){function SlowBuffer (size) {
     this.length = size;
 };
@@ -14978,7 +14982,7 @@ SlowBuffer.prototype.writeDoubleLE = Buffer.prototype.writeDoubleLE;
 SlowBuffer.prototype.writeDoubleBE = Buffer.prototype.writeDoubleBE;
 
 })()
-},{"assert":23,"./buffer_ieee754":40,"base64-js":54}],53:[function(require,module,exports){
+},{"assert":23,"./buffer_ieee754":39,"base64-js":54}],53:[function(require,module,exports){
 (function(global){/*jslint eqeqeq: false, plusplus: false, evil: true, onevar: false, browser: true, forin: false*/
 /*global module, require, window*/
 /**
@@ -15366,7 +15370,7 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 })(window)
-},{}],10:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var sinon = require('sinon')
   , EventEmitter = require('events').EventEmitter
   , SlideshowView = require('../../../src/remark/views/slideshowView')
@@ -15685,7 +15689,7 @@ describe('SlideshowView', function () {
   }
 });
 
-},{"events":14,"../../../src/remark/views/slideshowView":34,"../../../src/remark/models/slideshow":19,"../../../src/remark/utils":21,"sinon":12}],54:[function(require,module,exports){
+},{"events":14,"../../../src/remark/views/slideshowView":35,"../../../src/remark/models/slideshow":18,"../../../src/remark/utils":21,"sinon":12}],54:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -15892,7 +15896,7 @@ var isArray = Array.isArray || function (xs) {
     return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{"stream":39}],15:[function(require,module,exports){
+},{"stream":40}],17:[function(require,module,exports){
 var marked = require('marked')
   , converter = module.exports = {}
   ;
@@ -15929,1086 +15933,7 @@ converter.convertMarkdown = function (source) {
   return source;
 };
 
-},{"marked":56}],56:[function(require,module,exports){
-(function(global){/**
- * marked - a markdown parser
- * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
- * https://github.com/chjj/marked
- */
-
-;(function() {
-
-/**
- * Block-Level Grammar
- */
-
-var block = {
-  newline: /^\n+/,
-  code: /^( {4}[^\n]+\n*)+/,
-  fences: noop,
-  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
-  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
-  nptable: noop,
-  lheading: /^([^\n]+)\n *(=|-){3,} *\n*/,
-  blockquote: /^( *>[^\n]+(\n[^\n]+)*\n*)+/,
-  list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
-  html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
-  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
-  table: noop,
-  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
-  text: /^[^\n]+/
-};
-
-block.bullet = /(?:[*+-]|\d+\.)/;
-block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
-block.item = replace(block.item, 'gm')
-  (/bull/g, block.bullet)
-  ();
-
-block.list = replace(block.list)
-  (/bull/g, block.bullet)
-  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
-  ();
-
-block._tag = '(?!(?:'
-  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
-  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
-  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|@)\\b';
-
-block.html = replace(block.html)
-  ('comment', /<!--[\s\S]*?-->/)
-  ('closed', /<(tag)[\s\S]+?<\/\1>/)
-  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
-  (/tag/g, block._tag)
-  ();
-
-block.paragraph = replace(block.paragraph)
-  ('hr', block.hr)
-  ('heading', block.heading)
-  ('lheading', block.lheading)
-  ('blockquote', block.blockquote)
-  ('tag', '<' + block._tag)
-  ('def', block.def)
-  ();
-
-/**
- * Normal Block Grammar
- */
-
-block.normal = merge({}, block);
-
-/**
- * GFM Block Grammar
- */
-
-block.gfm = merge({}, block.normal, {
-  fences: /^ *(`{3,}|~{3,}) *(\w+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
-  paragraph: /^/
-});
-
-block.gfm.paragraph = replace(block.paragraph)
-  ('(?!', '(?!' + block.gfm.fences.source.replace('\\1', '\\2') + '|')
-  ();
-
-/**
- * GFM + Tables Block Grammar
- */
-
-block.tables = merge({}, block.gfm, {
-  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
-  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
-});
-
-/**
- * Block Lexer
- */
-
-function Lexer(options) {
-  this.tokens = [];
-  this.tokens.links = {};
-  this.options = options || marked.defaults;
-  this.rules = block.normal;
-
-  if (this.options.gfm) {
-    if (this.options.tables) {
-      this.rules = block.tables;
-    } else {
-      this.rules = block.gfm;
-    }
-  }
-}
-
-/**
- * Expose Block Rules
- */
-
-Lexer.rules = block;
-
-/**
- * Static Lex Method
- */
-
-Lexer.lex = function(src, options) {
-  var lexer = new Lexer(options);
-  return lexer.lex(src);
-};
-
-/**
- * Preprocessing
- */
-
-Lexer.prototype.lex = function(src) {
-  src = src
-    .replace(/\r\n|\r/g, '\n')
-    .replace(/\t/g, '    ')
-    .replace(/\u00a0/g, ' ')
-    .replace(/\u2424/g, '\n');
-
-  return this.token(src, true);
-};
-
-/**
- * Lexing
- */
-
-Lexer.prototype.token = function(src, top) {
-  var src = src.replace(/^ +$/gm, '')
-    , next
-    , loose
-    , cap
-    , bull
-    , b
-    , item
-    , space
-    , i
-    , l;
-
-  while (src) {
-    // newline
-    if (cap = this.rules.newline.exec(src)) {
-      src = src.substring(cap[0].length);
-      if (cap[0].length > 1) {
-        this.tokens.push({
-          type: 'space'
-        });
-      }
-    }
-
-    // code
-    if (cap = this.rules.code.exec(src)) {
-      src = src.substring(cap[0].length);
-      cap = cap[0].replace(/^ {4}/gm, '');
-      this.tokens.push({
-        type: 'code',
-        text: !this.options.pedantic
-          ? cap.replace(/\n+$/, '')
-          : cap
-      });
-      continue;
-    }
-
-    // fences (gfm)
-    if (cap = this.rules.fences.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'code',
-        lang: cap[2],
-        text: cap[3]
-      });
-      continue;
-    }
-
-    // heading
-    if (cap = this.rules.heading.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'heading',
-        depth: cap[1].length,
-        text: cap[2]
-      });
-      continue;
-    }
-
-    // table no leading pipe (gfm)
-    if (top && (cap = this.rules.nptable.exec(src))) {
-      src = src.substring(cap[0].length);
-
-      item = {
-        type: 'table',
-        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
-        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-        cells: cap[3].replace(/\n$/, '').split('\n')
-      };
-
-      for (i = 0; i < item.align.length; i++) {
-        if (/^ *-+: *$/.test(item.align[i])) {
-          item.align[i] = 'right';
-        } else if (/^ *:-+: *$/.test(item.align[i])) {
-          item.align[i] = 'center';
-        } else if (/^ *:-+ *$/.test(item.align[i])) {
-          item.align[i] = 'left';
-        } else {
-          item.align[i] = null;
-        }
-      }
-
-      for (i = 0; i < item.cells.length; i++) {
-        item.cells[i] = item.cells[i].split(/ *\| */);
-      }
-
-      this.tokens.push(item);
-
-      continue;
-    }
-
-    // lheading
-    if (cap = this.rules.lheading.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'heading',
-        depth: cap[2] === '=' ? 1 : 2,
-        text: cap[1]
-      });
-      continue;
-    }
-
-    // hr
-    if (cap = this.rules.hr.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'hr'
-      });
-      continue;
-    }
-
-    // blockquote
-    if (cap = this.rules.blockquote.exec(src)) {
-      src = src.substring(cap[0].length);
-
-      this.tokens.push({
-        type: 'blockquote_start'
-      });
-
-      cap = cap[0].replace(/^ *> ?/gm, '');
-
-      // Pass `top` to keep the current
-      // "toplevel" state. This is exactly
-      // how markdown.pl works.
-      this.token(cap, top);
-
-      this.tokens.push({
-        type: 'blockquote_end'
-      });
-
-      continue;
-    }
-
-    // list
-    if (cap = this.rules.list.exec(src)) {
-      src = src.substring(cap[0].length);
-
-      this.tokens.push({
-        type: 'list_start',
-        ordered: isFinite(cap[2])
-      });
-
-      // Get each top-level item.
-      cap = cap[0].match(this.rules.item);
-
-      // Get bullet.
-      if (this.options.smartLists) {
-        bull = block.bullet.exec(cap[0])[0];
-      }
-
-      next = false;
-      l = cap.length;
-      i = 0;
-
-      for (; i < l; i++) {
-        item = cap[i];
-
-        // Remove the list item's bullet
-        // so it is seen as the next token.
-        space = item.length;
-        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
-
-        // Outdent whatever the
-        // list item contains. Hacky.
-        if (~item.indexOf('\n ')) {
-          space -= item.length;
-          item = !this.options.pedantic
-            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
-            : item.replace(/^ {1,4}/gm, '');
-        }
-
-        // Determine whether the next list item belongs here.
-        // Backpedal if it does not belong in this list.
-        if (this.options.smartLists && i !== l - 1) {
-          b = block.bullet.exec(cap[i+1])[0];
-          if (bull !== b && !(bull[1] === '.' && b[1] === '.')) {
-            src = cap.slice(i + 1).join('\n') + src;
-            i = l - 1;
-          }
-        }
-
-        // Determine whether item is loose or not.
-        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
-        // for discount behavior.
-        loose = next || /\n\n(?!\s*$)/.test(item);
-        if (i !== l - 1) {
-          next = item[item.length-1] === '\n';
-          if (!loose) loose = next;
-        }
-
-        this.tokens.push({
-          type: loose
-            ? 'loose_item_start'
-            : 'list_item_start'
-        });
-
-        // Recurse.
-        this.token(item, false);
-
-        this.tokens.push({
-          type: 'list_item_end'
-        });
-      }
-
-      this.tokens.push({
-        type: 'list_end'
-      });
-
-      continue;
-    }
-
-    // html
-    if (cap = this.rules.html.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: this.options.sanitize
-          ? 'paragraph'
-          : 'html',
-        pre: cap[1] === 'pre',
-        text: cap[0]
-      });
-      continue;
-    }
-
-    // def
-    if (top && (cap = this.rules.def.exec(src))) {
-      src = src.substring(cap[0].length);
-      this.tokens.links[cap[1].toLowerCase()] = {
-        href: cap[2],
-        title: cap[3]
-      };
-      continue;
-    }
-
-    // table (gfm)
-    if (top && (cap = this.rules.table.exec(src))) {
-      src = src.substring(cap[0].length);
-
-      item = {
-        type: 'table',
-        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
-        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-        cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
-      };
-
-      for (i = 0; i < item.align.length; i++) {
-        if (/^ *-+: *$/.test(item.align[i])) {
-          item.align[i] = 'right';
-        } else if (/^ *:-+: *$/.test(item.align[i])) {
-          item.align[i] = 'center';
-        } else if (/^ *:-+ *$/.test(item.align[i])) {
-          item.align[i] = 'left';
-        } else {
-          item.align[i] = null;
-        }
-      }
-
-      for (i = 0; i < item.cells.length; i++) {
-        item.cells[i] = item.cells[i]
-          .replace(/^ *\| *| *\| *$/g, '')
-          .split(/ *\| */);
-      }
-
-      this.tokens.push(item);
-
-      continue;
-    }
-
-    // top-level paragraph
-    if (top && (cap = this.rules.paragraph.exec(src))) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'paragraph',
-        text: cap[1][cap[1].length-1] === '\n'
-          ? cap[1].slice(0, -1)
-          : cap[1]
-      });
-      continue;
-    }
-
-    // text
-    if (cap = this.rules.text.exec(src)) {
-      // Top-level should never reach here.
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'text',
-        text: cap[0]
-      });
-      continue;
-    }
-
-    if (src) {
-      throw new
-        Error('Infinite loop on byte: ' + src.charCodeAt(0));
-    }
-  }
-
-  return this.tokens;
-};
-
-/**
- * Inline-Level Grammar
- */
-
-var inline = {
-  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
-  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
-  url: noop,
-  tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
-  link: /^!?\[(inside)\]\(href\)/,
-  reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
-  nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
-  strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
-  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
-  code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
-  br: /^ {2,}\n(?!\s*$)/,
-  del: noop,
-  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
-};
-
-inline._inside = /(?:\[[^\]]*\]|[^\]]|\](?=[^\[]*\]))*/;
-inline._href = /\s*<?([^\s]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
-
-inline.link = replace(inline.link)
-  ('inside', inline._inside)
-  ('href', inline._href)
-  ();
-
-inline.reflink = replace(inline.reflink)
-  ('inside', inline._inside)
-  ();
-
-/**
- * Normal Inline Grammar
- */
-
-inline.normal = merge({}, inline);
-
-/**
- * Pedantic Inline Grammar
- */
-
-inline.pedantic = merge({}, inline.normal, {
-  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
-  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
-});
-
-/**
- * GFM Inline Grammar
- */
-
-inline.gfm = merge({}, inline.normal, {
-  escape: replace(inline.escape)('])', '~|])')(),
-  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
-  del: /^~~(?=\S)([\s\S]*?\S)~~/,
-  text: replace(inline.text)
-    (']|', '~]|')
-    ('|', '|https?://|')
-    ()
-});
-
-/**
- * GFM + Line Breaks Inline Grammar
- */
-
-inline.breaks = merge({}, inline.gfm, {
-  br: replace(inline.br)('{2,}', '*')(),
-  text: replace(inline.gfm.text)('{2,}', '*')()
-});
-
-/**
- * Inline Lexer & Compiler
- */
-
-function InlineLexer(links, options) {
-  this.options = options || marked.defaults;
-  this.links = links;
-  this.rules = inline.normal;
-
-  if (!this.links) {
-    throw new
-      Error('Tokens array requires a `links` property.');
-  }
-
-  if (this.options.gfm) {
-    if (this.options.breaks) {
-      this.rules = inline.breaks;
-    } else {
-      this.rules = inline.gfm;
-    }
-  } else if (this.options.pedantic) {
-    this.rules = inline.pedantic;
-  }
-}
-
-/**
- * Expose Inline Rules
- */
-
-InlineLexer.rules = inline;
-
-/**
- * Static Lexing/Compiling Method
- */
-
-InlineLexer.output = function(src, links, options) {
-  var inline = new InlineLexer(links, options);
-  return inline.output(src);
-};
-
-/**
- * Lexing/Compiling
- */
-
-InlineLexer.prototype.output = function(src) {
-  var out = ''
-    , link
-    , text
-    , href
-    , cap;
-
-  while (src) {
-    // escape
-    if (cap = this.rules.escape.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += cap[1];
-      continue;
-    }
-
-    // autolink
-    if (cap = this.rules.autolink.exec(src)) {
-      src = src.substring(cap[0].length);
-      if (cap[2] === '@') {
-        text = cap[1][6] === ':'
-          ? this.mangle(cap[1].substring(7))
-          : this.mangle(cap[1]);
-        href = this.mangle('mailto:') + text;
-      } else {
-        text = escape(cap[1]);
-        href = text;
-      }
-      out += '<a href="'
-        + href
-        + '">'
-        + text
-        + '</a>';
-      continue;
-    }
-
-    // url (gfm)
-    if (cap = this.rules.url.exec(src)) {
-      src = src.substring(cap[0].length);
-      text = escape(cap[1]);
-      href = text;
-      out += '<a href="'
-        + href
-        + '">'
-        + text
-        + '</a>';
-      continue;
-    }
-
-    // tag
-    if (cap = this.rules.tag.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += this.options.sanitize
-        ? escape(cap[0])
-        : cap[0];
-      continue;
-    }
-
-    // link
-    if (cap = this.rules.link.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += this.outputLink(cap, {
-        href: cap[2],
-        title: cap[3]
-      });
-      continue;
-    }
-
-    // reflink, nolink
-    if ((cap = this.rules.reflink.exec(src))
-        || (cap = this.rules.nolink.exec(src))) {
-      src = src.substring(cap[0].length);
-      link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
-      link = this.links[link.toLowerCase()];
-      if (!link || !link.href) {
-        out += cap[0][0];
-        src = cap[0].substring(1) + src;
-        continue;
-      }
-      out += this.outputLink(cap, link);
-      continue;
-    }
-
-    // strong
-    if (cap = this.rules.strong.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<strong>'
-        + this.output(cap[2] || cap[1])
-        + '</strong>';
-      continue;
-    }
-
-    // em
-    if (cap = this.rules.em.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<em>'
-        + this.output(cap[2] || cap[1])
-        + '</em>';
-      continue;
-    }
-
-    // code
-    if (cap = this.rules.code.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<code>'
-        + escape(cap[2], true)
-        + '</code>';
-      continue;
-    }
-
-    // br
-    if (cap = this.rules.br.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<br>';
-      continue;
-    }
-
-    // del (gfm)
-    if (cap = this.rules.del.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<del>'
-        + this.output(cap[1])
-        + '</del>';
-      continue;
-    }
-
-    // text
-    if (cap = this.rules.text.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += escape(cap[0]);
-      continue;
-    }
-
-    if (src) {
-      throw new
-        Error('Infinite loop on byte: ' + src.charCodeAt(0));
-    }
-  }
-
-  return out;
-};
-
-/**
- * Compile Link
- */
-
-InlineLexer.prototype.outputLink = function(cap, link) {
-  if (cap[0][0] !== '!') {
-    return '<a href="'
-      + escape(link.href)
-      + '"'
-      + (link.title
-      ? ' title="'
-      + escape(link.title)
-      + '"'
-      : '')
-      + '>'
-      + this.output(cap[1])
-      + '</a>';
-  } else {
-    return '<img src="'
-      + escape(link.href)
-      + '" alt="'
-      + escape(cap[1])
-      + '"'
-      + (link.title
-      ? ' title="'
-      + escape(link.title)
-      + '"'
-      : '')
-      + '>';
-  }
-};
-
-/**
- * Mangle Links
- */
-
-InlineLexer.prototype.mangle = function(text) {
-  var out = ''
-    , l = text.length
-    , i = 0
-    , ch;
-
-  for (; i < l; i++) {
-    ch = text.charCodeAt(i);
-    if (Math.random() > 0.5) {
-      ch = 'x' + ch.toString(16);
-    }
-    out += '&#' + ch + ';';
-  }
-
-  return out;
-};
-
-/**
- * Parsing & Compiling
- */
-
-function Parser(options) {
-  this.tokens = [];
-  this.token = null;
-  this.options = options || marked.defaults;
-}
-
-/**
- * Static Parse Method
- */
-
-Parser.parse = function(src, options) {
-  var parser = new Parser(options);
-  return parser.parse(src);
-};
-
-/**
- * Parse Loop
- */
-
-Parser.prototype.parse = function(src) {
-  this.inline = new InlineLexer(src.links, this.options);
-  this.tokens = src.reverse();
-
-  var out = '';
-  while (this.next()) {
-    out += this.tok();
-  }
-
-  return out;
-};
-
-/**
- * Next Token
- */
-
-Parser.prototype.next = function() {
-  return this.token = this.tokens.pop();
-};
-
-/**
- * Preview Next Token
- */
-
-Parser.prototype.peek = function() {
-  return this.tokens[this.tokens.length-1] || 0;
-};
-
-/**
- * Parse Text Tokens
- */
-
-Parser.prototype.parseText = function() {
-  var body = this.token.text;
-
-  while (this.peek().type === 'text') {
-    body += '\n' + this.next().text;
-  }
-
-  return this.inline.output(body);
-};
-
-/**
- * Parse Current Token
- */
-
-Parser.prototype.tok = function() {
-  switch (this.token.type) {
-    case 'space': {
-      return '';
-    }
-    case 'hr': {
-      return '<hr>\n';
-    }
-    case 'heading': {
-      return '<h'
-        + this.token.depth
-        + '>'
-        + this.inline.output(this.token.text)
-        + '</h'
-        + this.token.depth
-        + '>\n';
-    }
-    case 'code': {
-      if (this.options.highlight) {
-        var code = this.options.highlight(this.token.text, this.token.lang);
-        if (code != null && code !== this.token.text) {
-          this.token.escaped = true;
-          this.token.text = code;
-        }
-      }
-
-      if (!this.token.escaped) {
-        this.token.text = escape(this.token.text, true);
-      }
-
-      return '<pre><code'
-        + (this.token.lang
-        ? ' class="'
-        + this.options.langPrefix
-        + this.token.lang
-        + '"'
-        : '')
-        + '>'
-        + this.token.text
-        + '</code></pre>\n';
-    }
-    case 'table': {
-      var body = ''
-        , heading
-        , i
-        , row
-        , cell
-        , j;
-
-      // header
-      body += '<thead>\n<tr>\n';
-      for (i = 0; i < this.token.header.length; i++) {
-        heading = this.inline.output(this.token.header[i]);
-        body += this.token.align[i]
-          ? '<th align="' + this.token.align[i] + '">' + heading + '</th>\n'
-          : '<th>' + heading + '</th>\n';
-      }
-      body += '</tr>\n</thead>\n';
-
-      // body
-      body += '<tbody>\n'
-      for (i = 0; i < this.token.cells.length; i++) {
-        row = this.token.cells[i];
-        body += '<tr>\n';
-        for (j = 0; j < row.length; j++) {
-          cell = this.inline.output(row[j]);
-          body += this.token.align[j]
-            ? '<td align="' + this.token.align[j] + '">' + cell + '</td>\n'
-            : '<td>' + cell + '</td>\n';
-        }
-        body += '</tr>\n';
-      }
-      body += '</tbody>\n';
-
-      return '<table>\n'
-        + body
-        + '</table>\n';
-    }
-    case 'blockquote_start': {
-      var body = '';
-
-      while (this.next().type !== 'blockquote_end') {
-        body += this.tok();
-      }
-
-      return '<blockquote>\n'
-        + body
-        + '</blockquote>\n';
-    }
-    case 'list_start': {
-      var type = this.token.ordered ? 'ol' : 'ul'
-        , body = '';
-
-      while (this.next().type !== 'list_end') {
-        body += this.tok();
-      }
-
-      return '<'
-        + type
-        + '>\n'
-        + body
-        + '</'
-        + type
-        + '>\n';
-    }
-    case 'list_item_start': {
-      var body = '';
-
-      while (this.next().type !== 'list_item_end') {
-        body += this.token.type === 'text'
-          ? this.parseText()
-          : this.tok();
-      }
-
-      return '<li>'
-        + body
-        + '</li>\n';
-    }
-    case 'loose_item_start': {
-      var body = '';
-
-      while (this.next().type !== 'list_item_end') {
-        body += this.tok();
-      }
-
-      return '<li>'
-        + body
-        + '</li>\n';
-    }
-    case 'html': {
-      return !this.token.pre && !this.options.pedantic
-        ? this.inline.output(this.token.text)
-        : this.token.text;
-    }
-    case 'paragraph': {
-      return '<p>'
-        + this.inline.output(this.token.text)
-        + '</p>\n';
-    }
-    case 'text': {
-      return '<p>'
-        + this.parseText()
-        + '</p>\n';
-    }
-  }
-};
-
-/**
- * Helpers
- */
-
-function escape(html, encode) {
-  return html
-    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function replace(regex, opt) {
-  regex = regex.source;
-  opt = opt || '';
-  return function self(name, val) {
-    if (!name) return new RegExp(regex, opt);
-    val = val.source || val;
-    val = val.replace(/(^|[^\[])\^/g, '$1');
-    regex = regex.replace(name, val);
-    return self;
-  };
-}
-
-function noop() {}
-noop.exec = noop;
-
-function merge(obj) {
-  var i = 1
-    , target
-    , key;
-
-  for (; i < arguments.length; i++) {
-    target = arguments[i];
-    for (key in target) {
-      if (Object.prototype.hasOwnProperty.call(target, key)) {
-        obj[key] = target[key];
-      }
-    }
-  }
-
-  return obj;
-}
-
-/**
- * Marked
- */
-
-function marked(src, opt) {
-  try {
-    if (opt) opt = merge({}, marked.defaults, opt);
-    return Parser.parse(Lexer.lex(src, opt), opt);
-  } catch (e) {
-    e.message += '\nPlease report this to https://github.com/chjj/marked.';
-    if ((opt || marked.defaults).silent) {
-      return '<p>An error occured:</p><pre>'
-        + escape(e.message + '', true)
-        + '</pre>';
-    }
-    throw e;
-  }
-}
-
-/**
- * Options
- */
-
-marked.options =
-marked.setOptions = function(opt) {
-  merge(marked.defaults, opt);
-  return marked;
-};
-
-marked.defaults = {
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: false,
-  silent: false,
-  highlight: null,
-  langPrefix: 'lang-'
-};
-
-/**
- * Expose
- */
-
-marked.Parser = Parser;
-marked.parser = Parser.parse;
-
-marked.Lexer = Lexer;
-marked.lexer = Lexer.lex;
-
-marked.InlineLexer = InlineLexer;
-marked.inlineLexer = InlineLexer.output;
-
-marked.parse = marked;
-
-if (typeof exports === 'object') {
-  module.exports = marked;
-} else if (typeof define === 'function' && define.amd) {
-  define(function() { return marked; });
-} else {
-  this.marked = marked;
-}
-
-}).call(function() {
-  return this || (typeof window !== 'undefined' ? window : global);
-}());
-
-})(window)
-},{}],28:[function(require,module,exports){
+},{"marked":56}],28:[function(require,module,exports){
 (function(){var Stream = require('stream');
 var Response = require('./response');
 var concatStream = require('concat-stream')
@@ -17142,7 +16067,1276 @@ var indexOf = function (xs, x) {
 };
 
 })()
-},{"stream":39,"buffer":24,"./response":55,"concat-stream":57}],57:[function(require,module,exports){
+},{"stream":40,"buffer":24,"./response":55,"concat-stream":57}],56:[function(require,module,exports){
+(function(global){/**
+ * marked - a markdown parser
+ * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
+ * https://github.com/chjj/marked
+ */
+
+;(function() {
+
+/**
+ * Block-Level Grammar
+ */
+
+var block = {
+  newline: /^\n+/,
+  code: /^( {4}[^\n]+\n*)+/,
+  fences: noop,
+  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
+  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
+  nptable: noop,
+  lheading: /^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,
+  blockquote: /^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/,
+  list: /^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+  html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
+  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
+  table: noop,
+  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
+  text: /^[^\n]+/
+};
+
+block.bullet = /(?:[*+-]|\d+\.)/;
+block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
+block.item = replace(block.item, 'gm')
+  (/bull/g, block.bullet)
+  ();
+
+block.list = replace(block.list)
+  (/bull/g, block.bullet)
+  ('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')
+  ('def', '\\n+(?=' + block.def.source + ')')
+  ();
+
+block.blockquote = replace(block.blockquote)
+  ('def', block.def)
+  ();
+
+block._tag = '(?!(?:'
+  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
+  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
+  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b';
+
+block.html = replace(block.html)
+  ('comment', /<!--[\s\S]*?-->/)
+  ('closed', /<(tag)[\s\S]+?<\/\1>/)
+  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
+  (/tag/g, block._tag)
+  ();
+
+block.paragraph = replace(block.paragraph)
+  ('hr', block.hr)
+  ('heading', block.heading)
+  ('lheading', block.lheading)
+  ('blockquote', block.blockquote)
+  ('tag', '<' + block._tag)
+  ('def', block.def)
+  ();
+
+/**
+ * Normal Block Grammar
+ */
+
+block.normal = merge({}, block);
+
+/**
+ * GFM Block Grammar
+ */
+
+block.gfm = merge({}, block.normal, {
+  fences: /^ *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
+  paragraph: /^/
+});
+
+block.gfm.paragraph = replace(block.paragraph)
+  ('(?!', '(?!'
+    + block.gfm.fences.source.replace('\\1', '\\2') + '|'
+    + block.list.source.replace('\\1', '\\3') + '|')
+  ();
+
+/**
+ * GFM + Tables Block Grammar
+ */
+
+block.tables = merge({}, block.gfm, {
+  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
+  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
+});
+
+/**
+ * Block Lexer
+ */
+
+function Lexer(options) {
+  this.tokens = [];
+  this.tokens.links = {};
+  this.options = options || marked.defaults;
+  this.rules = block.normal;
+
+  if (this.options.gfm) {
+    if (this.options.tables) {
+      this.rules = block.tables;
+    } else {
+      this.rules = block.gfm;
+    }
+  }
+}
+
+/**
+ * Expose Block Rules
+ */
+
+Lexer.rules = block;
+
+/**
+ * Static Lex Method
+ */
+
+Lexer.lex = function(src, options) {
+  var lexer = new Lexer(options);
+  return lexer.lex(src);
+};
+
+/**
+ * Preprocessing
+ */
+
+Lexer.prototype.lex = function(src) {
+  src = src
+    .replace(/\r\n|\r/g, '\n')
+    .replace(/\t/g, '    ')
+    .replace(/\u00a0/g, ' ')
+    .replace(/\u2424/g, '\n');
+
+  return this.token(src, true);
+};
+
+/**
+ * Lexing
+ */
+
+Lexer.prototype.token = function(src, top, bq) {
+  var src = src.replace(/^ +$/gm, '')
+    , next
+    , loose
+    , cap
+    , bull
+    , b
+    , item
+    , space
+    , i
+    , l;
+
+  while (src) {
+    // newline
+    if (cap = this.rules.newline.exec(src)) {
+      src = src.substring(cap[0].length);
+      if (cap[0].length > 1) {
+        this.tokens.push({
+          type: 'space'
+        });
+      }
+    }
+
+    // code
+    if (cap = this.rules.code.exec(src)) {
+      src = src.substring(cap[0].length);
+      cap = cap[0].replace(/^ {4}/gm, '');
+      this.tokens.push({
+        type: 'code',
+        text: !this.options.pedantic
+          ? cap.replace(/\n+$/, '')
+          : cap
+      });
+      continue;
+    }
+
+    // fences (gfm)
+    if (cap = this.rules.fences.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'code',
+        lang: cap[2],
+        text: cap[3]
+      });
+      continue;
+    }
+
+    // heading
+    if (cap = this.rules.heading.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'heading',
+        depth: cap[1].length,
+        text: cap[2]
+      });
+      continue;
+    }
+
+    // table no leading pipe (gfm)
+    if (top && (cap = this.rules.nptable.exec(src))) {
+      src = src.substring(cap[0].length);
+
+      item = {
+        type: 'table',
+        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
+        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+        cells: cap[3].replace(/\n$/, '').split('\n')
+      };
+
+      for (i = 0; i < item.align.length; i++) {
+        if (/^ *-+: *$/.test(item.align[i])) {
+          item.align[i] = 'right';
+        } else if (/^ *:-+: *$/.test(item.align[i])) {
+          item.align[i] = 'center';
+        } else if (/^ *:-+ *$/.test(item.align[i])) {
+          item.align[i] = 'left';
+        } else {
+          item.align[i] = null;
+        }
+      }
+
+      for (i = 0; i < item.cells.length; i++) {
+        item.cells[i] = item.cells[i].split(/ *\| */);
+      }
+
+      this.tokens.push(item);
+
+      continue;
+    }
+
+    // lheading
+    if (cap = this.rules.lheading.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'heading',
+        depth: cap[2] === '=' ? 1 : 2,
+        text: cap[1]
+      });
+      continue;
+    }
+
+    // hr
+    if (cap = this.rules.hr.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'hr'
+      });
+      continue;
+    }
+
+    // blockquote
+    if (cap = this.rules.blockquote.exec(src)) {
+      src = src.substring(cap[0].length);
+
+      this.tokens.push({
+        type: 'blockquote_start'
+      });
+
+      cap = cap[0].replace(/^ *> ?/gm, '');
+
+      // Pass `top` to keep the current
+      // "toplevel" state. This is exactly
+      // how markdown.pl works.
+      this.token(cap, top, true);
+
+      this.tokens.push({
+        type: 'blockquote_end'
+      });
+
+      continue;
+    }
+
+    // list
+    if (cap = this.rules.list.exec(src)) {
+      src = src.substring(cap[0].length);
+      bull = cap[2];
+
+      this.tokens.push({
+        type: 'list_start',
+        ordered: bull.length > 1
+      });
+
+      // Get each top-level item.
+      cap = cap[0].match(this.rules.item);
+
+      next = false;
+      l = cap.length;
+      i = 0;
+
+      for (; i < l; i++) {
+        item = cap[i];
+
+        // Remove the list item's bullet
+        // so it is seen as the next token.
+        space = item.length;
+        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
+
+        // Outdent whatever the
+        // list item contains. Hacky.
+        if (~item.indexOf('\n ')) {
+          space -= item.length;
+          item = !this.options.pedantic
+            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+            : item.replace(/^ {1,4}/gm, '');
+        }
+
+        // Determine whether the next list item belongs here.
+        // Backpedal if it does not belong in this list.
+        if (this.options.smartLists && i !== l - 1) {
+          b = block.bullet.exec(cap[i + 1])[0];
+          if (bull !== b && !(bull.length > 1 && b.length > 1)) {
+            src = cap.slice(i + 1).join('\n') + src;
+            i = l - 1;
+          }
+        }
+
+        // Determine whether item is loose or not.
+        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
+        // for discount behavior.
+        loose = next || /\n\n(?!\s*$)/.test(item);
+        if (i !== l - 1) {
+          next = item.charAt(item.length - 1) === '\n';
+          if (!loose) loose = next;
+        }
+
+        this.tokens.push({
+          type: loose
+            ? 'loose_item_start'
+            : 'list_item_start'
+        });
+
+        // Recurse.
+        this.token(item, false, bq);
+
+        this.tokens.push({
+          type: 'list_item_end'
+        });
+      }
+
+      this.tokens.push({
+        type: 'list_end'
+      });
+
+      continue;
+    }
+
+    // html
+    if (cap = this.rules.html.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: this.options.sanitize
+          ? 'paragraph'
+          : 'html',
+        pre: cap[1] === 'pre' || cap[1] === 'script' || cap[1] === 'style',
+        text: cap[0]
+      });
+      continue;
+    }
+
+    // def
+    if ((!bq && top) && (cap = this.rules.def.exec(src))) {
+      src = src.substring(cap[0].length);
+      this.tokens.links[cap[1].toLowerCase()] = {
+        href: cap[2],
+        title: cap[3]
+      };
+      continue;
+    }
+
+    // table (gfm)
+    if (top && (cap = this.rules.table.exec(src))) {
+      src = src.substring(cap[0].length);
+
+      item = {
+        type: 'table',
+        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
+        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+        cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
+      };
+
+      for (i = 0; i < item.align.length; i++) {
+        if (/^ *-+: *$/.test(item.align[i])) {
+          item.align[i] = 'right';
+        } else if (/^ *:-+: *$/.test(item.align[i])) {
+          item.align[i] = 'center';
+        } else if (/^ *:-+ *$/.test(item.align[i])) {
+          item.align[i] = 'left';
+        } else {
+          item.align[i] = null;
+        }
+      }
+
+      for (i = 0; i < item.cells.length; i++) {
+        item.cells[i] = item.cells[i]
+          .replace(/^ *\| *| *\| *$/g, '')
+          .split(/ *\| */);
+      }
+
+      this.tokens.push(item);
+
+      continue;
+    }
+
+    // top-level paragraph
+    if (top && (cap = this.rules.paragraph.exec(src))) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'paragraph',
+        text: cap[1].charAt(cap[1].length - 1) === '\n'
+          ? cap[1].slice(0, -1)
+          : cap[1]
+      });
+      continue;
+    }
+
+    // text
+    if (cap = this.rules.text.exec(src)) {
+      // Top-level should never reach here.
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'text',
+        text: cap[0]
+      });
+      continue;
+    }
+
+    if (src) {
+      throw new
+        Error('Infinite loop on byte: ' + src.charCodeAt(0));
+    }
+  }
+
+  return this.tokens;
+};
+
+/**
+ * Inline-Level Grammar
+ */
+
+var inline = {
+  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
+  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
+  url: noop,
+  tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
+  link: /^!?\[(inside)\]\(href\)/,
+  reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
+  nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
+  strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
+  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+  code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
+  br: /^ {2,}\n(?!\s*$)/,
+  del: noop,
+  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
+};
+
+inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
+inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
+
+inline.link = replace(inline.link)
+  ('inside', inline._inside)
+  ('href', inline._href)
+  ();
+
+inline.reflink = replace(inline.reflink)
+  ('inside', inline._inside)
+  ();
+
+/**
+ * Normal Inline Grammar
+ */
+
+inline.normal = merge({}, inline);
+
+/**
+ * Pedantic Inline Grammar
+ */
+
+inline.pedantic = merge({}, inline.normal, {
+  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
+  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
+});
+
+/**
+ * GFM Inline Grammar
+ */
+
+inline.gfm = merge({}, inline.normal, {
+  escape: replace(inline.escape)('])', '~|])')(),
+  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
+  del: /^~~(?=\S)([\s\S]*?\S)~~/,
+  text: replace(inline.text)
+    (']|', '~]|')
+    ('|', '|https?://|')
+    ()
+});
+
+/**
+ * GFM + Line Breaks Inline Grammar
+ */
+
+inline.breaks = merge({}, inline.gfm, {
+  br: replace(inline.br)('{2,}', '*')(),
+  text: replace(inline.gfm.text)('{2,}', '*')()
+});
+
+/**
+ * Inline Lexer & Compiler
+ */
+
+function InlineLexer(links, options) {
+  this.options = options || marked.defaults;
+  this.links = links;
+  this.rules = inline.normal;
+  this.renderer = this.options.renderer || new Renderer;
+  this.renderer.options = this.options;
+
+  if (!this.links) {
+    throw new
+      Error('Tokens array requires a `links` property.');
+  }
+
+  if (this.options.gfm) {
+    if (this.options.breaks) {
+      this.rules = inline.breaks;
+    } else {
+      this.rules = inline.gfm;
+    }
+  } else if (this.options.pedantic) {
+    this.rules = inline.pedantic;
+  }
+}
+
+/**
+ * Expose Inline Rules
+ */
+
+InlineLexer.rules = inline;
+
+/**
+ * Static Lexing/Compiling Method
+ */
+
+InlineLexer.output = function(src, links, options) {
+  var inline = new InlineLexer(links, options);
+  return inline.output(src);
+};
+
+/**
+ * Lexing/Compiling
+ */
+
+InlineLexer.prototype.output = function(src) {
+  var out = ''
+    , link
+    , text
+    , href
+    , cap;
+
+  while (src) {
+    // escape
+    if (cap = this.rules.escape.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += cap[1];
+      continue;
+    }
+
+    // autolink
+    if (cap = this.rules.autolink.exec(src)) {
+      src = src.substring(cap[0].length);
+      if (cap[2] === '@') {
+        text = cap[1].charAt(6) === ':'
+          ? this.mangle(cap[1].substring(7))
+          : this.mangle(cap[1]);
+        href = this.mangle('mailto:') + text;
+      } else {
+        text = escape(cap[1]);
+        href = text;
+      }
+      out += this.renderer.link(href, null, text);
+      continue;
+    }
+
+    // url (gfm)
+    if (!this.inLink && (cap = this.rules.url.exec(src))) {
+      src = src.substring(cap[0].length);
+      text = escape(cap[1]);
+      href = text;
+      out += this.renderer.link(href, null, text);
+      continue;
+    }
+
+    // tag
+    if (cap = this.rules.tag.exec(src)) {
+      if (!this.inLink && /^<a /i.test(cap[0])) {
+        this.inLink = true;
+      } else if (this.inLink && /^<\/a>/i.test(cap[0])) {
+        this.inLink = false;
+      }
+      src = src.substring(cap[0].length);
+      out += this.options.sanitize
+        ? escape(cap[0])
+        : cap[0];
+      continue;
+    }
+
+    // link
+    if (cap = this.rules.link.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.inLink = true;
+      out += this.outputLink(cap, {
+        href: cap[2],
+        title: cap[3]
+      });
+      this.inLink = false;
+      continue;
+    }
+
+    // reflink, nolink
+    if ((cap = this.rules.reflink.exec(src))
+        || (cap = this.rules.nolink.exec(src))) {
+      src = src.substring(cap[0].length);
+      link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
+      link = this.links[link.toLowerCase()];
+      if (!link || !link.href) {
+        out += cap[0].charAt(0);
+        src = cap[0].substring(1) + src;
+        continue;
+      }
+      this.inLink = true;
+      out += this.outputLink(cap, link);
+      this.inLink = false;
+      continue;
+    }
+
+    // strong
+    if (cap = this.rules.strong.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.renderer.strong(this.output(cap[2] || cap[1]));
+      continue;
+    }
+
+    // em
+    if (cap = this.rules.em.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.renderer.em(this.output(cap[2] || cap[1]));
+      continue;
+    }
+
+    // code
+    if (cap = this.rules.code.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.renderer.codespan(escape(cap[2], true));
+      continue;
+    }
+
+    // br
+    if (cap = this.rules.br.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.renderer.br();
+      continue;
+    }
+
+    // del (gfm)
+    if (cap = this.rules.del.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.renderer.del(this.output(cap[1]));
+      continue;
+    }
+
+    // text
+    if (cap = this.rules.text.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += escape(this.smartypants(cap[0]));
+      continue;
+    }
+
+    if (src) {
+      throw new
+        Error('Infinite loop on byte: ' + src.charCodeAt(0));
+    }
+  }
+
+  return out;
+};
+
+/**
+ * Compile Link
+ */
+
+InlineLexer.prototype.outputLink = function(cap, link) {
+  var href = escape(link.href)
+    , title = link.title ? escape(link.title) : null;
+
+  return cap[0].charAt(0) !== '!'
+    ? this.renderer.link(href, title, this.output(cap[1]))
+    : this.renderer.image(href, title, escape(cap[1]));
+};
+
+/**
+ * Smartypants Transformations
+ */
+
+InlineLexer.prototype.smartypants = function(text) {
+  if (!this.options.smartypants) return text;
+  return text
+    // em-dashes
+    .replace(/--/g, '\u2014')
+    // opening singles
+    .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018')
+    // closing singles & apostrophes
+    .replace(/'/g, '\u2019')
+    // opening doubles
+    .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c')
+    // closing doubles
+    .replace(/"/g, '\u201d')
+    // ellipses
+    .replace(/\.{3}/g, '\u2026');
+};
+
+/**
+ * Mangle Links
+ */
+
+InlineLexer.prototype.mangle = function(text) {
+  var out = ''
+    , l = text.length
+    , i = 0
+    , ch;
+
+  for (; i < l; i++) {
+    ch = text.charCodeAt(i);
+    if (Math.random() > 0.5) {
+      ch = 'x' + ch.toString(16);
+    }
+    out += '&#' + ch + ';';
+  }
+
+  return out;
+};
+
+/**
+ * Renderer
+ */
+
+function Renderer(options) {
+  this.options = options || {};
+}
+
+Renderer.prototype.code = function(code, lang, escaped) {
+  if (this.options.highlight) {
+    var out = this.options.highlight(code, lang);
+    if (out != null && out !== code) {
+      escaped = true;
+      code = out;
+    }
+  }
+
+  if (!lang) {
+    return '<pre><code>'
+      + (escaped ? code : escape(code, true))
+      + '\n</code></pre>';
+  }
+
+  return '<pre><code class="'
+    + this.options.langPrefix
+    + escape(lang, true)
+    + '">'
+    + (escaped ? code : escape(code, true))
+    + '\n</code></pre>\n';
+};
+
+Renderer.prototype.blockquote = function(quote) {
+  return '<blockquote>\n' + quote + '</blockquote>\n';
+};
+
+Renderer.prototype.html = function(html) {
+  return html;
+};
+
+Renderer.prototype.heading = function(text, level, raw) {
+  return '<h'
+    + level
+    + ' id="'
+    + this.options.headerPrefix
+    + raw.toLowerCase().replace(/[^\w]+/g, '-')
+    + '">'
+    + text
+    + '</h'
+    + level
+    + '>\n';
+};
+
+Renderer.prototype.hr = function() {
+  return this.options.xhtml ? '<hr/>\n' : '<hr>\n';
+};
+
+Renderer.prototype.list = function(body, ordered) {
+  var type = ordered ? 'ol' : 'ul';
+  return '<' + type + '>\n' + body + '</' + type + '>\n';
+};
+
+Renderer.prototype.listitem = function(text) {
+  return '<li>' + text + '</li>\n';
+};
+
+Renderer.prototype.paragraph = function(text) {
+  return '<p>' + text + '</p>\n';
+};
+
+Renderer.prototype.table = function(header, body) {
+  return '<table>\n'
+    + '<thead>\n'
+    + header
+    + '</thead>\n'
+    + '<tbody>\n'
+    + body
+    + '</tbody>\n'
+    + '</table>\n';
+};
+
+Renderer.prototype.tablerow = function(content) {
+  return '<tr>\n' + content + '</tr>\n';
+};
+
+Renderer.prototype.tablecell = function(content, flags) {
+  var type = flags.header ? 'th' : 'td';
+  var tag = flags.align
+    ? '<' + type + ' style="text-align:' + flags.align + '">'
+    : '<' + type + '>';
+  return tag + content + '</' + type + '>\n';
+};
+
+// span level renderer
+Renderer.prototype.strong = function(text) {
+  return '<strong>' + text + '</strong>';
+};
+
+Renderer.prototype.em = function(text) {
+  return '<em>' + text + '</em>';
+};
+
+Renderer.prototype.codespan = function(text) {
+  return '<code>' + text + '</code>';
+};
+
+Renderer.prototype.br = function() {
+  return this.options.xhtml ? '<br/>' : '<br>';
+};
+
+Renderer.prototype.del = function(text) {
+  return '<del>' + text + '</del>';
+};
+
+Renderer.prototype.link = function(href, title, text) {
+  if (this.options.sanitize) {
+    try {
+      var prot = decodeURIComponent(unescape(href))
+        .replace(/[^\w:]/g, '')
+        .toLowerCase();
+    } catch (e) {
+      return '';
+    }
+    if (prot.indexOf('javascript:') === 0) {
+      return '';
+    }
+  }
+  var out = '<a href="' + href + '"';
+  if (title) {
+    out += ' title="' + title + '"';
+  }
+  out += '>' + text + '</a>';
+  return out;
+};
+
+Renderer.prototype.image = function(href, title, text) {
+  var out = '<img src="' + href + '" alt="' + text + '"';
+  if (title) {
+    out += ' title="' + title + '"';
+  }
+  out += this.options.xhtml ? '/>' : '>';
+  return out;
+};
+
+/**
+ * Parsing & Compiling
+ */
+
+function Parser(options) {
+  this.tokens = [];
+  this.token = null;
+  this.options = options || marked.defaults;
+  this.options.renderer = this.options.renderer || new Renderer;
+  this.renderer = this.options.renderer;
+  this.renderer.options = this.options;
+}
+
+/**
+ * Static Parse Method
+ */
+
+Parser.parse = function(src, options, renderer) {
+  var parser = new Parser(options, renderer);
+  return parser.parse(src);
+};
+
+/**
+ * Parse Loop
+ */
+
+Parser.prototype.parse = function(src) {
+  this.inline = new InlineLexer(src.links, this.options, this.renderer);
+  this.tokens = src.reverse();
+
+  var out = '';
+  while (this.next()) {
+    out += this.tok();
+  }
+
+  return out;
+};
+
+/**
+ * Next Token
+ */
+
+Parser.prototype.next = function() {
+  return this.token = this.tokens.pop();
+};
+
+/**
+ * Preview Next Token
+ */
+
+Parser.prototype.peek = function() {
+  return this.tokens[this.tokens.length - 1] || 0;
+};
+
+/**
+ * Parse Text Tokens
+ */
+
+Parser.prototype.parseText = function() {
+  var body = this.token.text;
+
+  while (this.peek().type === 'text') {
+    body += '\n' + this.next().text;
+  }
+
+  return this.inline.output(body);
+};
+
+/**
+ * Parse Current Token
+ */
+
+Parser.prototype.tok = function() {
+  switch (this.token.type) {
+    case 'space': {
+      return '';
+    }
+    case 'hr': {
+      return this.renderer.hr();
+    }
+    case 'heading': {
+      return this.renderer.heading(
+        this.inline.output(this.token.text),
+        this.token.depth,
+        this.token.text);
+    }
+    case 'code': {
+      return this.renderer.code(this.token.text,
+        this.token.lang,
+        this.token.escaped);
+    }
+    case 'table': {
+      var header = ''
+        , body = ''
+        , i
+        , row
+        , cell
+        , flags
+        , j;
+
+      // header
+      cell = '';
+      for (i = 0; i < this.token.header.length; i++) {
+        flags = { header: true, align: this.token.align[i] };
+        cell += this.renderer.tablecell(
+          this.inline.output(this.token.header[i]),
+          { header: true, align: this.token.align[i] }
+        );
+      }
+      header += this.renderer.tablerow(cell);
+
+      for (i = 0; i < this.token.cells.length; i++) {
+        row = this.token.cells[i];
+
+        cell = '';
+        for (j = 0; j < row.length; j++) {
+          cell += this.renderer.tablecell(
+            this.inline.output(row[j]),
+            { header: false, align: this.token.align[j] }
+          );
+        }
+
+        body += this.renderer.tablerow(cell);
+      }
+      return this.renderer.table(header, body);
+    }
+    case 'blockquote_start': {
+      var body = '';
+
+      while (this.next().type !== 'blockquote_end') {
+        body += this.tok();
+      }
+
+      return this.renderer.blockquote(body);
+    }
+    case 'list_start': {
+      var body = ''
+        , ordered = this.token.ordered;
+
+      while (this.next().type !== 'list_end') {
+        body += this.tok();
+      }
+
+      return this.renderer.list(body, ordered);
+    }
+    case 'list_item_start': {
+      var body = '';
+
+      while (this.next().type !== 'list_item_end') {
+        body += this.token.type === 'text'
+          ? this.parseText()
+          : this.tok();
+      }
+
+      return this.renderer.listitem(body);
+    }
+    case 'loose_item_start': {
+      var body = '';
+
+      while (this.next().type !== 'list_item_end') {
+        body += this.tok();
+      }
+
+      return this.renderer.listitem(body);
+    }
+    case 'html': {
+      var html = !this.token.pre && !this.options.pedantic
+        ? this.inline.output(this.token.text)
+        : this.token.text;
+      return this.renderer.html(html);
+    }
+    case 'paragraph': {
+      return this.renderer.paragraph(this.inline.output(this.token.text));
+    }
+    case 'text': {
+      return this.renderer.paragraph(this.parseText());
+    }
+  }
+};
+
+/**
+ * Helpers
+ */
+
+function escape(html, encode) {
+  return html
+    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function unescape(html) {
+  return html.replace(/&([#\w]+);/g, function(_, n) {
+    n = n.toLowerCase();
+    if (n === 'colon') return ':';
+    if (n.charAt(0) === '#') {
+      return n.charAt(1) === 'x'
+        ? String.fromCharCode(parseInt(n.substring(2), 16))
+        : String.fromCharCode(+n.substring(1));
+    }
+    return '';
+  });
+}
+
+function replace(regex, opt) {
+  regex = regex.source;
+  opt = opt || '';
+  return function self(name, val) {
+    if (!name) return new RegExp(regex, opt);
+    val = val.source || val;
+    val = val.replace(/(^|[^\[])\^/g, '$1');
+    regex = regex.replace(name, val);
+    return self;
+  };
+}
+
+function noop() {}
+noop.exec = noop;
+
+function merge(obj) {
+  var i = 1
+    , target
+    , key;
+
+  for (; i < arguments.length; i++) {
+    target = arguments[i];
+    for (key in target) {
+      if (Object.prototype.hasOwnProperty.call(target, key)) {
+        obj[key] = target[key];
+      }
+    }
+  }
+
+  return obj;
+}
+
+
+/**
+ * Marked
+ */
+
+function marked(src, opt, callback) {
+  if (callback || typeof opt === 'function') {
+    if (!callback) {
+      callback = opt;
+      opt = null;
+    }
+
+    opt = merge({}, marked.defaults, opt || {});
+
+    var highlight = opt.highlight
+      , tokens
+      , pending
+      , i = 0;
+
+    try {
+      tokens = Lexer.lex(src, opt)
+    } catch (e) {
+      return callback(e);
+    }
+
+    pending = tokens.length;
+
+    var done = function() {
+      var out, err;
+
+      try {
+        out = Parser.parse(tokens, opt);
+      } catch (e) {
+        err = e;
+      }
+
+      opt.highlight = highlight;
+
+      return err
+        ? callback(err)
+        : callback(null, out);
+    };
+
+    if (!highlight || highlight.length < 3) {
+      return done();
+    }
+
+    delete opt.highlight;
+
+    if (!pending) return done();
+
+    for (; i < tokens.length; i++) {
+      (function(token) {
+        if (token.type !== 'code') {
+          return --pending || done();
+        }
+        return highlight(token.text, token.lang, function(err, code) {
+          if (code == null || code === token.text) {
+            return --pending || done();
+          }
+          token.text = code;
+          token.escaped = true;
+          --pending || done();
+        });
+      })(tokens[i]);
+    }
+
+    return;
+  }
+  try {
+    if (opt) opt = merge({}, marked.defaults, opt);
+    return Parser.parse(Lexer.lex(src, opt), opt);
+  } catch (e) {
+    e.message += '\nPlease report this to https://github.com/chjj/marked.';
+    if ((opt || marked.defaults).silent) {
+      return '<p>An error occured:</p><pre>'
+        + escape(e.message + '', true)
+        + '</pre>';
+    }
+    throw e;
+  }
+}
+
+/**
+ * Options
+ */
+
+marked.options =
+marked.setOptions = function(opt) {
+  merge(marked.defaults, opt);
+  return marked;
+};
+
+marked.defaults = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: false,
+  silent: false,
+  highlight: null,
+  langPrefix: 'lang-',
+  smartypants: false,
+  headerPrefix: '',
+  renderer: new Renderer,
+  xhtml: false
+};
+
+/**
+ * Expose
+ */
+
+marked.Parser = Parser;
+marked.parser = Parser.parse;
+
+marked.Renderer = Renderer;
+
+marked.Lexer = Lexer;
+marked.lexer = Lexer.lex;
+
+marked.InlineLexer = InlineLexer;
+marked.inlineLexer = InlineLexer.output;
+
+marked.parse = marked;
+
+if (typeof exports === 'object') {
+  module.exports = marked;
+} else if (typeof define === 'function' && define.amd) {
+  define(function() { return marked; });
+} else {
+  this.marked = marked;
+}
+
+}).call(function() {
+  return this || (typeof window !== 'undefined' ? window : global);
+}());
+
+})(window)
+},{}],57:[function(require,module,exports){
 (function(Buffer){var stream = require('stream')
 var util = require('util')
 
@@ -17193,7 +17387,7 @@ module.exports = function(cb) {
 module.exports.ConcatStream = ConcatStream
 
 })(require("__browserify_buffer").Buffer)
-},{"stream":39,"util":22,"__browserify_buffer":29}],52:[function(require,module,exports){
+},{"stream":40,"util":22,"__browserify_buffer":29}],52:[function(require,module,exports){
 (function(global){((typeof define === "function" && define.amd && function (m) {
     define("formatio", ["samsam"], m);
 }) || (typeof module === "object" && function (m) {
