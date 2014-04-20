@@ -4,13 +4,192 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2014-03-16T12:08:56+00:00</updated>
+  <updated>2014-04-20T18:25:08+01:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
     <email>desk@dalemmanning.me.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://dalemmanningme.uk/ios/2014/04/20/Working-with-iPad-Part-2</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/ios/2014/04/20/Working-with-iPad-Part-2/"/>
+    <title>Working with the iPad - Part 2</title>
+    <updated>2014-04-20T18:12:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;So its taken a little while but here is part 2 of my &#39;Working with iPad&#39; post, the main reason for the delay since the last post is that any awful lot has changed in just the past few months and I needed to spend some time going back over my current workflow. It has also taken me a while to figure out how I wanted to present this information, I&#39;ve decided to go with what I currently have on my own iPad home screen along with an explanation for why that particular app has found a home on my device. Alongside each explanation, I have included direct links (&lt;em&gt;they are not affiliate links&lt;/em&gt;) to the websites, iTunes links and any additional articles which may provide some extra information.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;img src=&quot;/img/postimages/2014-04-20-Homescreen.jpg&quot; alt=&quot;My Homescreen&quot; /&gt;
+&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;I have one simple rule for my home screen, no folders! If its on my home screen then it&#39;s an app I use on an almost daily basis and as a result I just want to be able to load it quickly.&lt;/p&gt;
+
+&lt;h2&gt;Dock Apps&lt;/h2&gt;
+
+&lt;h4&gt;Safari&lt;/h4&gt;
+
+&lt;p&gt;I&#39;ve tried a large number of the alternative browsers for iPad and they all have some nice features but the nothing really compares to the speed of Safari when it comes to rendering web pages. It also allows me to access my bookmarks, as well as the iCloud Tabs feature which is available in all of the current versions of Safari mobile and desktop alike. I can start browsing a webpage on my desktop and providing I leave it open, load it up on my iPad and carry on reading.&lt;/p&gt;
+
+&lt;h4&gt;Boxer&lt;/h4&gt;
+
+&lt;p&gt;This is a recent addition to my dock and for a long time I used Apple&#39;s mail app, however Boxer provides me with some really great swipe actions. These swipe actions can be customised depending on exactly how you prefer to work. Here is a quick breakdown of how I use Boxer:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Half swipe from the left: Allows me to move the email to another folder, the nicest feature of Boxer is that it learns your habits and provides shortcuts to commonly used folders for a particular person.&lt;/li&gt;
+&lt;li&gt;Full swipe from the left: Add to your todo folder, inevitably we all receive emails which need to be actioned at some point. The todo folder creates a quick and simple todo list to my e-mails.&lt;/li&gt;
+&lt;li&gt;Half swipe from the right: Delete email.&lt;/li&gt;
+&lt;li&gt;Full swipe from the right: Send email to Evernote, which allows me to archive any important messages/attachments quickly and easily.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Alongside this you can also access the actions panel which provides you with a range of additional options.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://www.getboxer.com&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/id561712083?referrer=click%3D7c212eb2-3546-43dd-8b24-6f50b2415796&quot;&gt;iOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Fantastical&lt;/h4&gt;
+
+&lt;p&gt;Another recent addition but I am so glad that Fantastical has been released for the iPad, I was actually running the iPhone version in 2x mode up until this point. So why is Fantastical so useful? The main reason is that it allows you to enter reminders and appointments using natural language, for example entering &#39;Meeting this Thursday at 10 for 30 minutes&#39; will create an appointment which is 30 minutes long at 10 o&#39;clock on the next available Thursday.&lt;/p&gt;
+
+&lt;p&gt;It would also be fair to say that the team at Flexibits have created a great looking app, which makes fantastic use of the screen real estate providing you with half-screen and full-screen week views.&lt;/p&gt;
+
+&lt;p&gt;As is often the case you can find a really detailed review over on &lt;a href=&quot;http://www.macstories.net/reviews/fantastical-for-ipad-review/&quot;&gt;Macstories&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://flexibits.com&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/gb/app/id718043190?mt=8&quot;&gt;iPhone&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/gb/app/id830708155?mt=8&quot;&gt;iPad&lt;/a&gt; / &lt;a href=&quot;http://flexibits.com/fantastical&quot;&gt;Mac&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Launch Center Pro&lt;/h4&gt;
+
+&lt;p&gt;Launch Center Pro for the iPad was released at the end of January and as a result I&#39;m still very much figuring out exactly where it belongs in my workflow. However for those of you who aren&#39;t aware of what it is, it allows you to create a whole range of iOS automation, such as quickly being able to perform searches via alternative search engines or easily add a reminder or appointment to a particular calendar using Fantastical.&lt;/p&gt;
+
+&lt;p&gt;I use it for a wide range of shortcuts and to be honest it is changing on a weekly basis, the most recent example of new workflows are the structured journal entries I create with it. For example I have daily summary workflow, which as asks me a number of questions about my day and then once I&#39;ve finished turns all of my responses into a Day One entry (&lt;em&gt;see below&lt;/em&gt;). I know I&#39;m not anywhere near using this app to its full potential but I am having a lot of fun seeing exactly what it is capable of! I plan to try and write a more in depth post at some point, explaining how it can fit into an education workflow.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://contrast.co/launch-center-pro/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/launch-center-pro/id532016360&quot;&gt;iPhone&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/id799664902&quot;&gt;iPad&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Homescreen Apps&lt;/h2&gt;
+
+&lt;h4&gt;Twitterrific&lt;/h4&gt;
+
+&lt;p&gt;There are many different Twitter apps out there for you to use, but I really like the look and feel of Twitterrific. We recently created a department Twitter feed for our students and it has been a fantastic success. It allows us to quickly and easily get information out to our students, such as updates/reminders on important deadlines, notices about new resources on our VLE and useful articles which may benefit their studies. The truth is many students find it more natural to communicate via social networks rather than e-mail and as a result it has opened up a lot of new avenues for us. I would highly encourage you to investigate social media as another method of keeping in touch with your students.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://twitterrific.com/ios&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/twitterrific-5-for-twitter/id580311103?mt=8&amp;amp;ign-mpt=uo%3D4&quot;&gt;iOS App&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/twitterrific-for-twitter/id414957465?mt=12&amp;amp;ign-mpt=uo%3D4&quot;&gt;Mac App&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;1Password&lt;/h4&gt;
+
+&lt;p&gt;I mentioned 1Password during the first part of this post when discussing iCloud Keychain. It is a password management system, which allows you to generate secure passwords at the tap of a button. It is core app as far as I&#39;m concerned, every single username and password, software licence and important piece of information is locked away in my 1Password database behind a secure master password. It&#39;s the fact that my database lives behind a master password which makes it more preferable to iCloud Keychain, even if someone does get hold of my device in an unlocked state my passwords are all still secure. Thanks to Dropbox my database is synced across my iPad, iPhone and Mac, which means I always have access to everything I need.&lt;/p&gt;
+
+&lt;p&gt;A perfect example of why an app like 1Password is so important is the recent &#39;Heartbleed Bug&#39; which has been discovered, thanks to this list on Mashable, I used 1Password to go through and change all of my possibly affected passwords. It took me at most 10 minutes to go through and changes the passwords for the 15+ web services I use.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;https://agilebits.com/onepassword&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/1password-password-manager/id568903335?mt=8&amp;amp;ign-mpt=uo%3D4&quot;&gt;iOS&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/1password-password-manager/id443987910?mt=12&amp;amp;ign-mpt=uo%3D4&quot;&gt;Mac&lt;/a&gt; / &lt;a href=&quot;https://agilebits.com/store&quot;&gt;Windows&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Planbook&lt;/h4&gt;
+
+&lt;p&gt;Many teachers I know use paper planners, however I&#39;ve never been able to get into the habit of using them mainly because its just another thing I have to carry around. Since the autumn half term I&#39;ve been using Planbook and I love it. I&#39;ll admit  it does take a little time to setup properly, as you need to enter your timetable information but once you have done that, you are good to go. It has made my life so much easier, especially as I am able to use the 6 customisable fields to break my lessons down into the expected fields (&lt;strong&gt;Lesson Objectives, Starter, Main, Plenary, Resources and Other&lt;/strong&gt;). If you need to it will allow you to print or e-mail your weekly timetable complete with your lesson planning, which is extremely useful for any trainee teacher or NQT. Hellmansoft have also released a Mac version and Dropbox keeps the two in sync.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://www.hellmansoft.com/index.html&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/planbook-touch/id387115895?mt=8&quot;&gt;iPad&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/planbook/id412029748?mt=12&quot;&gt;Mac&lt;/a&gt; / &lt;a href=&quot;http://www.hellmansoft.com/planbook/windows.html?tab=buy&quot;&gt;Windows&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Evernote&lt;/h4&gt;
+
+&lt;p&gt;I&#39;ve been asked a few times to explain Evernote, I always start by saying &#39;it is the digital filing cabinet for both my personal and work life&#39;. Absolutely everything I consider to be important or even remotely useful ends up in my Evernote database, for example a copy of all of my teaching resources, presentations, worksheets and every assignment I mark ends up here (&lt;em&gt;it is genuinely amazing how often students lose work you ask them to keep safe!&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;Any articles that I consider to be useful in any aspect of my life, get saved as full copies in Evernote and thanks to the IFTTT service everything I bookmark to Pinboard gets saved here as well. The truth is that Evernote can be used for just about anything, but I&#39;ve found it to be most useful as my &#39;file and forget until needed&#39; service. For many people it forms the backbone of living paperless life and for others to fulfils other requirements.&lt;/p&gt;
+
+&lt;p&gt;Evernote offer a free service, which while only allowing 60MB of uploads a month is more than enough to get a taste of what it can offer you. If you decide that you like it, you can signup to their premium service for £35 a year, which offers you a 1GB upload limit per month.&lt;/p&gt;
+
+&lt;p&gt;You can find a lot more information on different use cases over on the &lt;a href=&quot;https://blog.evernote.com&quot;&gt;Evernote blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;https://evernote.com/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/gb/app/evernote/id281796108?mt=8&quot;&gt;iOS&lt;/a&gt; / &lt;a href=&quot;https://evernote.com/evernote/&quot;&gt;Mac/Windows&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Day One&lt;/h4&gt;
+
+&lt;p&gt;Day One is a fantastic journal app and while it may not have anything directly to do with education, I learnt long ago that my mental wellbeing is an essential part of being a good teacher. I use Day One to write down anything which is on my mind or that has been successful, I find that this helps me to stay focused and for the most part in a good place mentally.&lt;/p&gt;
+
+&lt;p&gt;Over the past few weeks I&#39;ve been using Launch Center Pro to help structure my entries, by prompting me with the questions which help me to think about my day constructively. As well as this at the end of the day, my computer creates an entry which lists the music I&#39;ve listened to, films I&#39;ve watched and books I&#39;ve finished reading using the excellent &lt;a href=&quot;http://craigeley.com/post/72565974459/sifttter-an-ifttt-to-day-one-logger&quot;&gt;Sifttter&lt;/a&gt; script written by Craig Eley.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://dayoneapp.com&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/day-one-journal-diary/id421706526&quot;&gt;iOS&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/day-one/id422304217?mt=12&quot;&gt;Mac&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Drafts&lt;/h4&gt;
+
+&lt;p&gt;Drafts can best be described as a Swiss Army tool for text, which through a range of customisable actions allows you to send text to virtually any service. The best thing about these actions is that they can be chained together in order to create some pretty powerful workflows. For example using Drafts, I can enter a single piece of text and send it to multiple social networks at the same time.&lt;/p&gt;
+
+&lt;p&gt;I use a whole range of different actions split over four different groups, my first are a range of Dropbox actions which are setup to allow me to append entries to a range of text files. My second group contains my range of Evernote actions, my third group contains actions which will allow me to send text to a range of different apps and finally my fourth group allows me to manipulate the text on my clipboard.&lt;/p&gt;
+
+&lt;p&gt;The biggest advantage of drafts is that it opens up to a blank page ready for entry straight away, as a result its my default starting place for any text entry on my iPad or iPhone.&lt;/p&gt;
+
+&lt;p&gt;You can find a detailed article over on &lt;a href=&quot;http://www.macstories.net/tutorials/guide-url-scheme-ios-drafts/&quot;&gt;Macstories&lt;/a&gt; which gives a comprehensive breakdown of how Drafts can be used for iOS automation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://agiletortoise.com/drafts/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/drafts-for-ipad/id542797283?mt=8&amp;amp;ign-mpt=uo%3D4&quot;&gt;iPad&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/drafts/id502385074?mt=8&amp;amp;ign-mpt=uo%3D4&quot;&gt;iPhone&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Editorial&lt;/h4&gt;
+
+&lt;p&gt;If Drafts is my starting place for text, then Editorial is the finishing place and it has to be one of the most powerful text editors which currently exists for the iPad. I&#39;ve been writing everything in markdown and plain text for the past couple of years, there are a number of reasons for this but the main one is that text is a universal format. Unfortunately, Markdown isn&#39;t exactly widely used by my colleagues so as a result my content always ends up in a PDF or Word document at some point (&lt;em&gt;A guy can hope, right?&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;However Editorial is so much more then a text editor, it allows for some truly complex automation to take place and that is part of the reason why I love using Editorial although I&#39;m sure I have only just scratched the surface of what it can do. Unfortunately we are still waiting for the 1.1 release which will bring it up to date with iOS 7 and as a result some of the features I really liked such as TextExpander support, currently do not work. However all &lt;a href=&quot;http://omz-forums.appspot.com/editorial/post/5900430768865280&quot;&gt;indications&lt;/a&gt; are that version 1.1 will be really worth waiting for, not only will it bring it inline with the iOS 7 requirements but it also adds a brand new UI for creating your own workflows (although in fairness the current UI is pretty great).&lt;/p&gt;
+
+&lt;p&gt;As always I can&#39;t really do this fantastic app justice, so I recommend that you check out the review of the initial release over on &lt;a href=&quot;http://www.macstories.net/stories/editorial-for-ipad-review/&quot;&gt;Macstories&lt;/a&gt; to get an in depth overview of what it can do for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://omz-software.com/editorial/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/editorial/id673907758&quot;&gt;iOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Documents&lt;/h4&gt;
+
+&lt;p&gt;Documents is my file management app of choice, as well as being able to transfer files via iCloud it also has the ability to interact with a range of cloud services such as Dropbox and Google Drive. My favourite feature has to be the ability to treat other Readdle apps such as PDF Expert and PDF Converter as &#39;plugins&#39;. This means I can quickly convert word documents to PDF and then annotate them all with Documents. I used to use a range of different apps to do this, but documents has made my marking workflow so much easier.&lt;/p&gt;
+
+&lt;p&gt;Documents also allows you to create synced folders between your cloud services, so for example all of my students sumbitted assignments get placed into a folder on Google Drive and this folder automatically syncs to my iPad. While PDF Expert and PDF Converter are paid apps, Documents if free and is really worth downloading just for the file management options it provides.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://readdle.com/products/documents/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/documents-by-readdle/id364901807?mt=8&amp;amp;ign-mpt=uo%3D4&quot;&gt;iOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;iWork Suite&lt;/h4&gt;
+
+&lt;p&gt;There will always be a need for an office suite in your toolkit, especially in the education environment. The iWork suite of apps were some of the very first apps I brought when I got my iPad 1 and it has made a lot of improvements over the past few years. One of the most useful features is its ability to quickly sync documents via iCloud, which makes moving between my desktop and my iPad extremely easy.&lt;/p&gt;
+
+&lt;p&gt;One thing I constantly get asked about is open Office documents, the good news is that the iWork apps will open their counterparts documents. So Pages will open Word documents, Keynote will open Powerpoint documents and Numbers will open Excel spreadsheets. They can also save back to their counterpoints document formats.&lt;/p&gt;
+
+&lt;p&gt;The recent release of Microsoft Office for iPad has changed the choices you have in terms of office suites and it would be fair to say that Microsoft have made some absolutely brilliant apps. You can download them for free, however they do require an Office 365 subscription to unlock the full range of features. Without this subscription you can open documents in read only mode and actually deliver Powerpoint presentations. As more schools move over to Office 365 licences as part of their yearly licence renewal, these apps will become an increasingly attractive option and it will interesting to see how they develop over the next few years.&lt;/p&gt;
+
+&lt;p&gt;However if you do not have access to an Office 365 subscription, then the iWork apps can be an attractive option when you consider that they are a one off payment of £6.99 each or if you have purchased a new iOS device you get them free!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://www.apple.com/creativity-apps/ios/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/keynote/id361285480?mt=8&amp;amp;ls=1&quot;&gt;Keynote iOS&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/pages/id361309726?mt=8&amp;amp;ls=1&quot;&gt;Pages iOS&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/us/app/numbers/id361304891?mt=8&amp;amp;ls=1&quot;&gt;Numbers iOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Pinner&lt;/h4&gt;
+
+&lt;p&gt;Pinner allows me to manage my Pinboard bookmarks. I signed up for the Pinboard service a couple of months ago, because I wanted a way of bookmarking webpages which would be accessible from any web browser. For those of you who aren&#39;t aware of Pinboard, it is a service which allows you to create a personal public and private bookmark list. Pinner allows me to move my bookmarks between these lists and tag them if I want.&lt;/p&gt;
+
+&lt;p&gt;While I&#39;m a big user of iCloud bookmarks, unfortunately at work I have to used Windows based computers depending on the classroom I&#39;m having to teach in. Pinboard allows me to access all of my bookmarked resources quickly and easily, via the web interface. It is a service which costs, but it is a one-time cost for a lifetime subscription.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;https://pinboard.in&quot;&gt;Pinboard Website&lt;/a&gt; / &lt;a href=&quot;http://pinnerapp.net&quot;&gt;Pinner Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/pinner-social-bookmarking/id591613202&quot;&gt;iOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Mr Reader&lt;/h4&gt;
+
+&lt;p&gt;I read a lot of blogs and news websites, in order to make it easier to catch up with them all on a daily basis I make use of Mr Reader. Through the Feedly service I subscribe to the RSS feeds for each of these sites and all new posts are delivered straight to my iPad. While there are many different RSS readers out there, I love Mr Reader because it allows me to access a huge range of different services based on what I want to do with an article I find interesting or useful. For example I can send an article straight to Pinboard, post the link straight to Twitter or save it to my read it later service. You can either use the provided service list or you can build your own providing you know the URL scheme or the relevant Javascript.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://www.curioustimes.de/mrreader/&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/gb/app/mr.-reader/id412874834?mt=8&quot;&gt;iPad&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Pocket&lt;/h4&gt;
+
+&lt;p&gt;Pocket is the free service I use in order to save any articles I want to read later on. The nicest feature of pocket is that it removes all of the extra content such as adverts and just leaves you with the actual article content. From here you can send it to a range of different services such as Twitter, Pinboard and Evernote.&lt;/p&gt;
+
+&lt;p&gt;In reality it is a simple service which makes reading online content really easy.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://getpocket.com&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/gb/app/pocket-save-articles-videos/id309601447?mt=8&quot;&gt;iOS&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/gb/app/pocket/id568494494?mt=12&quot;&gt;Mac&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Actions&lt;/h4&gt;
+
+&lt;p&gt;Actions is an app which allows me to extend the keyboard of my mac. It provides me with the ability to create a range of different shortcuts which can activated at the tap of a button. These actions can be placed into different groups, so for example I have a number of groups which provide me with access to the keyboard shortcuts for Photoshop, Indesign and Camtasia.&lt;/p&gt;
+
+&lt;p&gt;While Actions has always been useful, the recent addition of Flows to the app has opened up a whole new range of options. &#39;Flows&#39; allow you to chain together a range of shortcuts together in order to create some really complicated workflows, for example I created a flow for Markdown Pro which selects all of the text, sends it to Marked and then exports a PDF. Something which would have taken me a series of mouse clicks and commands can now be achieved with a single tap.&lt;/p&gt;
+
+&lt;p&gt;Actions may not be use to everyone, but if you are a big user of keyboard shortcuts I highly recommend you check it out.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Links:&lt;/strong&gt; &lt;a href=&quot;http://getactionsapp.com&quot;&gt;Website&lt;/a&gt; / &lt;a href=&quot;https://itunes.apple.com/app/id564645608?ls=1&amp;amp;mt=8&quot;&gt;iPad&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;That is it, a rather long run down of the apps I use on a daily basis. There are a load more apps which I could have talked about such as the iLife suite for iOS or iThoughts HD but as I&#39;ve clocked in over 3000 words so far, I would like to thank you for sticking with me. I hope that you have found this post a useful one, most importantly there is a huge range of apps available on the app store. All I can encourage you to do is to spend sometime investigating and see what works best for you.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://dalemmanningme.uk/comics/2014/03/16/Comic-Book-Readers</id>
