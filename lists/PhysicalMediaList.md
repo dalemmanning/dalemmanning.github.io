@@ -146,6 +146,7 @@ Buffy the Vampire Slayer: Season 7 DVD Collection - DVD, 2003
 #### <a name="C"></a>C      
       
 Captain America: The First Avenger - Blu-ray, 2011         
+Captain America: The Winter Solder - Blu-ray, 2014   
 Capturing Movie Memories: The Gollum "Smeagol" Collectible - DVD, 2003         
 Carlito's Way - DVD, 1994         
 Casino - Blu-ray, 1995         
@@ -833,7 +834,8 @@ Unforgiven - DVD, 1992
 Unit, The: Season 1 - DVD, 2006         
 Unit, The: Season 2 - DVD, 2006         
 Unit, The: Season 3 - DVD, 2007         
-Unit, The: Season 4 - DVD, 2009         
+Unit, The: Season 4 - DVD, 2009    
+Universal Monsters Collection, The - Blu-ray, 2012     
 Untouchables, The - DVD, 1987         
 Up - Blu-ray, 2009         
 Usual Suspects, The - DVD, 1995           
@@ -841,6 +843,7 @@ Usual Suspects, The - DVD, 1995
 #### <a name="V"></a>V      
       
 V For Vendetta - DVD, 2004         
+V For Vendetta - Blu-ray, 2008     
 Valkyrie - DVD, 2008         
 Van Helsing - DVD, 2004         
 Vertical Limit - DVD, 2000         
@@ -854,6 +857,7 @@ Wall Street: Money Never Sleeps - DVD, 2010
 WALL•E - DVD, 2008         
 Wanted - DVD, 2008         
 War of the Worlds - DVD, 2005         
+Wargames - Blu-ray, 2013      
 Watchmen - Blu-ray, 2009         
 We Were Soldiers - DVD, 2002         
 West Wing, The: Complete 3rd Season - DVD, 2001         
