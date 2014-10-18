@@ -4,13 +4,145 @@
   <title>Dale Manning</title>
   <link href="http://dalemmanning.me.uk/"/>
   <link type="application/atom+xml" rel="self" href="http://dalemmanning.me.uk/atom.xml"/>
-  <updated>2014-04-20T18:25:08+01:00</updated>
+  <updated>2014-10-18T14:55:59+01:00</updated>
   <id>http://dalemmanning.me.uk</id>
   <author>
     <name>Dale Manning</name>
     <email>desk@dalemmanning.me.uk</email>
   </author>
 
+  
+  <entry>
+    <id>http://dalemmanningme.uk/general/2014/10/04/iOS8-Initial-Impressions</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/general/2014/10/04/iOS8-Initial-Impressions/"/>
+    <title>iOS 8 Initial Impressions</title>
+    <updated>2014-10-04T15:00:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;So after using iOS 8 for a couple of weeks, I thought I would post some initial thoughts.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;3rd party keyboards are pretty great! While it certainly isn&#39;t the only option, the new TextExpander keyboard is fantastic. Finally being as to use my snippets in any app is absolutely brilliant. Although it should also be said that the new predictive default keyboard is also really good, a huge step up on apples part.&lt;/li&gt;
+&lt;li&gt;Extensions are going to open up iOS in a way that we haven&#39;t seen before. A perfect example is the 1Password extension, the fact that I no longer need to switch between Safari and 1Password to get a password, has already made my life so much easier. I just bring up the share sheet (&lt;em&gt;surely we need a new name for it...&lt;/em&gt;), tap the extension and away you go.&lt;/li&gt;
+&lt;li&gt;The new hand off features are interesting, although I&#39;ve yet to figure out how much I&#39;ll use it. I will say that I was extremely happy to find out that you could turn off the function that allowed you to answer phone calls on your iPad, which I could see quickly becoming a nightmare when teaching a class (&lt;em&gt;for future reference it can be found under Settings &gt; FaceTime &gt; iPhone Cellular Calls&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;The new option to add widgets to Notification Center is cool, but I can see that it will be easy to end up with a lot of clutter.&lt;/li&gt;
+&lt;li&gt;iCloud Drive is nice and I could see it possibly becoming my main cloud storage but I&#39;m going to wait until Yosemite is released before I make any decisions.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Unfortunately there are some interesting bugs still cropping up and truthfully I can&#39;t help but wonder if iOS 8 could have done with another couple of months in beta. However for the most part I have been impressed and I&#39;m really looking forward to seeing how developers make use of the new features.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://dalemmanningme.uk/general/2014/10/04/Evernote</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/general/2014/10/04/Evernote/"/>
+    <title>What Is Evernote?</title>
+    <updated>2014-10-04T14:10:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;em&gt;This post was originally written as part of a new 15 minute forum project which runs each week at school. I kicked off the project with a short demonstration of Evernote and this post was shared with the staff as a follow up.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Evernote is a suite of software, which is primarily designed for notetaking and archiving, but more importantly with a little work can also become whatever you need it to be. The core software has integration with hundreds of 3rd party apps, meaning you can use Evernote in a range of different ways.&lt;/p&gt;
+
+&lt;p&gt;I use Evernote to keep track of all my class notes, department administration, lesson resources and archived e-mails.&lt;/p&gt;
+
+&lt;p&gt;It is essentially a giant file-cabinet in the cloud which can be used to store just about anything. You have heard that an elephant never forgets... Well there is a reason why the Evernote logo is an elephant.&lt;/p&gt;
+
+&lt;h2&gt;OK but why not just use a memory stick?&lt;/h2&gt;
+
+&lt;p&gt;USB sticks are great but they aren&#39;t infallible, plus they are dependent on a computer. The biggest advantage of Evernote is that it can be used on any device, anywhere that you have an Internet connection. You can get apps for PC, Mac, iOS or Android and if you haven&#39;t got that to hand you can just long in via a standard web browser.&lt;/p&gt;
+
+&lt;p&gt;In other words, no matter where I am I have access to everything I place into Evernote.&lt;/p&gt;
+
+&lt;h2&gt;Notes, Notebooks and Stacks&lt;/h2&gt;
+
+&lt;p&gt;The organisation of Evernote can be split into three different categories:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Notes:&lt;/strong&gt; Notes are like documents, they can contain rich formatted text, URLs and any files you wish to store in Evernote.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notebooks:&lt;/strong&gt; Notebooks can be used to group together notes. For example you could have a notebook called &#39;Seating Plans&#39;, with each note inside containing the seating plan for each of your classes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stacks:&lt;/strong&gt; Best seen as the &#39;root&#39; folder of Evernote, it can be used to group together separate notebooks.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;The most important thing to remember is that each of these categories is fully searchable; if I were to search for &#39;Seating Plans&#39; it would show me the notebook called &#39;Seating Plans&#39;, but it goes one step further - you would also be shown all of the notes AND documents, which contain the phrase &#39;seating plan&#39;. Thats right, Evernote search has the ability to search through every readable document i.e. word, excel and powerpoint documents and pdf files. It is part of the reason why I love Evernote, on every single device I have access to some extremely powerful search tools.&lt;/p&gt;
+
+&lt;h2&gt;Tagging&lt;/h2&gt;
+
+&lt;p&gt;The biggest advantage of tags is that they ignore the boundaries set by notebooks and stacks. For example I may have a range of documents all applying to AS media studies but they are spread between four different notebooks, by tagging them with &#39;ASMedia&#39; I can easily browse all of those documents.&lt;/p&gt;
+
+&lt;p&gt;You can also apply a search phrase to a particular tag, so I could search for question papers but only within the notes tagged as &#39;ASMedia&#39;.&lt;/p&gt;
+
+&lt;h2&gt;Right so I can create notes and tag them, but what exactly can I add to Evernote?&lt;/h2&gt;
+
+&lt;p&gt;The truth is that in the current version of Evernote, you can add just about any file type to a note. The only difference is that Evernote can not search inside some document types or show a preview of the files. For example Photoshop files can be placed a note but Evernote does not have the ability to display a preview of its contents.&lt;/p&gt;
+
+&lt;p&gt;Some examples of the types of content which can be uploaded are:
+* Scanned documents
+* Spreadsheets and presentations
+* Scanned receipts
+* Photographs / Images
+* Receipes
+* Web clippings
+* E-mails&lt;/p&gt;
+
+&lt;p&gt;The only thing you have to be aware of, it that there is a size limit in regard to the notes you create. The free version has a 25mb limit and the premium version has a limit of 100mb.&lt;/p&gt;
+
+&lt;h2&gt;Hang on! Free and Premium?&lt;/h2&gt;
+
+&lt;p&gt;You probably noticed the mention of a free version and premium version in the preceding section, you can sign up for a free account which will allow you to get started with Evernote. It provides you with 60mb of bandwidth each month, while it may not sound like a lot it is enough for you to get started and have a play with the service.&lt;/p&gt;
+
+&lt;p&gt;The premium version will cost you £35.00 a year or £4.00 a month, it is the premium version which provides you with the more advanced features, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Presentation Mode: Allows you to present the contents of a note in a large screen friendly layout.&lt;/li&gt;
+&lt;li&gt;Add more files: You can store upto 100mb per note and upload a total of 4GB each month.&lt;/li&gt;
+&lt;li&gt;Document search: The ability to search inside office docs, PDFs and other documents is only available in the premium version.&lt;/li&gt;
+&lt;li&gt;Work offline: One of the best features of premium, it allows you to store your Evernote database offline on your mobile devices. Ideal for when you don&#39;t have an Internet connection.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Helpful Tip ...&lt;/h2&gt;
+
+&lt;p&gt;If you are an O2 mobile user, they are currently offering all their customers Evernote premium free for 12 months. You can find out more by &lt;a href=&quot;http://evernote.o2.co.uk&quot;&gt;clicking here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://dalemmanningme.uk/general/2014/07/27/Reflections-2014</id>
+    <link type="text/html" rel="alternate" href="http://dalemmanning.me.uk/general/2014/07/27/Reflections-2014/"/>
+    <title>Reflections July 2014</title>
+    <updated>2014-07-27T15:00:00+01:00</updated>
+    <author>
+      <name>Dale Manning</name>
+      <uri>http://dalemmanning.me.uk/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Well here we go, we have reached the end of the school year and I&#39;m once again finding myself wondering where the time has gone. To say that it has been a truly insane year would be somewhat of an understatement and I wanted to take the time to reflect on some of what has happened.&lt;/p&gt;
+
+&lt;p&gt;The first challenge of the year was undergoing my assessment only qualification period, 10 weeks which saw me very quickly learning to adapt to the new teaching standards, weekly lesson observations and the constant push towards reaching the outstanding outcome. It was an interesting time for me, I have always struggled with the &#39;outstanding teacher&#39; label; don&#39;t get me wrong I have always pushed myself towards being an outstanding teacher after all my students deserve nothing less from me. But I have also felt that being called outstanding would imply there is nothing you can do to improve (&lt;em&gt;I fully accept this may just be me overthinking it&lt;/em&gt;). Surely if you aren&#39;t striving to improve at all times, you aren&#39;t doing the best for their students; it was a conversation I had frequently with my university tutor, who I&#39;m pretty sure must have felt I was nuts.&lt;/p&gt;
+
+&lt;p&gt;I learnt a lot in those 10 weeks, in particular I realised there is nothing wrong with trying something new and different. It may not always go according to plan but when it does .... it can lead to some of the best lessons you have ever delivered. I can safely say that teaching citizenship to year 7 students helped with this realisation. Their ability to think outside of the normal constraints of the classroom is amazing. Ask them a single question and they will just run with it, ending up in places that I didn&#39;t even think of and asking questions you couldn&#39;t have planned for. Trust me when I say that if you want to practice at dealing with the unexpected in the classroom, teach year 7 citizenship!&lt;/p&gt;
+
+&lt;p&gt;I&#39;d be lying if I said I didn&#39;t find it hard work, but luckily I had two great people backing me throughout the process. I am extremely grateful for the guidance I received from my curriculum leader and professional tutor. They both encouraged me to run with my own ideas, think outside the box all the while continuing to show unbridled faith in me. Coming out of that 10 week period sane was largely down to them (&lt;em&gt;although they claim otherwise!&lt;/em&gt;) and I was officially handed my completion form on 22nd October.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ll be honest I was looking forward to just being able to focus on teaching during my NQT year, however things changed pretty quickly. It turns out that if you complete an assessment only qualification route, your NQT year becomes an NQT term! Luckily it was a relatively straight forward period for me and just after the easter break I received confirmation that I was a fully qualified teacher. In just over a year I had completed my degree and completed my teacher training, I still can&#39;t believe just how much has happened in such a short period of time. I still catch myself double checking that I have actually completed everything!&lt;/p&gt;
+
+&lt;p&gt;Just after this, I was caught surprise by another opportunity which presented itself. My curriculum leader had been appointed the new head of 6th form starting in September, a job which he will be truly awesome at and the 6th formers are going to be extremely lucky to have him in the role. This of course left the curriculum leader position for Media Studies open and I soon found myself in conversation with our head teacher about whether I was interested in the job.&lt;/p&gt;
+
+&lt;p&gt;I wasn&#39;t completely sure about saying yes, after all I had only just completed my qualification and I hadn&#39;t planned on this happening for a few more years yet. After a lot of thought and uncertainty, I made the decision to apply for the position. Ultimately the realisation that I would regret not going for it and that someone else could end up running the department that myself and my CL had worked so hard to build was enough to sway me. After going through the interview process I was offered the job and I began the process of getting ready to run a department.&lt;/p&gt;
+
+&lt;p&gt;In just a few short weeks, my students collect their GCSE and A-Level results. With all of the recent changes in the education system and this constant comment that exams are getting easier, it is always a stressful time of year for staff and students alike. Whatever the results, I am extremely proud of the work they have created. Without a doubt we have had some extremely talented students with us this year and the coursework they have produced reflects this.&lt;/p&gt;
+
+&lt;p&gt;The new school year is going to be an interesting one. While I know I still have a lot to learn, I&#39;m looking forward to the new challenges that I will face as a curriculum leader; but first I&#39;m going to take a few weeks off and catch up on some much needed sleep.&lt;/p&gt;
+
+&lt;p&gt;Have a good summer everyone!&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://dalemmanningme.uk/ios/2014/04/20/Working-with-iPad-Part-2</id>
